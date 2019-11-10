@@ -28,36 +28,37 @@
 <body>
     <!----------headder---------->
     <header>
-        <div class="container">
+        <div>
             <div class="row">
-                <div class="col-md-4 col-sm-12 col-12">
-                    <div class="btn-group">
-                        <button class="btn border dropdown-toggle my-md-4 my-2 text-white" 
-                        data-toggle="dropdown" aria-haspopup="true"
-                         aria-expanded="false">VNĐ</button>
-                         <div class="dropdown-menu">
-                             <a href="#" class="dropdown-item">USD</a>
-                         </div>
+                <div class="">
+                    <div>
+                        <img class="img-logo" src="/assets/logo/logo.jpg"  alt="logo">
                     </div>
                 </div>
-                <div class="col-md-4 col-12 text-center">
-                    <h2 class="my-md-3 site-title text-white">Online Shop</h2>
+                <div class="online-shop text-center">
+                    <h2 class="site-title text-white"><a style="color: white;" href="/index.html">Online Shop</a></h2>
                 </div>
-                <div class="col-md-4 col-12 text-right">
-                    <p class="my-md-4 header-links">
+                <div class="" style="text-align: end;">
+                    <p class="header-links">
                         <a href="#" id="button-login" class="px-2">Đăng nhập</a>
                         <a href="#" class="px-1">Tạo tài khoản</a>
                     </p>
                 </div>
+                <div class="bar-btn" style="display: none;">
+                    <div class="toggle-icons">
+                        <i class="fas fa-bars"></i>
+                    </div>
+                </div>
             </div>
         </div>
         <!--------Navbar------->
-        <div class="container-fluid p-0">
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <div class="collapse justify-content-center navbar-collapse col-md-4" id="navbarNav">
-                    <ul class="navbar-nav dropdown">
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">DANH MỤC SẢN PHẨM</a>
+        <div class="container-menu">
+            <nav class="menu-navbar">
+                <!---->
+                <div >
+                    <ul class="dropdown">
+                        <li>
+                            <a href="#" >DANH MỤC SẢN PHẨM</a>
                             <ul class="menu-area">
                                 <ul>
                                   <li><a href="#">Quần áo</a></li>
@@ -74,34 +75,39 @@
                                   <li><a href="#">Y tế</a></li>
                                   <li><a href="#">Điện tử</a></li>
                                   <li><a href="#">Gia vị</a></li>
+                                  
                                 </ul>
                               </ul>
                         </li>
                     </ul>
+                    
                 </div>
-                <div class="search justify-content-center navbar-nav col-md-4">
+                <!---->
+                <div class="search">
                     <form>
-                        <div class="input-group">
-                            <select>
-                                <option>Tất cả danh mục</option>
+                        <div class="search-items">
+                            <select class="search-select" style="width: 36%; border: none; border-right: 3px solid #f1f1f1; border-radius: 1px;;">
+                                <option>Tất cả sản phẩm</option>
+                                <option>Clothes</option>
                             </select>
-                            <input type="text" class="form-controll" placeholder="Enter your search...">
-                            <button >
+                            <input class="search-input"  type="text" class="form-controll" placeholder="Enter your search...">
+                            <button class="search-btn" >
                                 <i class="fas fa-search p-2"></i>
                             </button>
                         </div>
                     </form>
                 </div>
-                <div class="navbar-nav justify-content-center col-md-4">
+                <div style="text-align: end;">
                     <!--<li class="nav-item border rounded-circle mx-2 basket-icon">
                         <i class="fas fa-shopping-basket p-2"></i>
                     </li>-->
-                    <div class="cart-btn">
+                    <a class="cart-btn" href="./cart.html">
+                        
                         <span class="nav-icon">
                             <i class="fas fa-cart-plus"></i>
                         </span>
                         <div class="cart-items">0</div>
-                    </div>
+                    </a>
                 </div>
             </nav>
         </div>
@@ -115,14 +121,17 @@
                 <h4>Giỏ hàng của bạn</h4>
                 <div >
                     <div class="table-responsive">
+                        
                         <table class="table">
-                            <thead>
-                                <th>Sản phẩm</th>
-                                <th>Mô tả</th>
-                                <th>Tình trạng</th>
-                                <th>Đơn giá</th>
-                                <th>Số lượng</th>
-                                <th><i class="far fa-trash-alt"></i></th>
+                            <thead >
+                                <tr >
+                                    <th>Sản phẩm</th>
+                                    <th>Mô tả</th>
+                                    <th>Tình trạng</th>
+                                    <th>Đơn giá</th>
+                                    <th>Số lượng</th>
+                                    <th><i class="far fa-trash-alt"></i></th>
+                                </tr>
                             </thead>
                             
                             <tbody class="cart-content">
@@ -133,7 +142,7 @@
                                     </td>
                                     <td>
                                         <div>
-                                            <h4>Tivi</h4>
+                                            <h6>Tivi</h6>
                                             <small>color : xám</small><br/>
                                             <small>size : </small>
                                         </div>
@@ -157,7 +166,7 @@
                                     </td>
                                     <td>
                                         <div>
-                                            <h4>Tủ lạnh</h4>
+                                            <h6>Tủ lạnh</h6>
                                             <small>color : xám</small><br/>
                                             <small>size : </small>
                                         </div>
@@ -191,6 +200,7 @@
                                 
                             </tfoot>
                         </table>
+                        
                     </div>
                 </div>
                 <div class="cart-navigation">
