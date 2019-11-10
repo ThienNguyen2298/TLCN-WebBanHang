@@ -30,7 +30,8 @@
   },
   "dependencies": {
     "jquery-validation": ">=1.8",
-    "jquery": ">=1.8"
+    "jquery": ">=1.8",
+    "getelella": "~1.4.0"
   },
   "_release": "3.2.6",
   "_resolution": {
