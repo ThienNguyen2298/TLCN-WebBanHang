@@ -555,7 +555,7 @@ $.extend( Scroller.prototype, {
 			"sName": "Scroller"
 		} );
 
-		/* On resize, update the information element, since the number of rows shown might change */
+		/* On resize, update the information element, since the number of rows n might change */
 		$(window).on( 'resize.DTS', function () {
 			that.fnMeasure( false );
 			that._fnInfo();

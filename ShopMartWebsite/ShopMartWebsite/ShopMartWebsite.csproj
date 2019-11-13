@@ -37,8 +37,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Areas\Admin\Data\" />
-    <Folder Include="Areas\Admin\Models\" />
     <Folder Include="wwwroot\css\" />
     <Folder Include="wwwroot\images\" />
     <Folder Include="wwwroot\js\" />
@@ -46,9 +44,46 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Update="Areas\Admin\Views\Shared\_Layout.cshtml">
-      <Pack>$(IncludeRazorContentInPack)</Pack>
-    </Content>
+    <None Include="wwwroot\admin\vendors\datatables.net\js\jquery.dataTables.js" />
+    <None Include="wwwroot\admin\vendors\datatables.net\js\jquery.dataTables.min.js" />
+    <None Include="wwwroot\admin\vendors\datatables.net\Readme.md" />
+    <None Include="wwwroot\content\vendor\bootstrap\css\bootstrap-grid.css.map" />
+    <None Include="wwwroot\content\vendor\bootstrap\css\bootstrap-grid.min.css.map" />
+    <None Include="wwwroot\content\vendor\bootstrap\css\bootstrap-reboot.css.map" />
+    <None Include="wwwroot\content\vendor\bootstrap\css\bootstrap-reboot.min.css.map" />
+    <None Include="wwwroot\content\vendor\bootstrap\css\bootstrap.css.map" />
+    <None Include="wwwroot\content\vendor\bootstrap\css\bootstrap.min.css.map" />
+    <None Include="wwwroot\content\vendor\bootstrap\js\bootstrap.bundle.js" />
+    <None Include="wwwroot\content\vendor\bootstrap\js\bootstrap.bundle.js.map" />
+    <None Include="wwwroot\content\vendor\bootstrap\js\bootstrap.bundle.min.js" />
+    <None Include="wwwroot\content\vendor\bootstrap\js\bootstrap.bundle.min.js.map" />
+    <None Include="wwwroot\content\vendor\bootstrap\js\bootstrap.js" />
+    <None Include="wwwroot\content\vendor\bootstrap\js\bootstrap.js.map" />
+    <None Include="wwwroot\content\vendor\bootstrap\js\bootstrap.min.js" />
+    <None Include="wwwroot\content\vendor\bootstrap\js\bootstrap.min.js.map" />
+    <None Include="wwwroot\content\vendor\jquery\jquery.js" />
+    <None Include="wwwroot\content\vendor\jquery\jquery.min.js" />
+    <None Include="wwwroot\content\vendor\jquery\jquery.min.map" />
+    <None Include="wwwroot\content\vendor\jquery\jquery.slim.js" />
+    <None Include="wwwroot\content\vendor\jquery\jquery.slim.min.js" />
+    <None Include="wwwroot\content\vendor\jquery\jquery.slim.min.map" />
+    <None Include="wwwroot\user\assets\Banner\banner-2.webp" />
+    <None Include="wwwroot\user\assets\Banner\banner-3.webp" />
+    <None Include="wwwroot\user\js\aos.js" />
+    <None Include="wwwroot\user\js\app.js" />
+    <None Include="wwwroot\user\js\bootsnav.js" />
+    <None Include="wwwroot\user\js\bootstrap.js" />
+    <None Include="wwwroot\user\js\jquery3.4.1.min.js" />
+    <None Include="wwwroot\user\js\main.js" />
+    <None Include="wwwroot\user\js\owl.carousel.min.js" />
+    <None Include="wwwroot\user\js\slick.js" />
+    <None Include="wwwroot\user\js\slick.min.js" />
+    <None Include="wwwroot\user\webfonts\fa-brands-400.svg" />
+    <None Include="wwwroot\user\webfonts\fa-brands-400.woff2" />
+    <None Include="wwwroot\user\webfonts\fa-regular-400.svg" />
+    <None Include="wwwroot\user\webfonts\fa-regular-400.woff2" />
+    <None Include="wwwroot\user\webfonts\fa-solid-900.svg" />
+    <None Include="wwwroot\user\webfonts\fa-solid-900.woff2" />
   </ItemGroup>
 
 </Project>

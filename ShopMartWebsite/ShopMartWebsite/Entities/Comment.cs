@@ -8,6 +8,10 @@ namespace ShopMartWebsite.Entities
     [Table("comment")]
     public class Comment
     {
+        public Comment()
+        {
+            Replies = new List<Reply>();
+        }
         public int id { get; set; }
         public string content { get; set; }
         public DateTime createDate { get; set; }
@@ -17,5 +21,6 @@ namespace ShopMartWebsite.Entities
         //foreign key
         public int userId { get; set; }
         public User user { get; set; }
+        public virtual ICollection<Reply> Replies { get; set; }
     }
 }

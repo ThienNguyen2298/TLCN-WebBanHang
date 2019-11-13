@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using ShopMartWebsite.Controllers;
 using ShopMartWebsite.Entities;
 using ShopMartWebsite.Extensions;
 using ShopMartWebsite.Models;
@@ -13,6 +14,7 @@ using ShopMartWebsite.Models;
 namespace ShopMartWebsite.Areas.Admin.Controllers
 {
     [Area("Admin")]
+   
     public class LoginController : Controller
     {
         private readonly UserManager<User> _userManager;
@@ -60,6 +62,12 @@ namespace ShopMartWebsite.Areas.Admin.Controllers
 
             // If we got this far, something failed, redisplay form
             return new OkObjectResult(new GenericResult(false,model));
+        }
+        
+        public IActionResult Logout()
+        {
+            _signInManager.SignOutAsync();
+            return new OkObjectResult(new GenericResult(true));
         }
     }
     
