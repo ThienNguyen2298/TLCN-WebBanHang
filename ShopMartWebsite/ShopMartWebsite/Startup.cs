@@ -18,6 +18,7 @@ using Newtonsoft.Json.Serialization;
 using ShopMartWebsite.Extensions;
 using ShopMartWebsite.Helpers;
 using Microsoft.AspNetCore.Http;
+using ShopMartWebsite.Interfaces;
 
 namespace ShopMartWebsite
 {
@@ -33,6 +34,7 @@ namespace ShopMartWebsite
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            
             services.AddDbContext<ShopDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("FirstConnection")));
 
@@ -45,6 +47,10 @@ namespace ShopMartWebsite
             //services.AddScoped<IUserClaimsPrincipalFactory<User>, CustomClaimsPrincipalFactory>();
             //services.AddScoped<IUserClaimsPrincipalFactory<User>, CustomClaimsPrincipalFactory>();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
+            services.AddTransient<ICategoryRepository, CategoryRepository>();
+            services.AddTransient<IProductRepository, ProductRepository>();
+           
 
             services.AddMvc().AddJsonOptions(options => options.SerializerSettings.ContractResolver = new DefaultContractResolver());
         }
@@ -76,10 +82,15 @@ namespace ShopMartWebsite
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
-                routes.MapRoute(
+                routes.MapAreaRoute(
+                    name: "areas",
+                    areaName: "Admin",
+                    template: "Admin/{controller}/{action}/{id?}",
+                    defaults: new { controller = "Login", action = "Index" });
+                /*routes.MapRoute(
                     name: "Admin",
-                    template: "{area=exists}/{controller=Login}/{action=Index}/{id?}"
-                    );
+                    template: "{controller=AdminLogin}/{action=Index}/{id?}"
+                    );*/
             });
             
         }

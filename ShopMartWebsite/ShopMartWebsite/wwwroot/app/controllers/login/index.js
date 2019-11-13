@@ -18,13 +18,38 @@
                 Password: pass
             },
             dataType: 'json',
-            url: "/Admin/Login/Authen",
+            url: "/AdminLogin/Authen",
             success: function (res) {
                 if (res.Success) {
-                    window.location.href = "/Admin/Admin/Index"
+                    window.location.href = "/Admin/Index"
                 }
                 else {
                     shop.notify("Đăng nhập không đúng!", 'error');
+                }
+            }
+        })
+    }
+}
+var logoutController = function () {
+    this.initialize = function () {
+        registerEvent();
+    }
+    var registerEvent = function () {
+        $('#btnLogout').on('click', function (event) {
+            event.preventDefault();
+            logout();
+        })
+    }
+    var logout = function () {
+        $.ajax({
+            type: 'GET',
+            url: "/AdminLogin/Logout",
+            success: function (res) {
+                if (res.Success) {
+                    window.location.href = "/AdminLogin/Index"
+                }
+                else {
+                    shop.notify("Đăng xuât không thành công", 'error');
                 }
             }
         })

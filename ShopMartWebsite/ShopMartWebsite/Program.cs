@@ -18,9 +18,10 @@ namespace ShopMartWebsite
     {
         public static void Main(string[] args)
         {
-            
+            CreateWebHostBuilder(args).Build().Run();
+            /*
             var host = BuildWebHost(args).Build();
-            /*try
+            try
             {
                 var scope = host.Services.CreateScope();
 
@@ -47,13 +48,16 @@ namespace ShopMartWebsite
             catch(Exception e)
             {
                 Console.Write(e.Message);
-            }*/
-            host.Run();
+            }
+            host.Run();*/
         }
-
-        public static IWebHostBuilder BuildWebHost(string[] args) =>
+        
+        /*public static IWebHostBuilder BuildWebHost(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
-                .UseStartup<Startup>()
-               ;
+                .UseStartup<Startup>();*/
+        public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
+           WebHost.CreateDefaultBuilder(args)
+            
+               .UseStartup<Startup>();
     }
 }

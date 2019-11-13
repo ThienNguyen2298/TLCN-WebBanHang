@@ -144,24 +144,6 @@ namespace ShopMartWebsite.Migrations
                     b.ToTable("comment");
                 });
 
-            modelBuilder.Entity("ShopMartWebsite.Entities.ImageProduct", b =>
-                {
-                    b.Property<int>("id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("alt");
-
-                    b.Property<int>("productId");
-
-                    b.Property<string>("url");
-
-                    b.HasKey("id");
-
-                    b.HasIndex("productId");
-
-                    b.ToTable("images");
-                });
-
             modelBuilder.Entity("ShopMartWebsite.Entities.Order", b =>
                 {
                     b.Property<int>("id")
@@ -216,6 +198,8 @@ namespace ShopMartWebsite.Migrations
                     b.Property<int?>("color");
 
                     b.Property<string>("description");
+
+                    b.Property<string>("image");
 
                     b.Property<string>("name");
 
@@ -404,14 +388,6 @@ namespace ShopMartWebsite.Migrations
                         .HasForeignKey("userId1");
                 });
 
-            modelBuilder.Entity("ShopMartWebsite.Entities.ImageProduct", b =>
-                {
-                    b.HasOne("ShopMartWebsite.Entities.Product", "product")
-                        .WithMany("Images")
-                        .HasForeignKey("productId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
             modelBuilder.Entity("ShopMartWebsite.Entities.Order", b =>
                 {
                     b.HasOne("ShopMartWebsite.Entities.User", "user")
@@ -422,7 +398,7 @@ namespace ShopMartWebsite.Migrations
             modelBuilder.Entity("ShopMartWebsite.Entities.OrderDetail", b =>
                 {
                     b.HasOne("ShopMartWebsite.Entities.Order", "order")
-                        .WithMany()
+                        .WithMany("OrderDetails")
                         .HasForeignKey("orderId")
                         .OnDelete(DeleteBehavior.Cascade);
 
@@ -442,7 +418,7 @@ namespace ShopMartWebsite.Migrations
             modelBuilder.Entity("ShopMartWebsite.Entities.Reply", b =>
                 {
                     b.HasOne("ShopMartWebsite.Entities.Comment", "comment")
-                        .WithMany()
+                        .WithMany("Replies")
                         .HasForeignKey("commentId")
                         .OnDelete(DeleteBehavior.Cascade);
 

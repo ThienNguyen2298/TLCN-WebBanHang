@@ -1,33 +1,204 @@
-﻿<!DOCTYPE html>
-<html>
+﻿@model IEnumerable<ShopMartWebsite.Entities.Category>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - ShopMartWebsite</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- custom style-->
+    <link rel="stylesheet" href="~/user/css/style.css" type="text/css" />
+    <!--fontawesome-->
+    <link rel="stylesheet" href="~/user/css/all.css" type="text/css" />
+    <!--Bootstrap CDN-->
+    <link rel="stylesheet" href="~/user/css/bootstrap.css">
+    <!-- Owl-Carousel -->
+    <link rel="stylesheet" href="~/user/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="~/user/css/owl.theme.default.min.css">
+    <!--AOS Library-->
+    <link rel="stylesheet" href="~/user/css/aos.css">
 
-    <environment include="Development">
-        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
-        <link rel="stylesheet" href="~/css/site.css" />
-    </environment>
-    <environment exclude="Development">
-        <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css"
-              asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
-              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
-        <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
-    </environment>
+    <!--Slick Slider-->
+    <link rel="stylesheet" type="text/css" href="~/user/css/slick.css" />
+
+
+    <title>Online Shop</title>
 </head>
 <body>
-    
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; 2019 - ShopMartWebsite</p>
-        </footer>
+    <!----------headder---------->
+    <header>
+        <div>
+            <div class="row">
+                <div class="">
+                    <div>
+                        <img class="img-logo" src="~/user/assets/logo/logo.jpg" alt="logo">
+                    </div>
+                </div>
+                <div class="online-shop text-center">
+                    <h2 class="site-title text-white"><a style="color: white;" href="/index.html">Online Shop</a></h2>
+                </div>
+                <div class="" style="text-align: end;">
+                    <p class="header-links">
+                        <a href="#" id="button-login" class="px-2">Đăng nhập</a>
+                        <a href="#" class="px-1">Tạo tài khoản</a>
+                    </p>
+                </div>
+                <div class="bar-btn" style="display: none;">
+                    <div class="toggle-icons">
+                        <i class="fas fa-bars"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--------Navbar------->
+        <div class="container-menu">
+            <nav class="menu-navbar">
+                <!---->
+                <div>
+                    <ul class="dropdown">
+                        <li>
+                            <a href="#">DANH MỤC SẢN PHẨM</a>
+                            <ul class="menu-area">
+                                <ul>
+                                    @foreach (var item in @Model)
+                                    {
+                                        <li><a href="#">@item.name</a></li>
+                                    }
+                                    <!--
+                                    <li><a href="#">Giày dép</a></li>
+                                    <li><a href="#">Đồng hồ</a></li>
+                                    <li><a href="#">Mỹ phẩm</a></li>
+                                    <li><a href="#">Học tập</a></li>
+                                    <li><a href="#">Bánh kẹo</a></li>
+                                    <li><a href="#">Nước giải khát</a></li>
+                                    <li><a href="#">Laptop</a></li>
+                                    <li><a href="#">Điện thoại</a></li>
+                                    <li><a href="#">Nội thất</a></li>
+                                    <li><a href="#">Thực phẩm</a></li>
+                                    <li><a href="#">Y tế</a></li>
+                                    <li><a href="#">Điện tử</a></li>
+                                    <li><a href="#">Gia vị</a></li>
+                                        -->
+                                </ul>
+                            </ul>
+                        </li>
+                    </ul>
+
+                </div>
+                <!---->
+                <div class="search">
+                    <form>
+                        <div class="search-items">
+                            <select class="search-select" style="width: 36%; border: none; border-right: 3px solid #f1f1f1; border-radius: 1px;;">
+                                <option>Tất cả sản phẩm</option>
+                                @foreach (var item in @Model)
+                                {
+                                    <option>@item.name</option>
+                                }
+                            </select>
+                            <input class="search-input" type="text" class="form-controll" placeholder="Enter your search...">
+                            <button class="search-btn">
+                                <i class="fas fa-search p-2"></i>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+                <div style="text-align: end;">
+                    <!--<li class="nav-item border rounded-circle mx-2 basket-icon">
+                        <i class="fas fa-shopping-basket p-2"></i>
+                    </li>-->
+                    <a class="cart-btn" href="./cart.html">
+
+                        <span class="nav-icon">
+                            <i class="fas fa-cart-plus"></i>
+                        </span>
+                        <div class="cart-items">0</div>
+                    </a>
+                </div>
+            </nav>
+        </div>
+
+    </header>
+    <!-----x-----headder-----x----->
+    <!----------Main Section---------->
+    @RenderBody()
+
+    <!-----x-----Main Section-----x----->
+    <!--modal-->
+    <div class="bg-modal">
+        <div class="modal-content">
+            <div style="text-align: center;">
+                <div class="close">&times</div>
+                <img src="~/user/assets/login.png" width="100px" alt="">
+                <form action="">
+                    <input type="text" placeholder="Email">
+                    <input type="password" placeholder="Password">
+                    <br>
+                    <a href="" class="button">Đăng nhập</a>
+                </form>
+            </div>
+        </div>
     </div>
+    <!--x--modal--x-->
+    <footer class="footer">
+        <div class="container">
+            <div class="about-us">
+                <h2>About us</h2>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore accusantium maiores tempore culpa provident rerum fuga quis molestias atque neque.</p>
+            </div>
+            <div class="newsletter">
+                <h2>Newsletter</h2>
+                <p>Stay update with our latest</p>
+                <div class="form-element">
+                    <input type="text" placeholder="Email"><span><i class="fas fa-chevron-right"></i></span>
+                </div>
+            </div>
+            <div class="instagram">
+                <h2>Instagram</h2>
+                <div class="flex-row">
+                    <img src="~/user/assets/instagram/thumb-card3.png" alt="insta1">
+                    <img src="~/user/assets/instagram/thumb-card4.png" alt="insta2">
+                    <img src="~/user/assets/instagram/thumb-card5.png" alt="insta3">
+                </div>
+                <div class="flex-row">
+                    <img src="~/user/assets/instagram/thumb-card6.png" alt="insta1">
+                    <img src="~/user/assets/instagram/thumb-card7.png" alt="insta2">
+                    <img src="~/user/assets/instagram/thumb-card8.png" alt="insta3">
+                </div>
+            </div>
+            <div class="follow">
+                <h2>Follow us</h2>
+                <p>Lets us be Social</p>
+                <div>
+                    <i class="fab fa-facebook-f"></i>
+                    <i class="fab fa-twitter"></i>
+                    <i class="fab fa-instagram"></i>
+                    <i class="fab fa-youtube"></i>
+                </div>
+            </div>
+        </div>
+        <div class="rights flex-row">
+            <h4 class="text-gray text-center">
+                Copyright 2019 All rights reserved | made by Shop Online
+            </h4>
+        </div>
 
-   
+    </footer>
 
-    @RenderSection("Scripts", required: false)
+
+    <!-- Jquery Library file-->
+    <script src="~/user/js/jquery3.4.1.min.js"></script>
+    <!-- Owl-Carousel js -->
+    <script src="~/user/js/owl.carousel.min.js"></script>
+    <!-- custom javascript-->
+    <script src="~/user/js/main.js"></script>
+
+    <!--AOS Library-->
+    <script src="~/user/js/aos.js"></script>
+    <!--Bootstrap CDN-->
+    <script src="~/user/js/bootstrap.js"></script>
+
+    <!--Stick Slider-->
+    <script type="text/javascript" src="~/user/js/slick.min.js"></script>
+
 </body>
 </html>

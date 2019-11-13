@@ -9770,3 +9770,254 @@ WHERE [rc].[RoleId] = @__role_Id_0" (0723d8ff)
 2019-11-10T17:30:56.0745543+07:00 0HLR5P3KFMGJM:00000005 [INF] Executing ViewResult, running view at path "/Areas/Admin/Views/Admin/Index.cshtml". (9707eebe)
 2019-11-10T17:30:56.0862605+07:00 0HLR5P3KFMGJM:00000005 [INF] Executed action "ShopMartWebsite.Areas.Admin.Controllers.AdminController.Index (ShopMartWebsite)" in 61.1529ms (afa2e885)
 2019-11-10T17:30:56.1753214+07:00 0HLR5P3KFMGJM:00000005 [INF] Request finished in 90.5391ms 200 text/html; charset=utf-8 (791a596a)
+2019-11-10T22:30:41.3174828+07:00  [INF] Entity Framework Core "2.0.3-rtm-10026" initialized '"ShopDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2019-11-10T22:30:41.6197669+07:00  [INF] Executed DbCommand ("122"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE') SELECT 1 ELSE SELECT 0" (0723d8ff)
+2019-11-10T22:30:41.7622078+07:00  [INF] Executed DbCommand ("7"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [AspNetRoles] AS [a])
+    THEN CAST(1 AS BIT) ELSE CAST(0 AS BIT)
+END" (0723d8ff)
+2019-11-10T22:30:41.8012172+07:00  [INF] Executed DbCommand ("4"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [AspNetUsers] AS [u]
+        WHERE [u].[UserName] = N'admin')
+    THEN CAST(1 AS BIT) ELSE CAST(0 AS BIT)
+END" (0723d8ff)
+2019-11-10T22:30:42.2227162+07:00 0HLR5UBP7NV77:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44340/   (ca22a1cb)
+2019-11-10T22:30:42.4299653+07:00 0HLR5UBP7NV77:00000001 [INF] Executing action method "ShopMartWebsite.Controllers.HomeController.Index (ShopMartWebsite)" with arguments (null) - ModelState is Valid (ba7f4ac2)
+2019-11-10T22:30:46.1056835+07:00 0HLR5UBP7NV77:00000001 [INF] Executing ViewResult, running view at path "/Views/Home/Index.cshtml". (9707eebe)
+2019-11-10T22:30:47.0993722+07:00 0HLR5UBP7NV77:00000001 [INF] Executed action "ShopMartWebsite.Controllers.HomeController.Index (ShopMartWebsite)" in 4677.4487ms (afa2e885)
+2019-11-10T22:30:47.1042611+07:00 0HLR5UBP7NV77:00000001 [INF] Request finished in 4916.1059ms 200 text/html; charset=utf-8 (791a596a)
+2019-11-10T22:35:17.2294394+07:00 0HLR5UEB6BOR6:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44340/   (ca22a1cb)
+2019-11-10T22:35:17.4418457+07:00 0HLR5UEB6BOR6:00000001 [INF] Executing action method "ShopMartWebsite.Controllers.HomeController.Index (ShopMartWebsite)" with arguments (null) - ModelState is Valid (ba7f4ac2)
+2019-11-10T22:35:20.6595653+07:00 0HLR5UEB6BOR6:00000001 [INF] Executing ViewResult, running view at path "/Views/Home/Index.cshtml". (9707eebe)
+2019-11-10T22:35:21.6267847+07:00 0HLR5UEB6BOR6:00000001 [INF] Executed action "ShopMartWebsite.Controllers.HomeController.Index (ShopMartWebsite)" in 4200.1147ms (afa2e885)
+2019-11-10T22:35:21.6316575+07:00 0HLR5UEB6BOR6:00000001 [INF] Request finished in 4441.4045ms 200 text/html; charset=utf-8 (791a596a)
+2019-11-10T23:03:43.9488004+07:00 0HLR5UU7P9IGI:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44340/   (ca22a1cb)
+2019-11-10T23:03:43.9487773+07:00 0HLR5UU7P9IGH:00000001 [INF] Request starting HTTP/1.1 DEBUG http://localhost:51987/  0 (ca22a1cb)
+2019-11-10T23:03:44.1592991+07:00 0HLR5UU7P9IGH:00000001 [INF] Request finished in 277.4336ms 200  (791a596a)
+2019-11-10T23:03:44.8476310+07:00 0HLR5UU7P9IGI:00000001 [INF] Executing action method "ShopMartWebsite.Controllers.HomeController.Index (ShopMartWebsite)" with arguments (null) - ModelState is Valid (ba7f4ac2)
+2019-11-10T23:03:51.1322350+07:00 0HLR5UU7P9IGI:00000001 [INF] Executing ViewResult, running view at path "/Views/Home/Index.cshtml". (9707eebe)
+2019-11-10T23:03:52.7090878+07:00 0HLR5UU7P9IGI:00000001 [INF] Executed action "ShopMartWebsite.Controllers.HomeController.Index (ShopMartWebsite)" in 7790.0415ms (afa2e885)
+2019-11-10T23:03:52.7788003+07:00 0HLR5UU7P9IGH:00000002 [INF] Request starting HTTP/1.1 GET http://localhost:44340/css/site.css   (ca22a1cb)
+2019-11-10T23:03:52.8383821+07:00 0HLR5UU7P9IGH:00000002 [INF] Request finished in 87.1405ms 404  (791a596a)
+2019-11-10T23:03:52.8709053+07:00 0HLR5UU7P9IGI:00000001 [INF] Request finished in 8865.6976ms 200 text/html; charset=utf-8 (791a596a)
+2019-11-10T23:03:57.5516482+07:00 0HLR5UU7P9IGI:00000002 [INF] Request starting HTTP/1.1 GET http://localhost:44340/Admin   (ca22a1cb)
+2019-11-10T23:03:57.5779209+07:00 0HLR5UU7P9IGI:00000002 [INF] Executed action "ShopMartWebsite.Areas.Admin.Controllers.LoginController.Index (ShopMartWebsite)" in 7.7627ms (afa2e885)
+2019-11-10T23:03:57.7482598+07:00 0HLR5UU7P9IGI:00000002 [ERR] An unhandled exception has occurred while executing the request (cf926119)
+System.InvalidOperationException: Unable to activate type 'ShopMartWebsite.Data.ShopDbContext'. The following constructors are ambigious:
+Void .ctor(Microsoft.EntityFrameworkCore.DbContextOptions`1[ShopMartWebsite.Data.ShopDbContext], Microsoft.AspNetCore.Http.IHttpContextAccessor)
+Void .ctor(Microsoft.EntityFrameworkCore.DbContextOptions)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.CreateConstructorCallSite(Type serviceType, Type implementationType, ISet`1 callSiteChain)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.TryCreateExact(ServiceDescriptor descriptor, Type serviceType, ISet`1 callSiteChain)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.TryCreateExact(Type serviceType, ISet`1 callSiteChain)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.CreateCallSite(Type serviceType, ISet`1 callSiteChain)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.CreateArgumentCallSites(Type serviceType, Type implementationType, ISet`1 callSiteChain, ParameterInfo[] parameters, Boolean throwIfCallSiteNotFound)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.CreateConstructorCallSite(Type serviceType, Type implementationType, ISet`1 callSiteChain)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.TryCreateExact(ServiceDescriptor descriptor, Type serviceType, ISet`1 callSiteChain)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.TryCreateExact(Type serviceType, ISet`1 callSiteChain)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.CreateCallSite(Type serviceType, ISet`1 callSiteChain)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.CreateArgumentCallSites(Type serviceType, Type implementationType, ISet`1 callSiteChain, ParameterInfo[] parameters, Boolean throwIfCallSiteNotFound)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.CreateConstructorCallSite(Type serviceType, Type implementationType, ISet`1 callSiteChain)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.TryCreateExact(ServiceDescriptor descriptor, Type serviceType, ISet`1 callSiteChain)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.TryCreateExact(Type serviceType, ISet`1 callSiteChain)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.CreateCallSite(Type serviceType, ISet`1 callSiteChain)
+   at Microsoft.Extensions.DependencyInjection.ServiceProvider.CreateServiceAccessor(Type serviceType, ServiceProvider serviceProvider)
+   at System.Collections.Concurrent.ConcurrentDictionaryExtensions.GetOrAdd[TKey,TValue,TArg](ConcurrentDictionary`2 dictionary, TKey key, Func`3 valueFactory, TArg arg)
+   at Microsoft.Extensions.DependencyInjection.ServiceProvider.GetService(Type serviceType)
+   at Microsoft.Extensions.DependencyInjection.ActivatorUtilities.GetService(IServiceProvider sp, Type type, Type requiredBy, Boolean isDefaultParameterRequired)
+   at lambda_method(Closure , IServiceProvider , Object[] )
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerActivatorProvider.<>c__DisplayClass4_0.<CreateActivator>b__0(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerFactoryProvider.<>c__DisplayClass5_0.<CreateControllerFactory>g__CreateController|0(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.<InvokeInnerFilterAsync>d__14.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.<InvokeNextResourceFilter>d__22.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Rethrow(ResourceExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.<InvokeFilterPipelineAsync>d__17.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.<InvokeAsync>d__15.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Builder.RouterMiddleware.<Invoke>d__4.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.<Invoke>d__6.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.MigrationsEndPointMiddleware.<Invoke>d__4.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.DatabaseErrorPageMiddleware.<Invoke>d__6.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.DatabaseErrorPageMiddleware.<Invoke>d__6.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.<Invoke>d__7.MoveNext()
+2019-11-10T23:03:58.0682900+07:00 0HLR5UU7P9IGI:00000002 [INF] Request finished in 499.7363ms 500 text/html; charset=utf-8 (791a596a)
+2019-11-10T23:05:07.9955881+07:00 0HLR5UV0R36IA:00000001 [INF] Request starting HTTP/1.1 DEBUG http://localhost:51987/  0 (ca22a1cb)
+2019-11-10T23:05:07.9955887+07:00 0HLR5UV0R36I9:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44340/   (ca22a1cb)
+2019-11-10T23:05:08.0963247+07:00 0HLR5UV0R36IA:00000001 [INF] Request finished in 187.7634ms 200  (791a596a)
+2019-11-10T23:05:08.4842820+07:00 0HLR5UV0R36I9:00000001 [INF] Executing action method "ShopMartWebsite.Controllers.HomeController.Index (ShopMartWebsite)" with arguments (null) - ModelState is Valid (ba7f4ac2)
+2019-11-10T23:05:09.2873984+07:00 0HLR5UV0R36IA:00000002 [INF] Request starting HTTP/1.1 GET http://localhost:44340/Admin   (ca22a1cb)
+2019-11-10T23:05:09.3310522+07:00 0HLR5UV0R36IA:00000002 [INF] Executed action "ShopMartWebsite.Areas.Admin.Controllers.LoginController.Index (ShopMartWebsite)" in 11.8813ms (afa2e885)
+2019-11-10T23:05:09.5145475+07:00 0HLR5UV0R36IA:00000002 [ERR] An unhandled exception has occurred while executing the request (cf926119)
+System.InvalidOperationException: Unable to activate type 'ShopMartWebsite.Data.ShopDbContext'. The following constructors are ambigious:
+Void .ctor(Microsoft.EntityFrameworkCore.DbContextOptions`1[ShopMartWebsite.Data.ShopDbContext], Microsoft.AspNetCore.Http.IHttpContextAccessor)
+Void .ctor(Microsoft.EntityFrameworkCore.DbContextOptions)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.CreateConstructorCallSite(Type serviceType, Type implementationType, ISet`1 callSiteChain)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.TryCreateExact(ServiceDescriptor descriptor, Type serviceType, ISet`1 callSiteChain)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.TryCreateExact(Type serviceType, ISet`1 callSiteChain)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.CreateCallSite(Type serviceType, ISet`1 callSiteChain)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.CreateArgumentCallSites(Type serviceType, Type implementationType, ISet`1 callSiteChain, ParameterInfo[] parameters, Boolean throwIfCallSiteNotFound)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.CreateConstructorCallSite(Type serviceType, Type implementationType, ISet`1 callSiteChain)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.TryCreateExact(ServiceDescriptor descriptor, Type serviceType, ISet`1 callSiteChain)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.TryCreateExact(Type serviceType, ISet`1 callSiteChain)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.CreateCallSite(Type serviceType, ISet`1 callSiteChain)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.CreateArgumentCallSites(Type serviceType, Type implementationType, ISet`1 callSiteChain, ParameterInfo[] parameters, Boolean throwIfCallSiteNotFound)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.CreateConstructorCallSite(Type serviceType, Type implementationType, ISet`1 callSiteChain)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.TryCreateExact(ServiceDescriptor descriptor, Type serviceType, ISet`1 callSiteChain)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.TryCreateExact(Type serviceType, ISet`1 callSiteChain)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.CreateCallSite(Type serviceType, ISet`1 callSiteChain)
+   at Microsoft.Extensions.DependencyInjection.ServiceProvider.CreateServiceAccessor(Type serviceType, ServiceProvider serviceProvider)
+   at System.Collections.Concurrent.ConcurrentDictionaryExtensions.GetOrAdd[TKey,TValue,TArg](ConcurrentDictionary`2 dictionary, TKey key, Func`3 valueFactory, TArg arg)
+   at Microsoft.Extensions.DependencyInjection.ServiceProvider.GetService(Type serviceType)
+   at Microsoft.Extensions.DependencyInjection.ActivatorUtilities.GetService(IServiceProvider sp, Type type, Type requiredBy, Boolean isDefaultParameterRequired)
+   at lambda_method(Closure , IServiceProvider , Object[] )
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerActivatorProvider.<>c__DisplayClass4_0.<CreateActivator>b__0(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerFactoryProvider.<>c__DisplayClass5_0.<CreateControllerFactory>g__CreateController|0(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.<InvokeInnerFilterAsync>d__14.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.<InvokeNextResourceFilter>d__22.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Rethrow(ResourceExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.<InvokeFilterPipelineAsync>d__17.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.<InvokeAsync>d__15.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Builder.RouterMiddleware.<Invoke>d__4.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.<Invoke>d__6.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.MigrationsEndPointMiddleware.<Invoke>d__4.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.DatabaseErrorPageMiddleware.<Invoke>d__6.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.DatabaseErrorPageMiddleware.<Invoke>d__6.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.<Invoke>d__7.MoveNext()
+2019-11-10T23:05:09.7482382+07:00 0HLR5UV0R36IA:00000002 [INF] Request finished in 460.719ms 500 text/html; charset=utf-8 (791a596a)
+2019-11-10T23:05:12.7051847+07:00 0HLR5UV0R36I9:00000001 [INF] Executing ViewResult, running view at path "/Views/Home/Index.cshtml". (9707eebe)
+2019-11-10T23:05:13.8153145+07:00 0HLR5UV0R36I9:00000001 [INF] Executed action "ShopMartWebsite.Controllers.HomeController.Index (ShopMartWebsite)" in 5361.7522ms (afa2e885)
+2019-11-10T23:05:13.8325674+07:00 0HLR5UV0R36I9:00000001 [INF] Request finished in 5934.3843ms 200 text/html; charset=utf-8 (791a596a)
+2019-11-10T23:07:40.4409554+07:00  [INF] Entity Framework Core "2.0.3-rtm-10026" initialized '"ShopDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2019-11-10T23:07:40.8059464+07:00  [INF] Executed DbCommand ("114"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE') SELECT 1 ELSE SELECT 0" (0723d8ff)
+2019-11-10T23:07:40.9843021+07:00  [INF] Executed DbCommand ("3"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [AspNetRoles] AS [a])
+    THEN CAST(1 AS BIT) ELSE CAST(0 AS BIT)
+END" (0723d8ff)
+2019-11-10T23:07:41.0416325+07:00  [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [AspNetUsers] AS [u]
+        WHERE [u].[UserName] = N'admin')
+    THEN CAST(1 AS BIT) ELSE CAST(0 AS BIT)
+END" (0723d8ff)
+2019-11-10T23:07:41.5292409+07:00 0HLR5V0EJUNVM:00000001 [INF] Request starting HTTP/1.1 DEBUG http://localhost:51987/  0 (ca22a1cb)
+2019-11-10T23:07:41.5292410+07:00 0HLR5V0EJUNVN:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44340/   (ca22a1cb)
+2019-11-10T23:07:41.6301808+07:00 0HLR5V0EJUNVM:00000001 [INF] Request finished in 153.656ms 200  (791a596a)
+2019-11-10T23:07:42.0319525+07:00 0HLR5V0EJUNVN:00000001 [INF] Executing action method "ShopMartWebsite.Controllers.HomeController.Index (ShopMartWebsite)" with arguments (null) - ModelState is Valid (ba7f4ac2)
+2019-11-10T23:07:43.8323311+07:00 0HLR5V0EJUNVM:00000002 [INF] Request starting HTTP/1.1 GET http://localhost:44340/Admin   (ca22a1cb)
+2019-11-10T23:07:43.8532776+07:00 0HLR5V0EJUNVM:00000002 [INF] Executing action method "ShopMartWebsite.Areas.Admin.Controllers.LoginController.Index (ShopMartWebsite)" with arguments (null) - ModelState is Valid (ba7f4ac2)
+2019-11-10T23:07:45.6301642+07:00 0HLR5V0EJUNVM:00000002 [INF] Executing ViewResult, running view at path "/Areas/Admin/Views/Login/Index.cshtml". (9707eebe)
+2019-11-10T23:07:45.8396643+07:00 0HLR5V0EJUNVM:00000002 [INF] Executed action "ShopMartWebsite.Areas.Admin.Controllers.LoginController.Index (ShopMartWebsite)" in 1976.6852ms (afa2e885)
+2019-11-10T23:07:45.9423316+07:00 0HLR5V0EJUNVM:00000002 [INF] Request finished in 2057.524ms 200 text/html; charset=utf-8 (791a596a)
+2019-11-10T23:07:46.0532860+07:00 0HLR5V0EJUNVM:00000003 [INF] Request starting HTTP/1.1 GET http://localhost:44340/app/controllers/login/index.js   (ca22a1cb)
+2019-11-10T23:07:46.0983610+07:00 0HLR5V0EJUNVP:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44340/lib/notify/notify.js   (ca22a1cb)
+2019-11-10T23:07:46.1769258+07:00 0HLR5V0EJUNVO:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44340/app/shared/shop.js   (ca22a1cb)
+2019-11-10T23:07:46.2685138+07:00 0HLR5V0EJUNVM:00000003 [INF] The file "/app/controllers/login/index.js" was not modified (f1f8d725)
+2019-11-10T23:07:46.3363744+07:00 0HLR5V0EJUNVP:00000001 [INF] The file "/lib/notify/notify.js" was not modified (f1f8d725)
+2019-11-10T23:07:46.3664644+07:00 0HLR5V0EJUNVO:00000001 [INF] The file "/app/shared/shop.js" was not modified (f1f8d725)
+2019-11-10T23:07:46.4133477+07:00 0HLR5V0EJUNVO:00000001 [INF] Request finished in 437.4786ms 304 application/javascript (791a596a)
+2019-11-10T23:07:46.4285724+07:00 0HLR5V0EJUNVM:00000003 [INF] Request finished in 317.5407ms 304 application/javascript (791a596a)
+2019-11-10T23:07:46.4518208+07:00 0HLR5V0EJUNVN:00000001 [INF] Executing ViewResult, running view at path "/Views/Home/Index.cshtml". (9707eebe)
+2019-11-10T23:07:46.4693159+07:00 0HLR5V0EJUNVP:00000001 [INF] Request finished in 419.0329ms 304 application/javascript (791a596a)
+2019-11-10T23:07:46.9671036+07:00 0HLR5V0EJUNVN:00000001 [INF] Executed action "ShopMartWebsite.Controllers.HomeController.Index (ShopMartWebsite)" in 4977.6903ms (afa2e885)
+2019-11-10T23:07:46.9775074+07:00 0HLR5V0EJUNVN:00000001 [INF] Request finished in 5520.3593ms 200 text/html; charset=utf-8 (791a596a)
+2019-11-10T23:07:50.9961030+07:00 0HLR5V0EJUNVM:00000004 [INF] Request starting HTTP/1.1 POST http://localhost:44340/Admin/Login/Authen application/x-www-form-urlencoded; charset=UTF-8 34 (ca22a1cb)
+2019-11-10T23:07:51.1803922+07:00 0HLR5V0EJUNVM:00000004 [INF] Executing action method "ShopMartWebsite.Areas.Admin.Controllers.LoginController.Authen (ShopMartWebsite)" with arguments (["ShopMartWebsite.Models.LoginViewModel", ""]) - ModelState is Valid (ba7f4ac2)
+2019-11-10T23:07:51.1997900+07:00 0HLR5V0EJUNVM:00000004 [INF] Entity Framework Core "2.0.3-rtm-10026" initialized '"ShopDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2019-11-10T23:07:51.3388155+07:00 0HLR5V0EJUNVM:00000004 [INF] Executed DbCommand ("63"ms) [Parameters=["@__normalizedUserName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [u].[Id], [u].[AccessFailedCount], [u].[ConcurrencyStamp], [u].[Email], [u].[EmailConfirmed], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UserName], [u].[address], [u].[birthDay], [u].[displayname], [u].[gender], [u].[password], [u].[phone]
+FROM [AspNetUsers] AS [u]
+WHERE [u].[NormalizedUserName] = @__normalizedUserName_0" (0723d8ff)
+2019-11-10T23:07:51.5614182+07:00 0HLR5V0EJUNVM:00000004 [INF] Executed DbCommand ("10"ms) [Parameters=["@__user_Id_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [uc].[Id], [uc].[ClaimType], [uc].[ClaimValue], [uc].[UserId]
+FROM [AspNetUserClaims] AS [uc]
+WHERE [uc].[UserId] = @__user_Id_0" (0723d8ff)
+2019-11-10T23:07:51.6726805+07:00 0HLR5V0EJUNVM:00000004 [INF] Executed DbCommand ("11"ms) [Parameters=["@__userId_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [role].[Name]
+FROM [AspNetUserRoles] AS [userRole]
+INNER JOIN [AspNetRoles] AS [role] ON [userRole].[RoleId] = [role].[Id]
+WHERE [userRole].[UserId] = @__userId_0" (0723d8ff)
+2019-11-10T23:07:51.7563701+07:00 0HLR5V0EJUNVM:00000004 [INF] Executed DbCommand ("6"ms) [Parameters=["@__normalizedName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [r].[Id], [r].[ConcurrencyStamp], [r].[CreationDate], [r].[Description], [r].[Name], [r].[NormalizedName]
+FROM [AspNetRoles] AS [r]
+WHERE [r].[NormalizedName] = @__normalizedName_0" (0723d8ff)
+2019-11-10T23:07:51.8306282+07:00 0HLR5V0EJUNVM:00000004 [INF] Executed DbCommand ("5"ms) [Parameters=["@__role_Id_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [rc].[ClaimType], [rc].[ClaimValue]
+FROM [AspNetRoleClaims] AS [rc]
+WHERE [rc].[RoleId] = @__role_Id_0" (0723d8ff)
+2019-11-10T23:07:51.8693892+07:00 0HLR5V0EJUNVM:00000004 [INF] AuthenticationScheme: "Identity.Application" signed in. (c66dd7e7)
+2019-11-10T23:07:51.8785253+07:00 0HLR5V0EJUNVM:00000004 [INF] User logged in. (fdce0db4)
+2019-11-10T23:07:51.9127405+07:00 0HLR5V0EJUNVM:00000004 [INF] Executing ObjectResult, writing value "Microsoft.AspNetCore.Mvc.ControllerContext". (4e968210)
+2019-11-10T23:07:52.0442610+07:00 0HLR5V0EJUNVM:00000004 [INF] Executed action "ShopMartWebsite.Areas.Admin.Controllers.LoginController.Authen (ShopMartWebsite)" in 966.8648ms (afa2e885)
+2019-11-10T23:07:52.0729985+07:00 0HLR5V0EJUNVM:00000004 [INF] Request finished in 1056.5961ms 200 application/json; charset=utf-8 (791a596a)
+2019-11-10T23:07:52.1039334+07:00 0HLR5V0EJUNVP:00000002 [INF] Request starting HTTP/1.1 GET http://localhost:44340/Admin/Admin/Index   (ca22a1cb)
+2019-11-10T23:07:52.1246048+07:00 0HLR5V0EJUNVP:00000002 [INF] AuthenticationScheme: "Identity.Application" was successfully authenticated. (1805f3b3)
+2019-11-10T23:07:52.1570519+07:00 0HLR5V0EJUNVP:00000002 [INF] Authorization was successful for user: "admin". (d7eb274a)
+2019-11-10T23:07:52.1836890+07:00 0HLR5V0EJUNVP:00000002 [INF] Executing action method "ShopMartWebsite.Areas.Admin.Controllers.AdminController.Index (ShopMartWebsite)" with arguments (null) - ModelState is Valid (ba7f4ac2)
+2019-11-10T23:07:52.3731253+07:00 0HLR5V0EJUNVP:00000002 [INF] Executing ViewResult, running view at path "/Areas/Admin/Views/Admin/Index.cshtml". (9707eebe)
+2019-11-10T23:07:52.8139518+07:00 0HLR5V0EJUNVP:00000002 [INF] Executed action "ShopMartWebsite.Areas.Admin.Controllers.AdminController.Index (ShopMartWebsite)" in 680.221ms (afa2e885)
+2019-11-10T23:07:52.8835178+07:00 0HLR5V0EJUNVP:00000002 [INF] Request finished in 742.1618ms 200 text/html; charset=utf-8 (791a596a)
