@@ -2,7 +2,77 @@
     ViewData["Title"] = "Home Page";
 }
 
+@model ShopMartWebsite.Models.ProductListViewModel
+<!--------Navbar------->
+<div class="container-menu">
+    <nav class="menu-navbar">
+        <!---->
+        <div>
+            <ul class="dropdown">
+                <li>
+                    <a href="#">DANH MỤC SẢN PHẨM</a>
+                    <ul class="menu-area">
+                        <ul>
+                            @foreach (var item in @Model.Categories)
+                            {
+                                <li><a asp-action="Index" asp-controller="Home" asp-route-categoryId="@item.id">@item.name</a></li>
+                            }
 
+                        </ul>
+                    </ul>
+                </li>
+            </ul>
+
+        </div>
+        <!---->
+        <div class="search">
+            <form>
+                <div class="search-items">
+                    <select class="search-select" name="categoryId" style="width: 36%; border: none; border-right: 3px solid #f1f1f1; border-radius: 1px;">
+                        <option value="0">Tất cả sản phẩm</option>
+                        @foreach (var item in @Model.Categories)
+                        {
+                            <option value="@item.id" selected="@(Model.categoryId==item.id)">
+                                @item.name
+                            </option>
+                        }
+                    </select>
+                    <input class="search-input" type="text" name="searchterm"  value="@Model.SearchTerm" placeholder="Enter your search...">
+                    <button class="search-btn" type="submit">
+                        <i class="fas fa-search p-2"></i>
+                    </button>
+                </div>
+            </form>
+        </div>
+        <div style="text-align: end;">
+            <!--<li class="nav-item border rounded-circle mx-2 basket-icon">
+                <i class="fas fa-shopping-basket p-2"></i>
+            </li>-->
+            @if (User.Identity.IsAuthenticated && User.IsInRole("User"))
+            {
+                <a class="cart-btn" href="./cart.html">
+
+                    <span class="nav-icon">
+                        <i class="fas fa-cart-plus"></i>
+                    </span>
+                    <div class="cart-items">0</div>
+                </a>
+            }
+            else
+            {
+                <a class="cart-btn disabledd" href="./cart.html">
+
+                    <span class="nav-icon">
+                        <i class="fas fa-cart-plus"></i>
+                    </span>
+                    <div class="cart-items">0</div>
+                </a>
+            }
+
+        </div>
+    </nav>
+</div>
+<!--navbar-->
 <main>
     <!----------Slider---------->
     <div class="container-fluid p-0">
@@ -38,66 +108,82 @@
         <div class="section-title">
             <h2>Các sản phẩm</h2>
         </div>
-        <div class="products-center">
-            <!-- single product -->
+        @if (Model.Products != null)
+        {
+            <div class="products-center">
+                <!-- single product -->
 
-            <article class="product">
-                <div class="img-container">
-                    <img src="~/user/assets/products/product-1.jpg" alt="product" class="product-img">
-                    <button class="bag-btn" data-id=>
-                        <i class="fas fa-shopping-cart"></i>
-                        thêm giỏ hàng
-                    </button>
-                </div>
-                <a href="#"><h3>Tivi</h3></a>
-                <h6>15000000 VNĐ</h6>
-            </article>
-            <article class="product">
-                <div class="img-container">
-                    <img src="~/user/assets/products/product-1.jpg" alt="product" class="product-img">
-                    <button class="bag-btn" data-id=>
-                        <i class="fas fa-shopping-cart"></i>
-                        thêm giỏ hàng
-                    </button>
-                </div>
-                <a href="#"><h3>Tivi</h3></a>
-                <h6>15000000 VNĐ</h6>
-            </article>
-            <article class="product">
-                <div class="img-container">
-                    <img src="~/user/assets/products/product-1.jpg" alt="product" class="product-img">
-                    <button class="bag-btn" data-id=>
-                        <i class="fas fa-shopping-cart"></i>
-                        thêm giỏ hàng
-                    </button>
-                </div>
-                <a href="#"><h3>Tivi</h3></a>
-                <h6>15000000 VNĐ</h6>
-            </article>
-            <article class="product">
-                <div class="img-container">
-                    <img src="~/user/assets/products/product-1.jpg" alt="product" class="product-img">
-                    <button class="bag-btn" data-id=>
-                        <i class="fas fa-shopping-cart"></i>
-                        thêm giỏ hàng
-                    </button>
-                </div>
-                <a href="./detail.html"><h3>Tivi</h3></a>
-                <h6>15000000 VNĐ</h6>
-            </article>
-            <article class="product">
-                <div class="img-container">
-                    <img src="~/user/assets/products/product-1.jpg" alt="product" class="product-img">
-                    <button class="bag-btn" data-id=>
-                        <i class="fas fa-shopping-cart"></i>
-                        thêm giỏ hàng
-                    </button>
-                </div>
-                <a href="#"><h3>Tivi</h3></a>
-                <h6>15000000 VNĐ</h6>
-            </article>
-            <!--x single product x-->
-        </div>
+                @foreach (var item in Model.Products)
+                {
+                    <article class="product">
+                        <div class="img-container">
+                            <img src="~/images/site/@item.image" alt="product" class="product-img">
+                            <button class="bag-btn" data-id=>
+                                <i class="fas fa-shopping-cart"></i>
+                                thêm giỏ hàng
+                            </button>
+                        </div>
+                        <a asp-controller="Home" asp-action="Detail" asp-route-productID="@item.id"><h3>@item.name</h3></a>
+                        <h6>@item.price VNĐ</h6>
+                    </article>
+                }
+
+                <!--x single product x-->
+            </div>
+            <!-- pager - sử dụng bootstrap - pagination -->
+            if (Model.Pager.EndPage > 1)
+            {
+                
+                <nav>
+                    <ul class="pagination" style="width: 150px; margin: 30px auto;">
+                        @if (Model.Pager.CurrentPage > 1)
+                        {
+                            <li class="page-item">
+                                <a class="page-link" href="@Url.Action("Index","Home", new { searchTerm = Model.SearchTerm, categoryId = Model.categoryId })">
+                                    <i class="fas fa-angle-double-left"></i>
+                                </a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link" href="@Url.Action("Index","Home", new { page = Model.Pager.CurrentPage - 1,
+                                                  searchTerm = Model.SearchTerm, categoryId = Model.categoryId })">
+                                    <i class="fas fa-angle-left"></i>
+                                </a>
+                            </li>
+                        }
+
+                        @for (var page = Model.Pager.StartPage; page <= Model.Pager.EndPage; page++)
+                        {
+                            <li class="page-item @(page == Model.Pager.CurrentPage ? "active" : "")">
+                                <a class="page-link" href="@Url.Action("Index","Home", new { page = page,
+                                                  searchTerm = Model.SearchTerm, categoryId = Model.categoryId })">@(page)</a>
+                                            </li>}
+
+                        @if (Model.Pager.CurrentPage < Model.Pager.TotalPages)
+                        {
+                            <li class="page-item">
+                                <a class="page-link" href="@Url.Action("Index","Home", new { page = Model.Pager.CurrentPage + 1,
+                                                  searchTerm = Model.SearchTerm, categoryId = Model.categoryId })">
+                                    <i class="fas fa-angle-right"></i>
+                                </a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link" href="@Url.Action("Index","Home", new { page = Model.Pager.TotalPages,
+                                                  searchTerm = Model.SearchTerm, categoryId = Model.categoryId })">
+                                    <i class="fas fa-angle-double-right"></i>
+                                </a>
+                            </li>
+                        }
+                    </ul>
+                </nav>
+                  
+            }
+        }
+        else
+        {
+            <div class="alert alert-warning" role="alert">
+                Xin lỗi! Không tìm thấy sản phẩm!
+            </div>
+        }
     </section>
     <!-----x-----Products-----x----->
 </main>

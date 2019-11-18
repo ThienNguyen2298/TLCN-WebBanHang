@@ -13,13 +13,26 @@ namespace ShopMartWebsite.Services
     public class CategoryRepository : ICategoryRepository
     {
         private ShopDbContext _ctx;
+
         public CategoryRepository(ShopDbContext ctx)
         {
             _ctx = ctx;
         }
+        public int SearchCategoriesCount(string searchTerm)
+        {
+
+
+            var categories = _ctx.categories.AsQueryable();
+            if (!string.IsNullOrEmpty(searchTerm))
+            {
+                categories = categories.Where(x => x.name.ToLower().Contains(searchTerm.ToLower()));
+            }
+            return categories.Count();
+        }
         public bool DeleteCategory(int id)
         {
-            throw new NotImplementedException();
+            _ctx.categories.Remove(GetCategoryById(id));
+            return _ctx.SaveChanges() > 0;
         }
 
         public IEnumerable<Category> GetAllCategory()
@@ -29,17 +42,37 @@ namespace ShopMartWebsite.Services
 
         public Category GetCategoryById(int id)
         {
-            throw new NotImplementedException();
+            return _ctx.categories.Include(pro => pro.Products).FirstOrDefault(x => x.id == id);
         }
 
         public bool SaveCategory(Category category)
         {
-            throw new NotImplementedException();
+            _ctx.categories.Add(category);
+
+            return _ctx.SaveChanges() > 0;
+        }
+
+        public IEnumerable<Category> SearchCategories(string searchTerm, int page, int recordSize)
+        {
+            var categories = _ctx.categories.AsQueryable();
+            if (!string.IsNullOrEmpty(searchTerm))
+            {
+                categories = categories.Where(x => x.name.ToLower().Contains(searchTerm.ToLower()));
+            }
+            
+
+            var skip = (page - 1) * recordSize;
+            // skip  = (1    - 1) * 3 = 0 * 3 = 0
+            // skip  = (2    - 1) * 3 = 1 * 3 = 3
+            // skip  = (3    - 1) * 3 = 2 * 3 = 6
+
+            return categories.Include(a => a.Products).OrderBy(x => x.id).Skip(skip).Take(recordSize).ToList();
         }
 
         public bool UpdateCategory(Category category)
         {
-            throw new NotImplementedException();
+            _ctx.Entry(category).State = EntityState.Modified;
+            return _ctx.SaveChanges() > 0;
         }
     }
 }

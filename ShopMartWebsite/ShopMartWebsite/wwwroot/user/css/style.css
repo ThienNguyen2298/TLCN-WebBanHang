@@ -2,6 +2,7 @@
 @import url('../css/fonts.css');
 @import url('../css/detailproduct.css');
 @import url('../css/cart.css');
+
 /*      Global Classes      */
 :root{
     /*  theme colors         */
@@ -25,6 +26,10 @@
     --Lexend:'Lexend',cursive;
     --Livvic:'Livvic',cursive;
 }
+a.disabledd {
+    pointer-events: none;
+    color: #ccc;
+}
 .primary-color{
     color: var(--primary-color);
 }
@@ -46,18 +51,23 @@ strong{
 /*   x   Global Classes  x  */
 
 /*      Header    */
-header{
+.header-parent {
+    width: 100%;
+    background-color: var(--primary-color);
+}
+
+div .row, .container-menu {
     background-color: var(--primary-color);
     font-family: var(--Lexend);
 }
-header .site-title{
+.site-title{
     font-family: var(--Lexend);
 }
-header .row .img-logo{
+.row .img-logo{
     width: 60px; 
     border-radius: 50%;
 }
-header div .row{
+div .row{
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     align-items: center;
@@ -272,7 +282,7 @@ main .wrapper{
     margin: 0 auto;
     max-width: 1170px;
     display: grid;
-    grid-template-columns: repeat(auto-fit,minmax(260px,1fr));
+    grid-template-columns: repeat(4,1fr);
     grid-column-gap: 1.5rem;
     grid-row-gap: 2rem;
 }

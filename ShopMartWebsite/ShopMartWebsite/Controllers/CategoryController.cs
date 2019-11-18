@@ -3,14 +3,117 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using ShopMartWebsite.Entities;
+using ShopMartWebsite.Interfaces;
+using ShopMartWebsite.Models;
 
 namespace ShopMartWebsite.Controllers
 {
     public class CategoryController : Controller
     {
-        public IActionResult Index()
+        private readonly ICategoryRepository _categoryRepository;
+        public CategoryController(ICategoryRepository categoryRepository)
         {
-            return View();
+            _categoryRepository = categoryRepository;
+        }
+        public IActionResult Index(string searchTerm, int? page)
+        {
+            int recordSize = 4;
+            page = page ?? 1;
+            var model = new CategoryListViewModel();
+            model.SearchTerm = searchTerm;
+            model.Categories = _categoryRepository.SearchCategories(searchTerm, page.Value, recordSize);
+            
+            //tong so cot
+            int totalRecords = _categoryRepository.SearchCategoriesCount(searchTerm);
+            model.Pager = new Pager(totalRecords, page, recordSize);
+            return View(model);
+        }
+        [HttpGet]
+        public IActionResult Action(int? ID)
+        {
+            var model = new CategoryViewModel();
+            if (ID.HasValue)// ID != 0 -> Update
+            {
+                var category = _categoryRepository.GetCategoryById(ID.Value);
+                model.Id = category.id;
+                model.Name = category.name;
+                
+                model.Products = category.Products;
+            }
+            // Create
+            //Categories to select category for product
+            
+            return PartialView("_Action",model);
+        }
+        [HttpPost]
+        public JsonResult Action(CategoryViewModel model)
+        {
+            JsonResult json;
+            var result = false;
+            if (model.Id > 0)//we are trying to edit a record
+            {
+                var category = _categoryRepository.GetCategoryById(model.Id);
+
+                category.name = model.Name;
+                
+                category.Products = model.Products;
+                
+
+
+                result = _categoryRepository.UpdateCategory(category);
+            }
+            else    //we are trying to create a record
+            {
+                var category = new Category();
+                category.name = model.Name;
+               
+                //accomodationPackage.AccomodationType = accomodationTypesService.GetAccomodationTypeByID(model.AccomodationTypeID);
+                
+
+                result = _categoryRepository.SaveCategory(category);
+            }
+
+            if (result)
+            {
+                json = new JsonResult(new { Success = true });
+                
+            }
+            else
+            {
+                json = new JsonResult(new { Success = false, Message = "Thêm danh mục thất bại" });
+                
+            }
+
+            return json;
+        }
+        [HttpGet]
+        public IActionResult Delete(int ID)
+        {
+            var model = new CategoryViewModel();
+            var category = _categoryRepository.GetCategoryById(ID);
+            model.Id = category.id;
+            return PartialView("_Delete", model);
+        }
+        [HttpPost]
+        public JsonResult Delete(CategoryViewModel model)
+        {
+            JsonResult json;
+            var result = false;
+
+            result = _categoryRepository.DeleteCategory(model.Id);
+
+            if (result)
+            {
+                json = new JsonResult(new { Success = true });
+
+            }
+            else
+            {
+                json = new JsonResult(new { Success = false, Message = "Danh mục xóa không thành công!!!" });
+            }
+
+            return json;
         }
     }
 }

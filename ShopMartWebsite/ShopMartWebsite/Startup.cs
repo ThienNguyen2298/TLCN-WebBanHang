@@ -38,7 +38,13 @@ namespace ShopMartWebsite
             services.AddDbContext<ShopDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("FirstConnection")));
 
-            services.AddIdentity<User, Role>()
+            services.AddIdentity<User, Role>(options=> {
+                options.Password.RequireDigit = false;
+                options.Password.RequireLowercase = false;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequireUppercase = false;
+                options.Password.RequiredLength = 6;
+            })
                 .AddEntityFrameworkStores<ShopDbContext>()
                 .AddDefaultTokenProviders();
 
@@ -49,8 +55,19 @@ namespace ShopMartWebsite
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
             services.AddTransient<ICategoryRepository, CategoryRepository>();
+            services.AddTransient<IUserRepository, UserRepository>();
             services.AddTransient<IProductRepository, ProductRepository>();
-           
+            services.AddTransient<ICommentRepository, CommentRepository>();
+            services.AddTransient<IEmailSender, EmailSender>(i =>
+                new EmailSender(
+                    Configuration["EmailSender:Host"],
+                    Configuration.GetValue<int>("EmailSender:Port"),
+                    Configuration.GetValue<bool>("EmailSender:EnableSSL"),
+                    Configuration["EmailSender:UserName"],
+                    Configuration["EmailSender:Password"]
+                )
+            );
+
 
             services.AddMvc().AddJsonOptions(options => options.SerializerSettings.ContractResolver = new DefaultContractResolver());
         }
@@ -60,6 +77,11 @@ namespace ShopMartWebsite
             ILoggerFactory loggerFactory
             )
         {
+            var builder = new ConfigurationBuilder()
+            .SetBasePath(env.ContentRootPath)
+            .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
+
+            
             loggerFactory.AddFile("Logs/shop-{Date}.txt");
             if (env.IsDevelopment())
             {

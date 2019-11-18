@@ -35,6 +35,33 @@ namespace ShopMartWebsite.Data
         public DbSet<Comment> comments { get; set; }
         public DbSet<Reply> replies { get; set; }
 
-        
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            base.OnModelCreating(builder);
+            builder.Entity<Product>(entity =>
+            {
+                entity.HasOne(d => d.category)
+                    .WithMany(p => p.Products)
+                    .HasForeignKey(d => d.categoryId)
+                    .OnDelete(DeleteBehavior.SetNull)
+                    .HasConstraintName("FK_Product_Category");
+            });
+            builder.Entity<Comment>(entity =>
+            {
+                entity.HasOne(d => d.product)
+                    .WithMany(p => p.Comments)
+                    .HasForeignKey(d => d.productId)
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .HasConstraintName("FK_Comment_Product");
+            });
+            builder.Entity<Reply>(entity =>
+            {
+                entity.HasOne(d => d.comment)
+                    .WithMany(p => p.Replies)
+                    .HasForeignKey(d => d.commentId)
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .HasConstraintName("FK_Reply_Comment");
+            });
+        }
     }
 }

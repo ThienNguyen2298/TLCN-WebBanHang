@@ -1,4 +1,5 @@
-﻿using ShopMartWebsite.Entities;
+﻿using Microsoft.AspNetCore.Http;
+using ShopMartWebsite.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,8 +31,11 @@ namespace ShopMartWebsite.Models
         public Color? color { get; set; }
         //foreign key
         public int? categoryId { get; set; }
-        public CategoryViewModel category { get; set; }
-
+        public Category category { get; set; }
+        public string pictureIDs { get; set; }
         
+        public IEnumerable<Category> Categories { get; set; }
+        public IEnumerable<Comment> Comments { get; set; }
+
     }
 }

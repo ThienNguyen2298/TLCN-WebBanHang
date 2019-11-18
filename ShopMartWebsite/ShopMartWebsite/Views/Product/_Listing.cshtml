@@ -30,20 +30,29 @@
         <tbody>
             @foreach (var item in Model.Products)
             {
-                <tr class="even pointer">
+                            
+            <tr class="even pointer">
 
-                    <td class=" ">@item.name</td>
-                    <td class=" ">@item.price</td>
-                    <td class=" ">@item.status</td>
-                    <td class=" ">@item.size</td>
-                    <td class=" ">@item.color</td>
-                    <td class="a-right a-right ">@item.category.name</td>
-                    <td class=" last">
-                        <button data-href="@Url.Action("Viewss", "Product", new { ID = item.id })" class="data-btn-view btn btn-info" data-toggle="modal" data-target="#actionView"><i class="fas fa-eye"></i></button>
-                        <button data-href="@Url.Action("Action", "Product", new { ID = "" })" class="data-btn btn btn-primary" data-toggle="modal" data-target="#actionModal"><i class="fas fa-edit"></i></button>
-                        <button data-href="@Url.Action("Delete", "Product", new { ID = "" })" class="data-btn btn btn-danger" data-toggle="modal" data-target="#actionModal"><i class="fas fa-trash-alt"></i></button>
-                    </td>
-                </tr>
+                <td class=" ">@item.name</td>
+                <td class=" ">@item.price</td>
+                <td class=" ">@item.status</td>
+                <td class=" ">@item.size</td>
+                <td class=" ">@item.color</td>
+                @if (@item.category == null)
+                                    {
+                    <td class="a-right a-right ">Trống</td>
+                                }
+                else {
+                <td class="a-right a-right ">@item.category.name</td>
+                            }
+                <td class=" last">
+                    <button data-href="@Url.Action("Viewss", "Product", new { ID = item.id })" class="data-btn-view btn btn-info" data-toggle="modal" data-target="#actionView"><i class="fas fa-eye"></i></button>
+                    <button data-href="@Url.Action("Action", "Product", new { ID = item.id })" class="data-btn btn btn-primary" data-toggle="modal" data-target="#actionModal"><i class="fas fa-edit"></i></button>
+                    <button data-href="@Url.Action("Delete", "Product", new { ID = item.id })" class="data-btn btn btn-danger" data-toggle="modal" data-target="#actionModal"><i class="fas fa-trash-alt"></i></button>
+                </td>
+            </tr>
+                
+                
             }
 
 
@@ -98,7 +107,7 @@
 else
 {
     <div class="alert alert-warning" role="alert">
-        Xin lỗi! Chưa có dữ liệu!
+        Xin lỗi! Không tìm thấy dữ liệu!
     </div>
 }
 

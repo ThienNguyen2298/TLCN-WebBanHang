@@ -1,4 +1,7 @@
-﻿@model IEnumerable<ShopMartWebsite.Entities.Category>
+﻿@using Microsoft.AspNetCore.Identity;
+@using ShopMartWebsite.Entities;
+@inject SignInManager<User> signInManager;
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,7 +9,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <!-- custom style-->
-    <link rel="stylesheet" href="~/user/css/style.css" type="text/css" />
+
+    <link href="~/user/css/style.css" rel="stylesheet" />
+
+
     <!--fontawesome-->
     <link rel="stylesheet" href="~/user/css/all.css" type="text/css" />
     <!--Bootstrap CDN-->
@@ -25,8 +31,8 @@
 </head>
 <body>
     <!----------headder---------->
-    <header>
-        <div>
+    
+        <div class="header-parent">
             <div class="row">
                 <div class="">
                     <div>
@@ -34,13 +40,22 @@
                     </div>
                 </div>
                 <div class="online-shop text-center">
-                    <h2 class="site-title text-white"><a style="color: white;" href="/index.html">Online Shop</a></h2>
+                    <h2 class="site-title text-white"><a style="color: white;" asp-controller="Home" asp-action="Index">Online Shop</a></h2>
                 </div>
                 <div class="" style="text-align: end;">
+                    @if(signInManager.IsSignedIn(User))
+                    {
                     <p class="header-links">
-                        <a href="#" id="button-login" class="px-2">Đăng nhập</a>
-                        <a href="#" class="px-1">Tạo tài khoản</a>
+                        <a class="px-2">@User.Identity.Name</a>
+                        <a class="px-1" asp-controller="Home" asp-action="Logout" >Đăng xuất</a>
                     </p>
+                    }
+                    else
+                    {
+                    <p class="header-links">
+                        <a href="@Url.Action("Login","Account")" id="button-login" class="px-2">Đăng nhập</a>
+                    </p>
+                    }
                 </div>
                 <div class="bar-btn" style="display: none;">
                     <div class="toggle-icons">
@@ -49,95 +64,16 @@
                 </div>
             </div>
         </div>
-        <!--------Navbar------->
-        <div class="container-menu">
-            <nav class="menu-navbar">
-                <!---->
-                <div>
-                    <ul class="dropdown">
-                        <li>
-                            <a href="#">DANH MỤC SẢN PHẨM</a>
-                            <ul class="menu-area">
-                                <ul>
-                                    @foreach (var item in @Model)
-                                    {
-                                        <li><a href="#">@item.name</a></li>
-                                    }
-                                    <!--
-                                    <li><a href="#">Giày dép</a></li>
-                                    <li><a href="#">Đồng hồ</a></li>
-                                    <li><a href="#">Mỹ phẩm</a></li>
-                                    <li><a href="#">Học tập</a></li>
-                                    <li><a href="#">Bánh kẹo</a></li>
-                                    <li><a href="#">Nước giải khát</a></li>
-                                    <li><a href="#">Laptop</a></li>
-                                    <li><a href="#">Điện thoại</a></li>
-                                    <li><a href="#">Nội thất</a></li>
-                                    <li><a href="#">Thực phẩm</a></li>
-                                    <li><a href="#">Y tế</a></li>
-                                    <li><a href="#">Điện tử</a></li>
-                                    <li><a href="#">Gia vị</a></li>
-                                        -->
-                                </ul>
-                            </ul>
-                        </li>
-                    </ul>
+        
 
-                </div>
-                <!---->
-                <div class="search">
-                    <form>
-                        <div class="search-items">
-                            <select class="search-select" style="width: 36%; border: none; border-right: 3px solid #f1f1f1; border-radius: 1px;;">
-                                <option>Tất cả sản phẩm</option>
-                                @foreach (var item in @Model)
-                                {
-                                    <option>@item.name</option>
-                                }
-                            </select>
-                            <input class="search-input" type="text" class="form-controll" placeholder="Enter your search...">
-                            <button class="search-btn">
-                                <i class="fas fa-search p-2"></i>
-                            </button>
-                        </div>
-                    </form>
-                </div>
-                <div style="text-align: end;">
-                    <!--<li class="nav-item border rounded-circle mx-2 basket-icon">
-                        <i class="fas fa-shopping-basket p-2"></i>
-                    </li>-->
-                    <a class="cart-btn" href="./cart.html">
-
-                        <span class="nav-icon">
-                            <i class="fas fa-cart-plus"></i>
-                        </span>
-                        <div class="cart-items">0</div>
-                    </a>
-                </div>
-            </nav>
-        </div>
-
-    </header>
+    
     <!-----x-----headder-----x----->
     <!----------Main Section---------->
     @RenderBody()
 
     <!-----x-----Main Section-----x----->
     <!--modal-->
-    <div class="bg-modal">
-        <div class="modal-content">
-            <div style="text-align: center;">
-                <div class="close">&times</div>
-                <img src="~/user/assets/login.png" width="100px" alt="">
-                <form action="">
-                    <input type="text" placeholder="Email">
-                    <input type="password" placeholder="Password">
-                    <br>
-                    <a href="" class="button">Đăng nhập</a>
-                </form>
-            </div>
-        </div>
-    </div>
+    
     <!--x--modal--x-->
     <footer class="footer">
         <div class="container">
@@ -199,6 +135,10 @@
 
     <!--Stick Slider-->
     <script type="text/javascript" src="~/user/js/slick.min.js"></script>
+    <script>
+        
+        
+    </script>
 
 </body>
 </html>

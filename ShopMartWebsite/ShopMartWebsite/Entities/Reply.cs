@@ -12,7 +12,7 @@ namespace ShopMartWebsite.Entities
         public string content { get; set; }
         public DateTime createDate { get; set; }
         //foreign key
-        public int userId { get; set; }
+        public string userId { get; set; }
         public User user { get; set; }
         //foreign key
         public int commentId { get; set; }

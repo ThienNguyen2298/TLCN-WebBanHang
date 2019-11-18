@@ -14,17 +14,12 @@ namespace ShopMartWebsite.Entities
         {
             Products = new List<Product>();
         }
-        public Category(string Name, bool Status)
-        {
-            
-            name = Name;
-            status = Status;
-        }
+        
         [Key]
         public int id { get; set; }
         [Required]
         public string name { get; set; }
-        public bool status { get; set; }
+       
         
         public virtual ICollection<Product> Products { get; set; }
     }

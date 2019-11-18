@@ -24,8 +24,8 @@
 </head>
 <body>
     <!----------headder---------->
-    <header>
-        <div>
+    
+        <div class="header-parent">
             <div class="row">
                 <div class="">
                     <div>
@@ -37,9 +37,10 @@
                 </div>
                 <div class="" style="text-align: end;">
                     <p class="header-links">
-                        <a href="#" id="button-login" class="px-2">Đăng nhập</a>
-                        <a href="#" class="px-1">Tạo tài khoản</a>
+                        <a href="./login.html" id="button-login" class="px-2">Đăng nhập</a>
+                        <a href="#" id="button-register" class="px-1">Tạo tài khoản</a>
                     </p>
+                    
                 </div>
                 <div class="bar-btn" style="display: none;">
                     <div class="toggle-icons">
@@ -88,7 +89,7 @@
                                 <option>Clothes</option>
                             </select>
                             <input class="search-input"  type="text" class="form-controll" placeholder="Enter your search...">
-                            <button class="search-btn" >
+                            <button class="search-btn">
                                 <i class="fas fa-search p-2"></i>
                             </button>
                         </div>
@@ -98,7 +99,7 @@
                     <!--<li class="nav-item border rounded-circle mx-2 basket-icon">
                         <i class="fas fa-shopping-basket p-2"></i>
                     </li>-->
-                    <a class="cart-btn" href="./cart.html">
+                    <a class="cart-btn disabled" href="./cart.html" >
                         
                         <span class="nav-icon">
                             <i class="fas fa-cart-plus"></i>
@@ -109,7 +110,7 @@
             </nav>
         </div>
         
-    </header>
+    
     <!-----x-----headder-----x----->
     <!----------Main Section---------->
     <main>
@@ -158,6 +159,8 @@
     </main>
     <!-----x-----Main Section-----x----->
     <!--modal-->
+    <!--Đăng nhập-->
+    
     <div class="bg-modal">
         <div class="modal-content">
             <div style="text-align: center;">
@@ -167,11 +170,28 @@
                     <input type="text" placeholder="Email">
                     <input type="password" placeholder="Password">
                     <br>
-                    <a href="" class="button">Đăng nhập</a>
+                    <a href="./login.html" class="button btn-login">Đăng nhập</a>
                 </form>
             </div>
         </div>
     </div>
+
+    <div class="bg-modal rgt">
+        <div class="modal-content">
+            <div style="text-align: center;">
+                <div class="close close-rgt">&times</div>
+                <img src="./assets/login.png" width="100px" alt="">
+                <form action="">
+                    <input type="text" placeholder="Email">
+                    <input type="password" placeholder="Mật khẩu">
+                    <input type="password" placeholder="Xác nhận mật khẩu">
+                    <br>
+                    <a href="" class="button">Đăng ký</a>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!--Đăng ký-->
     <!--x--modal--x-->
     <footer class="footer">
         <div class="container">
