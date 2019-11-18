@@ -113,8 +113,6 @@ namespace ShopMartWebsite.Migrations
                     b.Property<string>("name")
                         .IsRequired();
 
-                    b.Property<bool>("status");
-
                     b.HasKey("id");
 
                     b.ToTable("category");
@@ -131,15 +129,13 @@ namespace ShopMartWebsite.Migrations
 
                     b.Property<int>("productId");
 
-                    b.Property<int>("userId");
-
-                    b.Property<string>("userId1");
+                    b.Property<string>("userId");
 
                     b.HasKey("id");
 
                     b.HasIndex("productId");
 
-                    b.HasIndex("userId1");
+                    b.HasIndex("userId");
 
                     b.ToTable("comment");
                 });
@@ -151,17 +147,17 @@ namespace ShopMartWebsite.Migrations
 
                     b.Property<DateTime>("createDate");
 
+                    b.Property<string>("note");
+
                     b.Property<bool>("status");
 
                     b.Property<decimal>("total");
 
-                    b.Property<int>("userId");
-
-                    b.Property<string>("userId1");
+                    b.Property<string>("userId");
 
                     b.HasKey("id");
 
-                    b.HasIndex("userId1");
+                    b.HasIndex("userId");
 
                     b.ToTable("order");
                 });
@@ -227,15 +223,13 @@ namespace ShopMartWebsite.Migrations
 
                     b.Property<DateTime>("createDate");
 
-                    b.Property<int>("userId");
-
-                    b.Property<string>("userId1");
+                    b.Property<string>("userId");
 
                     b.HasKey("id");
 
                     b.HasIndex("commentId");
 
-                    b.HasIndex("userId1");
+                    b.HasIndex("userId");
 
                     b.ToTable("reply");
                 });
@@ -379,20 +373,21 @@ namespace ShopMartWebsite.Migrations
             modelBuilder.Entity("ShopMartWebsite.Entities.Comment", b =>
                 {
                     b.HasOne("ShopMartWebsite.Entities.Product", "product")
-                        .WithMany()
+                        .WithMany("Comments")
                         .HasForeignKey("productId")
+                        .HasConstraintName("FK_Comment_Product")
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("ShopMartWebsite.Entities.User", "user")
                         .WithMany()
-                        .HasForeignKey("userId1");
+                        .HasForeignKey("userId");
                 });
 
             modelBuilder.Entity("ShopMartWebsite.Entities.Order", b =>
                 {
                     b.HasOne("ShopMartWebsite.Entities.User", "user")
                         .WithMany()
-                        .HasForeignKey("userId1");
+                        .HasForeignKey("userId");
                 });
 
             modelBuilder.Entity("ShopMartWebsite.Entities.OrderDetail", b =>
@@ -412,7 +407,9 @@ namespace ShopMartWebsite.Migrations
                 {
                     b.HasOne("ShopMartWebsite.Entities.Category", "category")
                         .WithMany("Products")
-                        .HasForeignKey("categoryId");
+                        .HasForeignKey("categoryId")
+                        .HasConstraintName("FK_Product_Category")
+                        .OnDelete(DeleteBehavior.SetNull);
                 });
 
             modelBuilder.Entity("ShopMartWebsite.Entities.Reply", b =>
@@ -420,11 +417,12 @@ namespace ShopMartWebsite.Migrations
                     b.HasOne("ShopMartWebsite.Entities.Comment", "comment")
                         .WithMany("Replies")
                         .HasForeignKey("commentId")
+                        .HasConstraintName("FK_Reply_Comment")
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("ShopMartWebsite.Entities.User", "user")
                         .WithMany()
-                        .HasForeignKey("userId1");
+                        .HasForeignKey("userId");
                 });
 #pragma warning restore 612, 618
         }

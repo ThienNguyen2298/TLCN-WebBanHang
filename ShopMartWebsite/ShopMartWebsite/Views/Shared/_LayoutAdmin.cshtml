@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" href="~/admin/images/favicon.ico" type="image/ico" />
 
-    <title>Gentelella Alela! | </title>
+    <title>Dashboard </title>
 
     <!-- Bootstrap -->
     <link href="~/admin/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -17,7 +17,7 @@
     <link href="~/admin/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="~/user/css/all.css" type="text/css" />
     <!--Font-->
-
+    
     <!-- NProgress -->
     <link href="~/admin/vendors/nprogress/nprogress.css" rel="stylesheet">
     <!-- iCheck -->
@@ -46,7 +46,7 @@
             <div class="col-md-3 left_col">
                 <div class="left_col scroll-view">
                     <div class="navbar nav_title" style="border: 0;">
-                        <a href="index.html" class="site_title"><i class="fa fa-paw"></i> <span>Trang Admin</span></a>
+                        <a href="@Url.Action("Index","Admin")" class="site_title"><i class="fa fa-paw"></i> <span>Trang Admin</span></a>
                     </div>
 
                     <div class="clearfix"></div>
@@ -83,7 +83,7 @@
                                 <li>
                                     <a><i class="fa fa-edit"></i> Sản phẩm <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu">
-                                        <li><a href="tables_dynamic.html">Quản lý Danh mục</a></li>
+                                        <li><a href="@Url.Action("Index","Category")">Quản lý Danh mục</a></li>
                                         <li><a href="@Url.Action("Index","Product")" id="btnProduct">Quản lý Sản phẩm</a></li>
                                     </ul>
                                 </li>
@@ -179,7 +179,7 @@
                             <li role="presentation" class="nav-item dropdown open" style=" margin-left: 10px;">
 
                                 <a href="javascript:;" class="dropdown-toggle info-number" id="navbarDropdown1" data-toggle="dropdown" aria-expanded="false">
-                                    <i class="fa fa-bell-o"></i>
+                                    <i class="fa fa-bell"></i>
                                     <span class="badge bg-green">6</span>
                                 </a>
                                 <ul class="dropdown-menu list-unstyled msg_list" role="menu" aria-labelledby="navbarDropdown1">
@@ -212,7 +212,7 @@
                             <li role="presentation" class="nav-item dropdown open">
 
                                 <a href="javascript:;" class="dropdown-toggle info-number" id="navbarDropdown1" data-toggle="dropdown" aria-expanded="false">
-                                    <i class="fa fa-envelope-o"></i>
+                                    <i class="fa fa-envelope"></i>
                                     <span class="badge bg-green">6</span>
                                 </a>
                                 <ul class="dropdown-menu list-unstyled msg_list" role="menu" aria-labelledby="navbarDropdown1">
@@ -334,8 +334,7 @@
 
     <script src="~/app/controllers/login/index.js"></script>
     <script src="~/lib/notify/notify.js"></script>
-    <!--Product-->
-    <script src="~/app/controllers/product/index.js"></script>
+    
     <script>
         var logout = new logoutController()
         logout.initialize();

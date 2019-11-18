@@ -14,5 +14,7 @@ namespace ShopMartWebsite.Interfaces
         bool UpdateCategory(Category product);
         bool DeleteCategory(int id);
         IEnumerable<Category> GetAllCategory();
+        IEnumerable<Category> SearchCategories(string searchTerm, int page, int recordSize);
+        int SearchCategoriesCount(string searchterm);
     }
 }

@@ -19,7 +19,7 @@ namespace ShopMartWebsite.Entities
         public int productId { get; set; }
         public Product product { get; set; }
         //foreign key
-        public int userId { get; set; }
+        public string userId { get; set; }
         public User user { get; set; }
         public virtual ICollection<Reply> Replies { get; set; }
     }

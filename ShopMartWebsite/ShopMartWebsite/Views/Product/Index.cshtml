@@ -28,7 +28,7 @@
                             </option>
                             @foreach (var category in Model.Categories) {
                                 
-                                    <option value="@category.id">
+                                    <option value="@category.id" selected="@(Model.categoryId==category.id)">
                                         @category.name
                                     
                                     </option>
@@ -62,8 +62,8 @@
 </div>
 <!-- Modal -->
 
-<div class="modal fade" id="actionModal" tabindex="-1" role="dialog">
-    <div class="modal-dialog" role="document">
+<div class="modal fade bd-example-modal-lg" id="actionModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg" role="document">
     </div>
 </div>
 <!---->

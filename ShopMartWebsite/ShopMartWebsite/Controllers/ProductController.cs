@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using ShopMartWebsite.Entities;
 using ShopMartWebsite.Interfaces;
 using ShopMartWebsite.Models;
 
@@ -39,23 +41,102 @@ namespace ShopMartWebsite.Controllers
             var model = _productRepository.GetProductById(ID);
             return PartialView("_View",model);
         }
+        [HttpGet]
         public IActionResult Action(int? ID)
         {
-            return PartialView("_Action");
+            var model = new ProductViewModel();
+            if (ID.HasValue)// ID != 0 -> Update
+            {
+                var product = _productRepository.GetProductById(ID.Value);
+                model.categoryId = product.categoryId;
+                model.id = product.id;
+                model.name = product.name;
+                model.price = product.price;
+                model.size = product.size;
+                model.color = product.color;
+                model.description = product.description;
+                model.pictureIDs = product.image;
+            }
+            // Create
+            //Categories to select category for product
+            model.Categories = _categoryRepository.GetAllCategory();
+            return PartialView("_Action", model);
         }
         [HttpPost]
-        public IActionResult Action()
+        public JsonResult Action(ProductViewModel model)
         {
-            return View();
+            var pic = HttpContext.Request.Form.Files;
+            JsonResult json;
+            var result = false;
+            
+            if (model.id > 0)//we are trying to edit a record
+            {
+                var product = _productRepository.GetProductById(model.id);
+                product.id = model.id;
+                product.categoryId = model.categoryId;
+                product.name = model.name;
+                product.price = model.price;
+                product.size = model.size;
+                product.color = model.color;
+                product.description = model.description;
+                product.image = model.pictureIDs;
+                product.status = model.status;
+
+
+                 result = _productRepository.UpdateProduct(product);
+            }
+            else    //we are trying to create a record
+            {
+                var product = new Product();
+                product.categoryId = model.categoryId;
+                product.name = model.name;
+                product.price = model.price;
+                product.size = model.size;
+                product.color = model.color;
+                product.description = model.description;
+                product.image = model.pictureIDs;
+                product.status = model.status;
+
+                result = _productRepository.SaveProduct(product);
+            }
+
+            if (result)
+            {
+                json = new JsonResult(new { Success = true });
+            }
+            else
+            {
+                json = new JsonResult(new { Success = false, Message = "Không thể tạo sản phẩm này!!!" });
+                
+            }
+            return json;
         }
-        public IActionResult Delete()
-        {
-            return PartialView("_Delete");
-        }
-        [HttpPost]
         public IActionResult Delete(int ID)
         {
-            return View();
+            var model = new ProductViewModel();
+            var product = _productRepository.GetProductById(ID);
+            model.id = product.id;
+            return PartialView("_Delete",model);
+        }
+        [HttpPost]
+        public JsonResult Delete(ProductViewModel model)
+        {
+            JsonResult json;
+            var result = false;
+
+            result =_productRepository.DeleteProduct(model.id);
+
+            if (result)
+            {
+                json = new JsonResult(new { Success = true });
+                
+            }
+            else
+            {
+                json = new JsonResult(new { Success = false, Message = "Sản phẩm này đã được xóa!!!" });
+            }
+
+            return json;
         }
     }
 }

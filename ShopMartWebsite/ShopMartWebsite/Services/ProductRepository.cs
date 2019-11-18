@@ -35,7 +35,7 @@ namespace ShopMartWebsite.Services
             // skip  = (2    - 1) * 3 = 1 * 3 = 3
             // skip  = (3    - 1) * 3 = 2 * 3 = 6
 
-            return products.Include(a=>a.category).OrderBy(x => x.categoryId).Skip(skip).Take(recordSize).ToList();
+            return products.Include(a=>a.category).Include(cmt=>cmt.Comments).OrderBy(x => x.categoryId).Skip(skip).Take(recordSize).ToList();
         }
         public bool DeleteProduct(int id)
         {
@@ -45,12 +45,12 @@ namespace ShopMartWebsite.Services
 
         public IEnumerable<Product> GetAllProduct()
         {
-            return _ctx.products.Include(pro => pro.category).ToList();
+            return _ctx.products.Include(pro => pro.category).Include(cmt => cmt.Comments).ToList();
         }
 
         public Product GetProductById(int id)
         {
-            return _ctx.products.Include(pro => pro.category).FirstOrDefault(x => x.id == id);
+            return _ctx.products.Include(pro => pro.category).Include(cmt=>cmt.Comments).FirstOrDefault(x => x.id == id);
         }
 
         public bool SaveProduct(Product product)

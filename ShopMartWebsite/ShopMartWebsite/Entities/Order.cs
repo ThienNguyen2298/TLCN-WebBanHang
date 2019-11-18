@@ -15,9 +15,10 @@ namespace ShopMartWebsite.Entities
         public int id { get; set; }
         public bool status { get; set; }
         public decimal total { get; set; }
+        public string note { get; set; }
         public DateTime createDate { get; set; }
         //foreign key
-        public int userId { get; set; }
+        public string userId { get; set; }
         public User user { get; set; }
         public virtual ICollection<OrderDetail> OrderDetails { get; set; }
     }

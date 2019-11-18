@@ -1,0 +1,114 @@
+﻿@model ShopMartWebsite.Models.RegisterViewModel
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- custom style-->
+
+
+    <link href="~/user/css/login.css" rel="stylesheet" />
+
+    <!--fontawesome-->
+    <link rel="stylesheet" href="~/user/css/all.css" type="text/css" />
+    <!--Bootstrap CDN-->
+    <link rel="stylesheet" href="~/user/css/bootstrap.css">
+    <!-- Owl-Carousel -->
+    <link rel="stylesheet" href="~/user/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="~/user/css/owl.theme.default.min.css">
+    <!--AOS Library-->
+    <link rel="stylesheet" href="~/user/css/aos.css">
+
+    <!--Slick Slider-->
+    <link rel="stylesheet" type="text/css" href="~/user/css/slick.css" />
+
+
+    <title>Online Shop</title>
+</head>
+<body>
+    <div class="page-login">
+        <h3>@ViewData["notify"]</h3>
+        <div class="container" id="container">
+            <div class="form-container sign-up-container">
+                <form method="post" asp-action="Register" asp-controller="Account">
+                    <h1>Tạo tài khoản</h1>
+                    <div class="social-container">
+                        <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
+                        <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+
+                    <input type="text" name="DisplayName" placeholder="Họ và tên" /><br />
+                    <input type="email" name="Email" placeholder="Email" /><br>
+
+                    <input type="password" name="Password" placeholder="Mật khẩu" /><br>
+                    <input type="password" name="ConfirmPassword" placeholder="Nhập lại mật khẩu" /><br>
+                    <button type="submit">Đăng ký</button>
+                </form>
+            </div>
+            <div class="form-container sign-in-container">
+                <form method="post" asp-action="Login" asp-controller="Account">
+                    <h1>Đăng nhập</h1>
+                    <div class="social-container">
+                        <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
+                        <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+
+                    <input type="email" name="UserName" placeholder="Email" /><br>
+                    <input type="password" name="PasswordLogin" placeholder="Mật khẩu" />
+                    <a href="#">Quên mật khẩu?</a>
+                    <button type="submit">Đăng nhập</button>
+                </form>
+            </div>
+            <div class="overlay-container">
+                <div class="overlay">
+                    <div class="overlay-panel overlay-left">
+                        <h1>Đăng nhập!</h1>
+                        <p>Bấm nút bên dưới để trở về Đăng nhập!</p>
+                        <button class="ghost" id="signIn">Đăng nhập</button>
+                    </div>
+                    <div class="overlay-panel overlay-right">
+                        <h1>Xin chào, Bạn!</h1>
+                        <p>Bấm nút bên dưới để tạo Tài khoản mới!</p>
+                        <button class="ghost" id="signUp">Đăng ký</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Jquery Library file-->
+    <script src="~/user/js/jquery3.4.1.min.js"></script>
+    <!-- Owl-Carousel js -->
+    <script src="~/user/js/owl.carousel.min.js"></script>
+    <!-- custom javascript-->
+    <script src="~/user/js/main.js"></script>
+    <!--AOS Library-->
+    <script src="~/user/js/aos.js"></script>
+    <!--Bootstrap CDN-->
+    <script src="~/user/js/bootstrap.js"></script>
+
+    <!--Stick Slider-->
+    <script type="text/javascript" src="~/user/js/slick.min.js"></script>
+    <script>
+        const signUpButton = document.getElementById('signUp');
+        const signInButton = document.getElementById('signIn');
+        const container = document.getElementById('container');
+
+        signUpButton.addEventListener('click', () => {
+            container.classList.add("right-panel-active");
+        });
+
+        signInButton.addEventListener('click', () => {
+            container.classList.remove("right-panel-active");
+        });
+
+    </script>
+
+</body>
+</html>
