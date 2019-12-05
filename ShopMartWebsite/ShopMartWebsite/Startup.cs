@@ -58,6 +58,9 @@ namespace ShopMartWebsite
             services.AddTransient<IUserRepository, UserRepository>();
             services.AddTransient<IProductRepository, ProductRepository>();
             services.AddTransient<ICommentRepository, CommentRepository>();
+            services.AddTransient<IReplyRepository, ReplyRepository>();
+            services.AddTransient<IOrderRepository, OrderRepository>();
+            services.AddTransient<IOrderDetailRepository, OrderDetailRepository>();
             services.AddTransient<IEmailSender, EmailSender>(i =>
                 new EmailSender(
                     Configuration["EmailSender:Host"],

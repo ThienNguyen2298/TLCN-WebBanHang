@@ -113,6 +113,8 @@ namespace ShopMartWebsite.Migrations
                     b.Property<string>("name")
                         .IsRequired();
 
+                    b.Property<bool>("status");
+
                     b.HasKey("id");
 
                     b.ToTable("category");
@@ -128,6 +130,8 @@ namespace ShopMartWebsite.Migrations
                     b.Property<DateTime>("createDate");
 
                     b.Property<int>("productId");
+
+                    b.Property<bool>("status");
 
                     b.Property<string>("userId");
 
@@ -145,7 +149,13 @@ namespace ShopMartWebsite.Migrations
                     b.Property<int>("id")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<string>("address");
+
                     b.Property<DateTime>("createDate");
+
+                    b.Property<string>("customer");
+
+                    b.Property<string>("info");
 
                     b.Property<string>("note");
 
@@ -222,6 +232,8 @@ namespace ShopMartWebsite.Migrations
                     b.Property<string>("content");
 
                     b.Property<DateTime>("createDate");
+
+                    b.Property<bool>("status");
 
                     b.Property<string>("userId");
 
@@ -312,6 +324,8 @@ namespace ShopMartWebsite.Migrations
 
                     b.Property<string>("phone");
 
+                    b.Property<bool>("status");
+
                     b.HasKey("Id");
 
                     b.HasIndex("NormalizedEmail")
@@ -375,7 +389,6 @@ namespace ShopMartWebsite.Migrations
                     b.HasOne("ShopMartWebsite.Entities.Product", "product")
                         .WithMany("Comments")
                         .HasForeignKey("productId")
-                        .HasConstraintName("FK_Comment_Product")
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("ShopMartWebsite.Entities.User", "user")
@@ -407,9 +420,7 @@ namespace ShopMartWebsite.Migrations
                 {
                     b.HasOne("ShopMartWebsite.Entities.Category", "category")
                         .WithMany("Products")
-                        .HasForeignKey("categoryId")
-                        .HasConstraintName("FK_Product_Category")
-                        .OnDelete(DeleteBehavior.SetNull);
+                        .HasForeignKey("categoryId");
                 });
 
             modelBuilder.Entity("ShopMartWebsite.Entities.Reply", b =>
@@ -417,7 +428,6 @@ namespace ShopMartWebsite.Migrations
                     b.HasOne("ShopMartWebsite.Entities.Comment", "comment")
                         .WithMany("Replies")
                         .HasForeignKey("commentId")
-                        .HasConstraintName("FK_Reply_Comment")
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("ShopMartWebsite.Entities.User", "user")

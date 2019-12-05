@@ -23,11 +23,11 @@ namespace ShopMartWebsite.Services
             var products = _ctx.products.AsQueryable();
             if (!string.IsNullOrEmpty(searchTerm))
             {
-                products = products.Where(x => x.name.ToLower().Contains(searchTerm.ToLower()));
+                products = products.Where(x => x.status==true && x.name.ToLower().Contains(searchTerm.ToLower()));
             }
             if (categoryId.HasValue && categoryId.Value > 0)
             {
-                products = products.Where(x => x.categoryId == categoryId.Value);
+                products = products.Where(x => x.status == true && x.categoryId == categoryId.Value);
             }
 
             var skip = (page - 1) * recordSize;
@@ -35,17 +35,17 @@ namespace ShopMartWebsite.Services
             // skip  = (2    - 1) * 3 = 1 * 3 = 3
             // skip  = (3    - 1) * 3 = 2 * 3 = 6
 
-            return products.Include(a=>a.category).Include(cmt=>cmt.Comments).OrderBy(x => x.categoryId).Skip(skip).Take(recordSize).ToList();
+            return products.Where(x => x.status == true).Include(a=>a.category).Include(cmt=>cmt.Comments).OrderBy(x => x.categoryId).Skip(skip).Take(recordSize).ToList();
         }
-        public bool DeleteProduct(int id)
+        public bool DeleteProduct(Product product)
         {
-            _ctx.products.Remove(GetProductById(id));
+            _ctx.Entry(product).State = EntityState.Modified;
             return _ctx.SaveChanges() > 0;
         }
 
         public IEnumerable<Product> GetAllProduct()
         {
-            return _ctx.products.Include(pro => pro.category).Include(cmt => cmt.Comments).ToList();
+            return _ctx.products.Where(x => x.status == true).Include(pro => pro.category).Include(cmt => cmt.Comments).ToList();
         }
 
         public Product GetProductById(int id)
@@ -55,14 +55,16 @@ namespace ShopMartWebsite.Services
 
         public bool SaveProduct(Product product)
         {
+            if (product.name == null)
+                return false;
             _ctx.products.Add(product);
-
             return _ctx.SaveChanges() > 0;
         }
 
         public bool UpdateProduct(Product product)
         {
-            
+            if (product.name == null)
+                return false;
             _ctx.Entry(product).State = EntityState.Modified;
             return _ctx.SaveChanges() > 0;
         }
@@ -73,16 +75,16 @@ namespace ShopMartWebsite.Services
             var products = _ctx.products.AsQueryable();
             if (!string.IsNullOrEmpty(searchTerm))
             {
-                products = products.Where(x => x.name.ToLower().Contains(searchTerm.ToLower()));
+                products = products.Where(x => x.status == true && x.name.ToLower().Contains(searchTerm.ToLower()));
             }
             if (categoryId.HasValue && categoryId.Value > 0)
             {
-                products = products.Where(x => x.categoryId == categoryId.Value);
+                products = products.Where(x => x.status == true && x.categoryId == categoryId.Value);
             }
 
 
 
-            return products.Count();
+            return products.Where(x=>x.status==true).Count();
         }
     }
 }

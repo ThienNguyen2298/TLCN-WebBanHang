@@ -25,6 +25,7 @@ namespace ShopMartWebsite.Models
         public string name { get; set; }
         public decimal price { get; set; }
         public string description { get; set; }
+        public int amount { get; set; }
         public bool status { get; set; }
         public string image { get; set; }
         public Size? size { get; set; }

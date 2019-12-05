@@ -19,13 +19,18 @@ namespace ShopMartWebsite.Controllers
         private readonly IProductRepository _productRepository;
         private readonly SignInManager<User> _signInManager;
         private readonly ICommentRepository _commentRepository;
+        private readonly IReplyRepository _replyRepository;
+        private readonly IOrderRepository _orderRepository;
         public HomeController(ICategoryRepository categoryRepository, IProductRepository productRepository, 
-            SignInManager<User> signInManager, ICommentRepository commentRepository)
+            SignInManager<User> signInManager, ICommentRepository commentRepository, IReplyRepository replyRepository,
+            IOrderRepository orderRepository)
         {
             _categoryRepository = categoryRepository;
             _productRepository = productRepository;
             _signInManager = signInManager;
             _commentRepository = commentRepository;
+            _replyRepository = replyRepository;
+            _orderRepository = orderRepository;
         }
         public IActionResult Index(string searchTerm, int? categoryId, int? page)
         {
@@ -83,23 +88,78 @@ namespace ShopMartWebsite.Controllers
         public IActionResult Comment(int productId, string content)
         {
             var result = false;
-            if (content != null)
+            if (!User.Identity.IsAuthenticated)
             {
-                var model = new Comment();
-                model.content = content;
-                model.productId = productId;
-                model.createDate = DateTime.Now;
-                model.userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-                result = _commentRepository.SaveComment(model);
+                return RedirectToAction("Login", "Account", new { productId = productId });
             }
-            if(result == true)
-                return RedirectToAction("Detail", "Home", new { productId = productId});
-            else
-                return RedirectToAction("Detail", "Home", new { productId = productId });
+            else {
+                if (content != null)
+                {
+                    var model = new Comment();
+                    model.content = content;
+                    model.productId = productId;
+                    model.createDate = DateTime.Now;
+                    model.status = true;
+                    model.userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+                    result = _commentRepository.SaveComment(model);
+                }
+                if (result == true)
+                    return RedirectToAction("Detail", "Home", new { productId = productId });
+                else
+                    return RedirectToAction("Detail", "Home", new { productId = productId });
+            }
         }
-        public IActionResult Reply(int commentId, string content)
+        public IActionResult Reply(int commentId, string content, int productId)
+        {
+            var result = false;
+            if (!User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Login", "Account", new { productId = productId });
+            }
+            else
+            {
+                if (content != null)
+                {
+                    var model = new Reply();
+                    model.content = content;
+                    model.commentId = commentId;
+                    model.createDate = DateTime.Now;
+                    model.status = true;
+                    model.userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+                    result = _replyRepository.SaveReply(model);
+                }
+                if (result == true)
+                    return RedirectToAction("Detail", "Home", new { productId = productId });
+                else
+                    return RedirectToAction("Detail", "Home", new { productId = productId });
+            }
+        }
+        [HttpGet]
+        public IActionResult Cart()
         {
             return View();
+        }
+        [HttpPost]
+        public IActionResult AddCart(OrderDetail[] arr, string customer, string info, string address, string note, decimal total)
+        {
+            JsonResult json;
+            var result = false;
+            
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var order = new Order() { customer=customer, info=info, address=address, createDate=DateTime.Now, note=note, status=true, total=total, OrderDetails=arr, userId=userId};
+            result = _orderRepository.SaveOrder(order);
+            if (result)
+            {
+                json = new JsonResult(new { Success = true });
+            }
+            else
+            {
+                json = new JsonResult(new { Success = false });
+
+            }
+            return json;
+            
+            
         }
 
     }

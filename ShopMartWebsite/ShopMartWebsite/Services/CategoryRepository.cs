@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
+
 namespace ShopMartWebsite.Services
 {
     public class CategoryRepository : ICategoryRepository
@@ -27,11 +28,11 @@ namespace ShopMartWebsite.Services
             {
                 categories = categories.Where(x => x.name.ToLower().Contains(searchTerm.ToLower()));
             }
-            return categories.Count();
+            return categories.Where(x=> x.status==true).Count();
         }
-        public bool DeleteCategory(int id)
+        public bool DeleteCategory(Category category)
         {
-            _ctx.categories.Remove(GetCategoryById(id));
+            _ctx.Entry(category).State = EntityState.Modified;
             return _ctx.SaveChanges() > 0;
         }
 
@@ -47,6 +48,8 @@ namespace ShopMartWebsite.Services
 
         public bool SaveCategory(Category category)
         {
+            if (category.name == null)
+                return false;
             _ctx.categories.Add(category);
 
             return _ctx.SaveChanges() > 0;
@@ -66,11 +69,14 @@ namespace ShopMartWebsite.Services
             // skip  = (2    - 1) * 3 = 1 * 3 = 3
             // skip  = (3    - 1) * 3 = 2 * 3 = 6
 
-            return categories.Include(a => a.Products).OrderBy(x => x.id).Skip(skip).Take(recordSize).ToList();
+            return categories.Where(x => x.status == true).Include(a => a.Products).OrderBy(x => x.id).Skip(skip).Take(recordSize).ToList();
+           
         }
 
         public bool UpdateCategory(Category category)
         {
+            if (category.name == null)
+                return false;
             _ctx.Entry(category).State = EntityState.Modified;
             return _ctx.SaveChanges() > 0;
         }

@@ -15,6 +15,10 @@ namespace ShopMartWebsite.Entities
         public int id { get; set; }
         public bool status { get; set; }
         public decimal total { get; set; }
+        public string address { get; set; }
+        //đối vs guest
+        public string customer { get; set; }
+        public string info { get; set; }
         public string note { get; set; }
         public DateTime createDate { get; set; }
         //foreign key

@@ -1,0 +1,604 @@
+2019-12-05T14:48:35.9150896+07:00 0HLRPAU49351U:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44340/   (ca22a1cb)
+2019-12-05T14:48:35.9150899+07:00 0HLRPAU49351V:00000001 [INF] Request starting HTTP/1.1 DEBUG http://localhost:51987/  0 (ca22a1cb)
+2019-12-05T14:48:36.0603877+07:00 0HLRPAU49351V:00000001 [INF] Request finished in 245.9272ms 200  (791a596a)
+2019-12-05T14:48:39.1971849+07:00 0HLRPAU49351U:00000001 [INF] Executing action method "ShopMartWebsite.Controllers.HomeController.Index (ShopMartWebsite)" with arguments (["", "", ""]) - ModelState is Valid (ba7f4ac2)
+2019-12-05T14:48:39.7026756+07:00 0HLRPAU49351U:00000001 [INF] Entity Framework Core "2.0.3-rtm-10026" initialized '"ShopDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2019-12-05T14:48:40.5387164+07:00 0HLRPAU49351U:00000001 [INF] Executed DbCommand ("56"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [cate].[id], [cate].[name], [cate].[status]
+FROM [category] AS [cate]
+ORDER BY [cate].[id]" (0723d8ff)
+2019-12-05T14:48:40.6987447+07:00 0HLRPAU49351U:00000001 [INF] Executed DbCommand ("43"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [cate.Products].[id], [cate.Products].[categoryId], [cate.Products].[color], [cate.Products].[description], [cate.Products].[image], [cate.Products].[name], [cate.Products].[price], [cate.Products].[size], [cate.Products].[status]
+FROM [product] AS [cate.Products]
+INNER JOIN (
+    SELECT [cate0].[id]
+    FROM [category] AS [cate0]
+) AS [t] ON [cate.Products].[categoryId] = [t].[id]
+ORDER BY [t].[id]" (0723d8ff)
+2019-12-05T14:48:41.3498088+07:00 0HLRPAU49351U:00000001 [INF] Executed DbCommand ("290"ms) [Parameters=["@__p_0='?', @__p_1='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT [x].[id], [x].[categoryId], [x].[color], [x].[description], [x].[image], [x].[name], [x].[price], [x].[size], [x].[status], [x.category].[id], [x.category].[name], [x.category].[status]
+FROM [product] AS [x]
+LEFT JOIN [category] AS [x.category] ON [x].[categoryId] = [x.category].[id]
+WHERE [x].[status] = 1
+ORDER BY [x].[categoryId], [x].[id]
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY" (0723d8ff)
+2019-12-05T14:48:41.3955269+07:00 0HLRPAU49351U:00000001 [INF] Executed DbCommand ("11"ms) [Parameters=["@__p_0='?', @__p_1='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT [x.Comments].[id], [x.Comments].[content], [x.Comments].[createDate], [x.Comments].[productId], [x.Comments].[status], [x.Comments].[userId]
+FROM [comment] AS [x.Comments]
+INNER JOIN (
+    SELECT DISTINCT [t].*
+    FROM (
+        SELECT [x0].[id], [x0].[categoryId]
+        FROM [product] AS [x0]
+        LEFT JOIN [category] AS [x.category0] ON [x0].[categoryId] = [x.category0].[id]
+        WHERE [x0].[status] = 1
+        ORDER BY [x0].[categoryId], [x0].[id]
+        OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+    ) AS [t]
+) AS [t0] ON [x.Comments].[productId] = [t0].[id]
+ORDER BY [t0].[categoryId], [t0].[id]" (0723d8ff)
+2019-12-05T14:48:41.4869509+07:00 0HLRPAU49351U:00000001 [INF] Executed DbCommand ("18"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [product] AS [x]
+WHERE [x].[status] = 1" (0723d8ff)
+2019-12-05T14:48:47.2282710+07:00 0HLRPAU49351U:00000001 [INF] Executing ViewResult, running view at path "/Views/Home/Index.cshtml". (9707eebe)
+2019-12-05T14:48:47.7494719+07:00 0HLRPAU49351U:00000001 [INF] Executed action "ShopMartWebsite.Controllers.HomeController.Index (ShopMartWebsite)" in 9324.474ms (afa2e885)
+2019-12-05T14:48:47.8398558+07:00 0HLRPAU49351U:00000001 [INF] Request finished in 11968.9658ms 200 text/html; charset=utf-8 (791a596a)
+2019-12-05T14:48:47.9270811+07:00 0HLRPAU493520:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/css/all.css   (ca22a1cb)
+2019-12-05T14:48:47.9301204+07:00 0HLRPAU49351V:00000002 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/css/owl.carousel.min.css   (ca22a1cb)
+2019-12-05T14:48:47.9334076+07:00 0HLRPAU49351U:00000002 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/css/style.css   (ca22a1cb)
+2019-12-05T14:48:47.9788697+07:00 0HLRPAU49351U:00000002 [INF] The file "/user/css/style.css" was not modified (f1f8d725)
+2019-12-05T14:48:47.9973706+07:00 0HLRPAU493520:00000001 [INF] The file "/user/css/all.css" was not modified (f1f8d725)
+2019-12-05T14:48:48.0961323+07:00 0HLRPAU493521:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/css/bootstrap.css   (ca22a1cb)
+2019-12-05T14:48:48.1114105+07:00 0HLRPAU49351V:00000002 [INF] The file "/user/css/owl.carousel.min.css" was not modified (f1f8d725)
+2019-12-05T14:48:48.1314729+07:00 0HLRPAU49351V:00000002 [INF] Request finished in 297.7472ms 304 text/css (791a596a)
+2019-12-05T14:48:48.1662320+07:00 0HLRPAU493520:00000001 [INF] Request finished in 170.5131ms 304 text/css (791a596a)
+2019-12-05T14:48:48.1883376+07:00 0HLRPAU493522:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/css/slick.css   (ca22a1cb)
+2019-12-05T14:48:48.2487291+07:00 0HLRPAU49351U:00000002 [INF] Request finished in 110.6066ms 304 text/css (791a596a)
+2019-12-05T14:48:48.2876196+07:00 0HLRPAU493525:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/assets/logo/logo.jpg   (ca22a1cb)
+2019-12-05T14:48:48.3211590+07:00 0HLRPAU493525:00000001 [INF] The file "/user/assets/logo/logo.jpg" was not modified (f1f8d725)
+2019-12-05T14:48:48.3259070+07:00 0HLRPAU493521:00000001 [INF] The file "/user/css/bootstrap.css" was not modified (f1f8d725)
+2019-12-05T14:48:48.3456279+07:00 0HLRPAU493521:00000001 [INF] Request finished in 494.8176ms 304 text/css (791a596a)
+2019-12-05T14:48:48.3747783+07:00 0HLRPAU493523:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/css/owl.theme.default.min.css   (ca22a1cb)
+2019-12-05T14:48:48.4252350+07:00 0HLRPAU493522:00000001 [INF] The file "/user/css/slick.css" was not modified (f1f8d725)
+2019-12-05T14:48:48.4494272+07:00 0HLRPAU493523:00000001 [INF] The file "/user/css/owl.theme.default.min.css" was not modified (f1f8d725)
+2019-12-05T14:48:48.4669036+07:00 0HLRPAU493523:00000001 [INF] Request finished in 87.8439ms 304 text/css (791a596a)
+2019-12-05T14:48:48.4806342+07:00 0HLRPAU493524:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/css/aos.css   (ca22a1cb)
+2019-12-05T14:48:48.5053026+07:00 0HLRPAU493526:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44340/content/vendor/jquery/jquery.min.js   (ca22a1cb)
+2019-12-05T14:48:48.5110050+07:00 0HLRPAU493522:00000001 [INF] Request finished in 283.5466ms 304 text/css (791a596a)
+2019-12-05T14:48:48.5366345+07:00 0HLRPAU493525:00000001 [INF] Request finished in 55.36ms 304 image/jpeg (791a596a)
+2019-12-05T14:48:48.5661406+07:00 0HLRPAU493526:00000001 [INF] The file "/content/vendor/jquery/jquery.min.js" was not modified (f1f8d725)
+2019-12-05T14:48:48.6094864+07:00 0HLRPAU493524:00000001 [INF] The file "/user/css/aos.css" was not modified (f1f8d725)
+2019-12-05T14:48:48.6664848+07:00 0HLRPAU493527:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/assets/Banner/banner-1.jpg   (ca22a1cb)
+2019-12-05T14:48:48.6706269+07:00 0HLRPAU493526:00000001 [INF] Request finished in 77.9854ms 304 application/javascript (791a596a)
+2019-12-05T14:48:48.7120247+07:00 0HLRPAU493524:00000001 [INF] Request finished in 386.8553ms 304 text/css (791a596a)
+2019-12-05T14:48:48.7487247+07:00 0HLRPAU49351V:00000003 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/css/fonts.css   (ca22a1cb)
+2019-12-05T14:48:48.7557120+07:00 0HLRPAU493525:00000002 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/js/jquery3.4.1.min.js   (ca22a1cb)
+2019-12-05T14:48:48.7653332+07:00 0HLRPAU493525:00000002 [INF] The file "/user/js/jquery3.4.1.min.js" was not modified (f1f8d725)
+2019-12-05T14:48:48.7721077+07:00 0HLRPAU49351V:00000003 [INF] The file "/user/css/fonts.css" was not modified (f1f8d725)
+2019-12-05T14:48:48.8211197+07:00 0HLRPAU493525:00000002 [INF] Request finished in 227.9921ms 304 application/javascript (791a596a)
+2019-12-05T14:48:48.8447213+07:00 0HLRPAU493527:00000001 [INF] The file "/user/assets/Banner/banner-1.jpg" was not modified (f1f8d725)
+2019-12-05T14:48:48.8580689+07:00 0HLRPAU49351V:00000003 [INF] Request finished in 88.6497ms 304 text/css (791a596a)
+2019-12-05T14:48:48.9309950+07:00 0HLRPAU493527:00000001 [INF] Request finished in 306.6655ms 304 image/jpeg (791a596a)
+2019-12-05T14:48:48.9625007+07:00 0HLRPAU49351U:00000003 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/css/cart.css   (ca22a1cb)
+2019-12-05T14:48:49.0120121+07:00 0HLRPAU49351U:00000003 [INF] The file "/user/css/cart.css" was not modified (f1f8d725)
+2019-12-05T14:48:49.0768653+07:00 0HLRPAU493521:00000002 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/js/owl.carousel.min.js   (ca22a1cb)
+2019-12-05T14:48:49.0865581+07:00 0HLRPAU493522:00000002 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/js/main.js   (ca22a1cb)
+2019-12-05T14:48:49.0934620+07:00 0HLRPAU493520:00000002 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/css/detailproduct.css   (ca22a1cb)
+2019-12-05T14:48:49.1081012+07:00 0HLRPAU493520:00000002 [INF] The file "/user/css/detailproduct.css" was not modified (f1f8d725)
+2019-12-05T14:48:49.1167375+07:00 0HLRPAU49351U:00000003 [INF] Request finished in 292.2064ms 304 text/css (791a596a)
+2019-12-05T14:48:49.2116451+07:00 0HLRPAU493520:00000002 [INF] Request finished in 255.8873ms 304 text/css (791a596a)
+2019-12-05T14:48:49.3244476+07:00 0HLRPAU493521:00000002 [INF] The file "/user/js/owl.carousel.min.js" was not modified (f1f8d725)
+2019-12-05T14:48:49.3826881+07:00 0HLRPAU49351U:00000004 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/assets/MiniBanner/banner-mini1.png   (ca22a1cb)
+2019-12-05T14:48:49.4061794+07:00 0HLRPAU493520:00000003 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/js/aos.js   (ca22a1cb)
+2019-12-05T14:48:49.4258753+07:00 0HLRPAU493522:00000002 [INF] The file "/user/js/main.js" was not modified (f1f8d725)
+2019-12-05T14:48:49.4896095+07:00 0HLRPAU493521:00000002 [INF] Request finished in 437.5541ms 304 application/javascript (791a596a)
+2019-12-05T14:48:49.5440435+07:00 0HLRPAU49351U:00000004 [INF] The file "/user/assets/MiniBanner/banner-mini1.png" was not modified (f1f8d725)
+2019-12-05T14:48:49.5935457+07:00 0HLRPAU493520:00000003 [INF] The file "/user/js/aos.js" was not modified (f1f8d725)
+2019-12-05T14:48:49.6115921+07:00 0HLRPAU493522:00000002 [INF] Request finished in 473.4425ms 304 application/javascript (791a596a)
+2019-12-05T14:48:49.6855069+07:00 0HLRPAU493521:00000003 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/webfonts/fa-solid-900.woff2   (ca22a1cb)
+2019-12-05T14:48:49.7225930+07:00 0HLRPAU49351U:00000004 [INF] Request finished in 309.1344ms 304 image/png (791a596a)
+2019-12-05T14:48:49.7467455+07:00 0HLRPAU493522:00000003 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/fonts/Lexend_Deca/LexendDeca-Regular.ttf   (ca22a1cb)
+2019-12-05T14:48:49.8232326+07:00 0HLRPAU493520:00000003 [INF] Request finished in 351.817ms 304 application/javascript (791a596a)
+2019-12-05T14:48:49.8558454+07:00 0HLRPAU493523:00000002 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/assets/Banner/banner-2.webp   (ca22a1cb)
+2019-12-05T14:48:49.8618484+07:00 0HLRPAU493521:00000003 [INF] The file "/user/webfonts/fa-solid-900.woff2" was not modified (f1f8d725)
+2019-12-05T14:48:49.8736117+07:00 0HLRPAU493522:00000003 [INF] The file "/user/fonts/Lexend_Deca/LexendDeca-Regular.ttf" was not modified (f1f8d725)
+2019-12-05T14:48:49.9016766+07:00 0HLRPAU493522:00000003 [INF] Request finished in 217.0244ms 304 application/x-font-ttf (791a596a)
+2019-12-05T14:48:49.9465365+07:00 0HLRPAU493526:00000002 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/js/slick.min.js   (ca22a1cb)
+2019-12-05T14:48:49.9556424+07:00 0HLRPAU493527:00000002 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/assets/instagram/thumb-card4.png   (ca22a1cb)
+2019-12-05T14:48:49.9740615+07:00 0HLRPAU493523:00000002 [INF] The file "/user/assets/Banner/banner-2.webp" was not modified (f1f8d725)
+2019-12-05T14:48:50.0078818+07:00 0HLRPAU493521:00000003 [INF] Request finished in 340.8604ms 304 font/woff2 (791a596a)
+2019-12-05T14:48:50.0545426+07:00 0HLRPAU493523:00000002 [INF] Request finished in 201.1078ms 304 image/webp (791a596a)
+2019-12-05T14:48:50.0911796+07:00 0HLRPAU493527:00000002 [INF] The file "/user/assets/instagram/thumb-card4.png" was not modified (f1f8d725)
+2019-12-05T14:48:50.1231962+07:00 0HLRPAU493526:00000002 [INF] The file "/user/js/slick.min.js" was not modified (f1f8d725)
+2019-12-05T14:48:50.1444332+07:00 0HLRPAU493525:00000003 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/assets/Banner/banner-3.webp   (ca22a1cb)
+2019-12-05T14:48:50.1703419+07:00 0HLRPAU493524:00000002 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/js/bootstrap.js   (ca22a1cb)
+2019-12-05T14:48:50.1903919+07:00 0HLRPAU493524:00000002 [INF] The file "/user/js/bootstrap.js" was not modified (f1f8d725)
+2019-12-05T14:48:50.2612373+07:00 0HLRPAU493527:00000002 [INF] Request finished in 263.5519ms 304 image/png (791a596a)
+2019-12-05T14:48:50.2802062+07:00 0HLRPAU49351V:00000004 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/assets/instagram/thumb-card5.png   (ca22a1cb)
+2019-12-05T14:48:50.3037282+07:00 0HLRPAU493525:00000003 [INF] The file "/user/assets/Banner/banner-3.webp" was not modified (f1f8d725)
+2019-12-05T14:48:50.3462483+07:00 0HLRPAU493524:00000002 [INF] Request finished in 183.462ms 304 application/javascript (791a596a)
+2019-12-05T14:48:50.3700545+07:00 0HLRPAU493526:00000002 [INF] Request finished in 296.9295ms 304 application/javascript (791a596a)
+2019-12-05T14:48:50.4043967+07:00 0HLRPAU49351V:00000004 [INF] The file "/user/assets/instagram/thumb-card5.png" was not modified (f1f8d725)
+2019-12-05T14:48:50.4297399+07:00 0HLRPAU493529:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44340/images/site/f30fef4b-d7b8-459a-a2f6-81829d247aac.jpg   (ca22a1cb)
+2019-12-05T14:48:50.4846475+07:00 0HLRPAU49352B:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/assets/MiniBanner/banner-mini3.png   (ca22a1cb)
+2019-12-05T14:48:50.5134445+07:00 0HLRPAU49351V:00000004 [INF] Request finished in 229.2031ms 304 image/png (791a596a)
+2019-12-05T14:48:50.5266600+07:00 0HLRPAU493525:00000003 [INF] Request finished in 181.5274ms 304 image/webp (791a596a)
+2019-12-05T14:48:50.5525319+07:00 0HLRPAU49352B:00000001 [INF] The file "/user/assets/MiniBanner/banner-mini3.png" was not modified (f1f8d725)
+2019-12-05T14:48:50.6255287+07:00 0HLRPAU49352C:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44340/images/site/f42fddc0-2ee4-4ba0-933b-4f7d99f9f458.jpg   (ca22a1cb)
+2019-12-05T14:48:50.6317234+07:00 0HLRPAU493529:00000001 [INF] The file "/images/site/f30fef4b-d7b8-459a-a2f6-81829d247aac.jpg" was not modified (f1f8d725)
+2019-12-05T14:48:50.6540392+07:00 0HLRPAU49352C:00000001 [INF] The file "/images/site/f42fddc0-2ee4-4ba0-933b-4f7d99f9f458.jpg" was not modified (f1f8d725)
+2019-12-05T14:48:50.6932376+07:00 0HLRPAU49352B:00000001 [INF] Request finished in 100.7589ms 304 image/png (791a596a)
+2019-12-05T14:48:50.6979180+07:00 0HLRPAU49352A:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44340/images/site/ab73b434-047f-45bf-9fa4-61717ded95b1.jpg   (ca22a1cb)
+2019-12-05T14:48:50.7254536+07:00 0HLRPAU493528:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/assets/MiniBanner/banner-mini4.png   (ca22a1cb)
+2019-12-05T14:48:50.7603492+07:00 0HLRPAU49352D:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/assets/instagram/thumb-card6.png   (ca22a1cb)
+2019-12-05T14:48:50.7771625+07:00 0HLRPAU49352C:00000001 [INF] Request finished in 56.1917ms 304 image/jpeg (791a596a)
+2019-12-05T14:48:50.8617007+07:00 0HLRPAU49352G:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44340/images/site/8f421057-3a1b-443f-8c62-9cb419deec91.jpg   (ca22a1cb)
+2019-12-05T14:48:50.8959494+07:00 0HLRPAU49352D:00000001 [INF] The file "/user/assets/instagram/thumb-card6.png" was not modified (f1f8d725)
+2019-12-05T14:48:50.9104542+07:00 0HLRPAU493529:00000001 [INF] Request finished in 247.8358ms 304 image/jpeg (791a596a)
+2019-12-05T14:48:50.9230637+07:00 0HLRPAU49352G:00000001 [INF] The file "/images/site/8f421057-3a1b-443f-8c62-9cb419deec91.jpg" was not modified (f1f8d725)
+2019-12-05T14:48:50.9469815+07:00 0HLRPAU49352A:00000001 [INF] The file "/images/site/ab73b434-047f-45bf-9fa4-61717ded95b1.jpg" was not modified (f1f8d725)
+2019-12-05T14:48:50.9937879+07:00 0HLRPAU49352I:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/assets/instagram/thumb-card3.png   (ca22a1cb)
+2019-12-05T14:48:51.0245108+07:00 0HLRPAU493528:00000001 [INF] The file "/user/assets/MiniBanner/banner-mini4.png" was not modified (f1f8d725)
+2019-12-05T14:48:51.1160701+07:00 0HLRPAU49352G:00000001 [INF] Request finished in 138.6908ms 304 image/jpeg (791a596a)
+2019-12-05T14:48:51.1606076+07:00 0HLRPAU49352A:00000001 [INF] Request finished in 376.5525ms 304 image/jpeg (791a596a)
+2019-12-05T14:48:51.1724886+07:00 0HLRPAU49352I:00000001 [INF] The file "/user/assets/instagram/thumb-card3.png" was not modified (f1f8d725)
+2019-12-05T14:48:51.1802970+07:00 0HLRPAU49352D:00000001 [INF] Request finished in 171.0078ms 304 image/png (791a596a)
+2019-12-05T14:48:51.2268912+07:00 0HLRPAU493528:00000001 [INF] Request finished in 529.0431ms 304 image/png (791a596a)
+2019-12-05T14:48:51.3089496+07:00 0HLRPAU49352K:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44340/images/site/b6e01b40-d201-4a02-b13e-597ff2707d42.jpg   (ca22a1cb)
+2019-12-05T14:48:51.3219590+07:00 0HLRPAU49352F:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44340/images/site/8daacaab-7ec6-4460-9d56-03cf5494b2a9.jpg   (ca22a1cb)
+2019-12-05T14:48:51.3597690+07:00 0HLRPAU49352H:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44340/images/site/0dc3c768-dc51-4d5e-858d-26316efddc21.jpg   (ca22a1cb)
+2019-12-05T14:48:51.3686074+07:00 0HLRPAU49352I:00000001 [INF] Request finished in 226.0755ms 304 image/png (791a596a)
+2019-12-05T14:48:51.4130113+07:00 0HLRPAU49352F:00000001 [INF] The file "/images/site/8daacaab-7ec6-4460-9d56-03cf5494b2a9.jpg" was not modified (f1f8d725)
+2019-12-05T14:48:51.4235816+07:00 0HLRPAU49352K:00000001 [INF] The file "/images/site/b6e01b40-d201-4a02-b13e-597ff2707d42.jpg" was not modified (f1f8d725)
+2019-12-05T14:48:51.4756891+07:00 0HLRPAU49352J:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/assets/instagram/thumb-card8.png   (ca22a1cb)
+2019-12-05T14:48:51.4833172+07:00 0HLRPAU49352H:00000001 [INF] The file "/images/site/0dc3c768-dc51-4d5e-858d-26316efddc21.jpg" was not modified (f1f8d725)
+2019-12-05T14:48:51.5325022+07:00 0HLRPAU49352E:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44340/images/site/56409b9a-f4ad-48c8-94c4-6c5a4bafd43a.jpg   (ca22a1cb)
+2019-12-05T14:48:51.5442311+07:00 0HLRPAU49352K:00000001 [INF] Request finished in 227.6422ms 304 image/jpeg (791a596a)
+2019-12-05T14:48:51.5595357+07:00 0HLRPAU49352F:00000001 [INF] Request finished in 145.3844ms 304 image/jpeg (791a596a)
+2019-12-05T14:48:51.5727230+07:00 0HLRPAU49352L:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/assets/instagram/thumb-card7.png   (ca22a1cb)
+2019-12-05T14:48:51.6120347+07:00 0HLRPAU49352H:00000001 [INF] Request finished in 205.2337ms 304 image/jpeg (791a596a)
+2019-12-05T14:48:51.6367896+07:00 0HLRPAU49352E:00000001 [INF] The file "/images/site/56409b9a-f4ad-48c8-94c4-6c5a4bafd43a.jpg" was not modified (f1f8d725)
+2019-12-05T14:48:51.6861414+07:00 0HLRPAU49352J:00000001 [INF] The file "/user/assets/instagram/thumb-card8.png" was not modified (f1f8d725)
+2019-12-05T14:48:51.7200086+07:00 0HLRPAU49352J:00000001 [INF] Request finished in 233.1491ms 304 image/png (791a596a)
+2019-12-05T14:48:51.7502948+07:00 0HLRPAU49352L:00000001 [INF] The file "/user/assets/instagram/thumb-card7.png" was not modified (f1f8d725)
+2019-12-05T14:48:51.7864844+07:00 0HLRPAU49352M:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/assets/MiniBanner/banner-mini2.png   (ca22a1cb)
+2019-12-05T14:48:51.8000569+07:00 0HLRPAU49352N:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/webfonts/fa-brands-400.woff2   (ca22a1cb)
+2019-12-05T14:48:51.8277010+07:00 0HLRPAU49352N:00000001 [INF] The file "/user/webfonts/fa-brands-400.woff2" was not modified (f1f8d725)
+2019-12-05T14:48:51.8393019+07:00 0HLRPAU49352L:00000001 [INF] Request finished in 196.297ms 304 image/png (791a596a)
+2019-12-05T14:48:51.8837656+07:00 0HLRPAU49352M:00000001 [INF] The file "/user/assets/MiniBanner/banner-mini2.png" was not modified (f1f8d725)
+2019-12-05T14:48:51.8941236+07:00 0HLRPAU49352E:00000001 [INF] Request finished in 396.8968ms 304 image/jpeg (791a596a)
+2019-12-05T14:48:51.9196541+07:00 0HLRPAU49352M:00000001 [INF] Request finished in 258.3269ms 304 image/png (791a596a)
+2019-12-05T14:48:51.9254281+07:00 0HLRPAU49352O:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/fonts/Josefin_Sans/JosefinSans-Regular.ttf   (ca22a1cb)
+2019-12-05T14:48:51.9536716+07:00 0HLRPAU49352O:00000001 [INF] The file "/user/fonts/Josefin_Sans/JosefinSans-Regular.ttf" was not modified (f1f8d725)
+2019-12-05T14:48:51.9789014+07:00 0HLRPAU49352N:00000001 [INF] Request finished in 156.1053ms 304 font/woff2 (791a596a)
+2019-12-05T14:48:52.0179874+07:00 0HLRPAU49352O:00000001 [INF] Request finished in 148.633ms 304 application/x-font-ttf (791a596a)
+2019-12-05T14:48:53.4452875+07:00 0HLRPAU49351U:00000005 [INF] Request starting HTTP/1.1 GET http://localhost:44340/Account/Login   (ca22a1cb)
+2019-12-05T14:48:53.4815532+07:00 0HLRPAU49351U:00000005 [INF] Executing action method "ShopMartWebsite.Controllers.AccountController.Login (ShopMartWebsite)" with arguments (["", ""]) - ModelState is Valid (ba7f4ac2)
+2019-12-05T14:48:53.7641959+07:00 0HLRPAU49351U:00000005 [INF] Executing ViewResult, running view at path "/Views/Account/Login.cshtml". (9707eebe)
+2019-12-05T14:48:53.8624577+07:00 0HLRPAU49351U:00000005 [INF] Executed action "ShopMartWebsite.Controllers.AccountController.Login (ShopMartWebsite)" in 390.4724ms (afa2e885)
+2019-12-05T14:48:53.8783862+07:00 0HLRPAU49351U:00000005 [INF] Request finished in 425.6902ms 200 text/html; charset=utf-8 (791a596a)
+2019-12-05T14:48:53.9363081+07:00 0HLRPAU493520:00000004 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/css/login.css   (ca22a1cb)
+2019-12-05T14:48:53.9418638+07:00 0HLRPAU493520:00000004 [INF] The file "/user/css/login.css" was not modified (f1f8d725)
+2019-12-05T14:48:53.9504598+07:00 0HLRPAU493520:00000004 [INF] Request finished in 16.3232ms 304 text/css (791a596a)
+2019-12-05T14:48:58.3406205+07:00 0HLRPAU493521:00000004 [INF] Request starting HTTP/1.1 GET http://localhost:44340/admin   (ca22a1cb)
+2019-12-05T14:48:58.3704138+07:00 0HLRPAU493521:00000004 [INF] Executing action method "ShopMartWebsite.Controllers.AdminController.Index (ShopMartWebsite)" with arguments (null) - ModelState is Valid (ba7f4ac2)
+2019-12-05T14:48:58.3886832+07:00 0HLRPAU493521:00000004 [INF] Executing RedirectResult, redirecting to "/AdminLogin". (d98d540e)
+2019-12-05T14:48:58.3980987+07:00 0HLRPAU493521:00000004 [INF] Executed action "ShopMartWebsite.Controllers.AdminController.Index (ShopMartWebsite)" in 38.9348ms (afa2e885)
+2019-12-05T14:48:58.4136112+07:00 0HLRPAU493521:00000004 [INF] Request finished in 69.7554ms 302  (791a596a)
+2019-12-05T14:48:58.4436048+07:00 0HLRPAU493522:00000004 [INF] Request starting HTTP/1.1 GET http://localhost:44340/AdminLogin   (ca22a1cb)
+2019-12-05T14:48:58.4739447+07:00 0HLRPAU493522:00000004 [INF] Executing action method "ShopMartWebsite.Controllers.AdminLoginController.Index (ShopMartWebsite)" with arguments (null) - ModelState is Valid (ba7f4ac2)
+2019-12-05T14:48:58.8130063+07:00 0HLRPAU493522:00000004 [INF] Executing ViewResult, running view at path "/Views/AdminLogin/Index.cshtml". (9707eebe)
+2019-12-05T14:48:58.8538653+07:00 0HLRPAU493522:00000004 [INF] Executed action "ShopMartWebsite.Controllers.AdminLoginController.Index (ShopMartWebsite)" in 398.1407ms (afa2e885)
+2019-12-05T14:48:58.9320494+07:00 0HLRPAU493522:00000004 [INF] Request finished in 441.0887ms 200 text/html; charset=utf-8 (791a596a)
+2019-12-05T14:48:58.9839396+07:00 0HLRPAU493524:00000003 [INF] Request starting HTTP/1.1 GET http://localhost:44340/lib/notify/notify.js   (ca22a1cb)
+2019-12-05T14:48:59.0633816+07:00 0HLRPAU493524:00000003 [INF] The file "/lib/notify/notify.js" was not modified (f1f8d725)
+2019-12-05T14:48:59.0966717+07:00 0HLRPAU493524:00000003 [INF] Request finished in 106.9187ms 304 application/javascript (791a596a)
+2019-12-05T14:48:59.1224768+07:00 0HLRPAU493527:00000003 [INF] Request starting HTTP/1.1 GET http://localhost:44340/admin/vendors/animate.css/animate.min.css   (ca22a1cb)
+2019-12-05T14:48:59.1520813+07:00 0HLRPAU493523:00000003 [INF] Request starting HTTP/1.1 GET http://localhost:44340/admin/vendors/bootstrap/dist/css/bootstrap.min.css   (ca22a1cb)
+2019-12-05T14:48:59.1815355+07:00 0HLRPAU493523:00000003 [INF] The file "/admin/vendors/bootstrap/dist/css/bootstrap.min.css" was not modified (f1f8d725)
+2019-12-05T14:48:59.1942506+07:00 0HLRPAU493525:00000004 [INF] Request starting HTTP/1.1 GET http://localhost:44340/admin/vendors/font-awesome/css/font-awesome.min.css   (ca22a1cb)
+2019-12-05T14:48:59.2158401+07:00 0HLRPAU493526:00000003 [INF] Request starting HTTP/1.1 GET http://localhost:44340/lib/jquery/dist/jquery.js   (ca22a1cb)
+2019-12-05T14:48:59.2225141+07:00 0HLRPAU493527:00000003 [INF] Sending file. Request path: '"/admin/vendors/animate.css/animate.min.css"'. Physical path: '"D:\TLCN\TLCN-WebBanHang\ShopMartWebsite\ShopMartWebsite\wwwroot\admin\vendors\animate.css\animate.min.css"' (27b0a520)
+2019-12-05T14:48:59.2508798+07:00 0HLRPAU493525:00000004 [INF] The file "/admin/vendors/font-awesome/css/font-awesome.min.css" was not modified (f1f8d725)
+2019-12-05T14:48:59.2551537+07:00 0HLRPAU493526:00000003 [INF] Sending file. Request path: '"/lib/jquery/dist/jquery.js"'. Physical path: '"D:\TLCN\TLCN-WebBanHang\ShopMartWebsite\ShopMartWebsite\wwwroot\lib\jquery\dist\jquery.js"' (27b0a520)
+2019-12-05T14:48:59.3067777+07:00 0HLRPAU493525:00000004 [INF] Request finished in 90.8704ms 304 text/css (791a596a)
+2019-12-05T14:48:59.3507774+07:00 0HLRPAU49351V:00000005 [INF] Request starting HTTP/1.1 GET http://localhost:44340/admin/vendors/nprogress/nprogress.css   (ca22a1cb)
+2019-12-05T14:48:59.3960597+07:00 0HLRPAU49351V:00000005 [INF] The file "/admin/vendors/nprogress/nprogress.css" was not modified (f1f8d725)
+2019-12-05T14:48:59.4243813+07:00 0HLRPAU493527:00000003 [INF] Request finished in 406.5661ms 200 text/css (791a596a)
+2019-12-05T14:48:59.4543873+07:00 0HLRPAU493523:00000003 [INF] Request finished in 258.5919ms 304 text/css (791a596a)
+2019-12-05T14:48:59.4574159+07:00 0HLRPAU49352C:00000002 [INF] Request starting HTTP/1.1 GET http://localhost:44340/app/shared/shop.js   (ca22a1cb)
+2019-12-05T14:48:59.4875658+07:00 0HLRPAU493529:00000002 [INF] Request starting HTTP/1.1 GET http://localhost:44340/app/controllers/login/index.js   (ca22a1cb)
+2019-12-05T14:48:59.5111032+07:00 0HLRPAU49352B:00000002 [INF] Request starting HTTP/1.1 GET http://localhost:44340/admin/build/css/custom.min.css   (ca22a1cb)
+2019-12-05T14:48:59.5334684+07:00 0HLRPAU49352C:00000002 [INF] The file "/app/shared/shop.js" was not modified (f1f8d725)
+2019-12-05T14:48:59.5520539+07:00 0HLRPAU49352B:00000002 [INF] The file "/admin/build/css/custom.min.css" was not modified (f1f8d725)
+2019-12-05T14:48:59.5984938+07:00 0HLRPAU493529:00000002 [INF] The file "/app/controllers/login/index.js" was not modified (f1f8d725)
+2019-12-05T14:48:59.6332443+07:00 0HLRPAU493529:00000002 [INF] Request finished in 141.235ms 304 application/javascript (791a596a)
+2019-12-05T14:48:59.6458493+07:00 0HLRPAU49352C:00000002 [INF] Request finished in 97.8074ms 304 application/javascript (791a596a)
+2019-12-05T14:48:59.6734328+07:00 0HLRPAU49351V:00000005 [INF] Request finished in 69.7611ms 304 text/css (791a596a)
+2019-12-05T14:48:59.7180645+07:00 0HLRPAU49352B:00000002 [INF] Request finished in 119.9597ms 304 text/css (791a596a)
+2019-12-05T14:48:59.8166056+07:00 0HLRPAU493526:00000003 [INF] Request finished in 740.4258ms 200 application/javascript (791a596a)
+2019-12-05T14:48:59.8391129+07:00 0HLRPAU49352D:00000002 [INF] Request starting HTTP/1.1 GET http://localhost:44340/admin/vendors/font-awesome/fonts/fontawesome-webfont.woff2?v=4.6.3   (ca22a1cb)
+2019-12-05T14:48:59.8687469+07:00 0HLRPAU49352D:00000002 [INF] The file "/admin/vendors/font-awesome/fonts/fontawesome-webfont.woff2" was not modified (f1f8d725)
+2019-12-05T14:48:59.8800989+07:00 0HLRPAU49352D:00000002 [INF] Request finished in 197.1895ms 304 font/woff2 (791a596a)
+2019-12-05T14:49:04.8052631+07:00 0HLRPAU49352G:00000002 [INF] Request starting HTTP/1.1 POST http://localhost:44340/AdminLogin/Authen application/x-www-form-urlencoded; charset=UTF-8 32 (ca22a1cb)
+2019-12-05T14:49:04.9020427+07:00 0HLRPAU49352G:00000002 [INF] Executing action method "ShopMartWebsite.Controllers.AdminLoginController.Authen (ShopMartWebsite)" with arguments (["ShopMartWebsite.Models.LoginViewModel", ""]) - ModelState is Valid (ba7f4ac2)
+2019-12-05T14:49:04.9242288+07:00 0HLRPAU49352G:00000002 [INF] Entity Framework Core "2.0.3-rtm-10026" initialized '"ShopDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2019-12-05T14:49:05.0274185+07:00 0HLRPAU49352G:00000002 [INF] Executed DbCommand ("35"ms) [Parameters=["@__normalizedUserName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [u].[Id], [u].[AccessFailedCount], [u].[ConcurrencyStamp], [u].[Email], [u].[EmailConfirmed], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UserName], [u].[address], [u].[birthDay], [u].[displayname], [u].[gender], [u].[password], [u].[phone], [u].[status]
+FROM [AspNetUsers] AS [u]
+WHERE [u].[NormalizedUserName] = @__normalizedUserName_0" (0723d8ff)
+2019-12-05T14:49:05.1617703+07:00 0HLRPAU49352G:00000002 [INF] Executed DbCommand ("2"ms) [Parameters=["@__user_Id_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [uc].[Id], [uc].[ClaimType], [uc].[ClaimValue], [uc].[UserId]
+FROM [AspNetUserClaims] AS [uc]
+WHERE [uc].[UserId] = @__user_Id_0" (0723d8ff)
+2019-12-05T14:49:05.2209104+07:00 0HLRPAU49352G:00000002 [INF] Executed DbCommand ("3"ms) [Parameters=["@__userId_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [role].[Name]
+FROM [AspNetUserRoles] AS [userRole]
+INNER JOIN [AspNetRoles] AS [role] ON [userRole].[RoleId] = [role].[Id]
+WHERE [userRole].[UserId] = @__userId_0" (0723d8ff)
+2019-12-05T14:49:05.2423935+07:00 0HLRPAU49352G:00000002 [INF] Executed DbCommand ("2"ms) [Parameters=["@__normalizedName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [r].[Id], [r].[ConcurrencyStamp], [r].[CreationDate], [r].[Description], [r].[Name], [r].[NormalizedName]
+FROM [AspNetRoles] AS [r]
+WHERE [r].[NormalizedName] = @__normalizedName_0" (0723d8ff)
+2019-12-05T14:49:05.2904086+07:00 0HLRPAU49352G:00000002 [INF] Executed DbCommand ("2"ms) [Parameters=["@__role_Id_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [rc].[ClaimType], [rc].[ClaimValue]
+FROM [AspNetRoleClaims] AS [rc]
+WHERE [rc].[RoleId] = @__role_Id_0" (0723d8ff)
+2019-12-05T14:49:05.3048269+07:00 0HLRPAU49352G:00000002 [INF] AuthenticationScheme: "Identity.Application" signed in. (c66dd7e7)
+2019-12-05T14:49:05.3131680+07:00 0HLRPAU49352G:00000002 [INF] User logged in. (fdce0db4)
+2019-12-05T14:49:05.3266037+07:00 0HLRPAU49352G:00000002 [INF] Executing ObjectResult, writing value "Microsoft.AspNetCore.Mvc.ControllerContext". (4e968210)
+2019-12-05T14:49:05.4075218+07:00 0HLRPAU49352G:00000002 [INF] Executed action "ShopMartWebsite.Controllers.AdminLoginController.Authen (ShopMartWebsite)" in 561.2156ms (afa2e885)
+2019-12-05T14:49:05.4346150+07:00 0HLRPAU49352G:00000002 [INF] Request finished in 631.5645ms 200 application/json; charset=utf-8 (791a596a)
+2019-12-05T14:49:05.4544098+07:00 0HLRPAU49352A:00000002 [INF] Request starting HTTP/1.1 GET http://localhost:44340/Admin/Index   (ca22a1cb)
+2019-12-05T14:49:05.4911574+07:00 0HLRPAU49352A:00000002 [INF] AuthenticationScheme: "Identity.Application" was successfully authenticated. (1805f3b3)
+2019-12-05T14:49:05.5172606+07:00 0HLRPAU49352A:00000002 [INF] Executing action method "ShopMartWebsite.Controllers.AdminController.Index (ShopMartWebsite)" with arguments (null) - ModelState is Valid (ba7f4ac2)
+2019-12-05T14:49:05.7590053+07:00 0HLRPAU49352A:00000002 [INF] Executing ViewResult, running view at path "/Views/Admin/Index.cshtml". (9707eebe)
+2019-12-05T14:49:06.4137045+07:00 0HLRPAU49352A:00000002 [INF] Executed action "ShopMartWebsite.Controllers.AdminController.Index (ShopMartWebsite)" in 910.7088ms (afa2e885)
+2019-12-05T14:49:06.4240305+07:00 0HLRPAU49352A:00000002 [INF] Request finished in 968.5769ms 200 text/html; charset=utf-8 (791a596a)
+2019-12-05T14:49:06.6082244+07:00 0HLRPAU493528:00000002 [INF] Request starting HTTP/1.1 GET http://localhost:44340/admin/vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css   (ca22a1cb)
+2019-12-05T14:49:06.7674165+07:00 0HLRPAU49352F:00000002 [INF] Request starting HTTP/1.1 GET http://localhost:44340/admin/vendors/iCheck/skins/flat/green.css   (ca22a1cb)
+2019-12-05T14:49:06.8414213+07:00 0HLRPAU49352I:00000002 [INF] Request starting HTTP/1.1 GET http://localhost:44340/admin/vendors/jqvmap/dist/jqvmap.min.css   (ca22a1cb)
+2019-12-05T14:49:06.8627563+07:00 0HLRPAU49352K:00000002 [INF] Request starting HTTP/1.1 GET http://localhost:44340/admin/vendors/bootstrap-daterangepicker/daterangepicker.css   (ca22a1cb)
+2019-12-05T14:49:07.0645729+07:00 0HLRPAU49352N:00000002 [INF] Request starting HTTP/1.1 GET http://localhost:44340/admin/vendors/jquery/dist/jquery.min.js   (ca22a1cb)
+2019-12-05T14:49:07.1867499+07:00 0HLRPAU49352M:00000002 [INF] Request starting HTTP/1.1 GET http://localhost:44340/admin/vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css   (ca22a1cb)
+2019-12-05T14:49:07.2509464+07:00 0HLRPAU49352E:00000002 [INF] Request starting HTTP/1.1 GET http://localhost:44340/admin/vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css   (ca22a1cb)
+2019-12-05T14:49:07.3701288+07:00 0HLRPAU49352O:00000002 [INF] Request starting HTTP/1.1 GET http://localhost:44340/admin/images/img.jpg   (ca22a1cb)
+2019-12-05T14:49:07.4964022+07:00 0HLRPAU49352F:00000002 [INF] The file "/admin/vendors/iCheck/skins/flat/green.css" was not modified (f1f8d725)
+2019-12-05T14:49:07.7531263+07:00 0HLRPAU49352H:00000002 [INF] Request starting HTTP/1.1 GET http://localhost:44340/admin/vendors/datatables.net-bs/css/dataTables.bootstrap.min.css   (ca22a1cb)
+2019-12-05T14:49:07.8055732+07:00 0HLRPAU493528:00000002 [INF] The file "/admin/vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css" was not modified (f1f8d725)
+2019-12-05T14:49:07.8616159+07:00 0HLRPAU49352I:00000002 [INF] The file "/admin/vendors/jqvmap/dist/jqvmap.min.css" was not modified (f1f8d725)
+2019-12-05T14:49:07.9227825+07:00 0HLRPAU49352K:00000002 [INF] The file "/admin/vendors/bootstrap-daterangepicker/daterangepicker.css" was not modified (f1f8d725)
+2019-12-05T14:49:07.9446993+07:00 0HLRPAU49352F:00000002 [INF] Request finished in 1019.9423ms 304 text/css (791a596a)
+2019-12-05T14:49:07.9581075+07:00 0HLRPAU49352J:00000002 [INF] Request starting HTTP/1.1 GET http://localhost:44340/admin/vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css   (ca22a1cb)
+2019-12-05T14:49:08.0061133+07:00 0HLRPAU49352N:00000002 [INF] The file "/admin/vendors/jquery/dist/jquery.min.js" was not modified (f1f8d725)
+2019-12-05T14:49:08.0246300+07:00 0HLRPAU49352O:00000002 [INF] The file "/admin/images/img.jpg" was not modified (f1f8d725)
+2019-12-05T14:49:08.0618824+07:00 0HLRPAU49352E:00000002 [INF] The file "/admin/vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css" was not modified (f1f8d725)
+2019-12-05T14:49:08.1372166+07:00 0HLRPAU49352I:00000002 [INF] Request finished in 1385.1754ms 304 text/css (791a596a)
+2019-12-05T14:49:08.1553820+07:00 0HLRPAU49352H:00000002 [INF] The file "/admin/vendors/datatables.net-bs/css/dataTables.bootstrap.min.css" was not modified (f1f8d725)
+2019-12-05T14:49:08.1706370+07:00 0HLRPAU493528:00000002 [INF] Request finished in 1339.198ms 304 text/css (791a596a)
+2019-12-05T14:49:08.1794480+07:00 0HLRPAU49352K:00000002 [INF] Request finished in 1447.4941ms 304 text/css (791a596a)
+2019-12-05T14:49:08.2082928+07:00 0HLRPAU49352M:00000002 [INF] The file "/admin/vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css" was not modified (f1f8d725)
+2019-12-05T14:49:08.2372621+07:00 0HLRPAU49352N:00000002 [INF] Request finished in 1480.8292ms 304 application/javascript (791a596a)
+2019-12-05T14:49:08.3548498+07:00 0HLRPAU49352O:00000002 [INF] Request finished in 1456.6275ms 304 image/jpeg (791a596a)
+2019-12-05T14:49:08.3692299+07:00 0HLRPAU49352E:00000002 [INF] Request finished in 1566.9812ms 304 text/css (791a596a)
+2019-12-05T14:49:08.3839255+07:00 0HLRPAU49352J:00000002 [INF] The file "/admin/vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css" was not modified (f1f8d725)
+2019-12-05T14:49:08.3944640+07:00 0HLRPAU49352L:00000002 [INF] Request starting HTTP/1.1 GET http://localhost:44340/admin/vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css   (ca22a1cb)
+2019-12-05T14:49:08.4184472+07:00 0HLRPAU49352M:00000002 [INF] Request finished in 1681.5594ms 304 text/css (791a596a)
+2019-12-05T14:49:08.4461586+07:00 0HLRPAU493520:00000005 [INF] Request starting HTTP/1.1 GET http://localhost:44340/admin/vendors/fastclick/lib/fastclick.js   (ca22a1cb)
+2019-12-05T14:49:08.4599679+07:00 0HLRPAU49352H:00000002 [INF] Request finished in 1658.444ms 304 text/css (791a596a)
+2019-12-05T14:49:08.5004536+07:00 0HLRPAU49351U:00000006 [INF] Request starting HTTP/1.1 GET http://localhost:44340/admin/vendors/bootstrap/dist/js/bootstrap.bundle.min.js   (ca22a1cb)
+2019-12-05T14:49:08.5398077+07:00 0HLRPAU49352J:00000002 [INF] Request finished in 1885.7296ms 304 text/css (791a596a)
+2019-12-05T14:49:08.5576198+07:00 0HLRPAU49352L:00000002 [INF] The file "/admin/vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css" was not modified (f1f8d725)
+2019-12-05T14:49:08.5888904+07:00 0HLRPAU493520:00000005 [INF] The file "/admin/vendors/fastclick/lib/fastclick.js" was not modified (f1f8d725)
+2019-12-05T14:49:08.8096923+07:00 0HLRPAU49351U:00000006 [INF] The file "/admin/vendors/bootstrap/dist/js/bootstrap.bundle.min.js" was not modified (f1f8d725)
+2019-12-05T14:49:09.0336430+07:00 0HLRPAU493524:00000004 [INF] Request starting HTTP/1.1 GET http://localhost:44340/admin/vendors/datatables.net/js/jquery.dataTables.min.js   (ca22a1cb)
+2019-12-05T14:49:09.0434685+07:00 0HLRPAU493529:00000003 [INF] Request starting HTTP/1.1 GET http://localhost:44340/admin/vendors/datatables.net-buttons/js/dataTables.buttons.min.js   (ca22a1cb)
+2019-12-05T14:49:09.0553868+07:00 0HLRPAU49352B:00000003 [INF] Request starting HTTP/1.1 GET http://localhost:44340/admin/vendors/datatables.net-buttons/js/buttons.html5.min.js   (ca22a1cb)
+2019-12-05T14:49:09.0995039+07:00 0HLRPAU493527:00000004 [INF] Request starting HTTP/1.1 GET http://localhost:44340/admin/vendors/iCheck/icheck.min.js   (ca22a1cb)
+2019-12-05T14:49:09.1392570+07:00 0HLRPAU493522:00000005 [INF] Request starting HTTP/1.1 GET http://localhost:44340/admin/vendors/Chart.js/dist/Chart.min.js   (ca22a1cb)
+2019-12-05T14:49:09.1802155+07:00 0HLRPAU493523:00000004 [INF] Request starting HTTP/1.1 GET http://localhost:44340/admin/vendors/gauge.js/dist/gauge.min.js   (ca22a1cb)
+2019-12-05T14:49:09.2120349+07:00 0HLRPAU493525:00000005 [INF] Request starting HTTP/1.1 GET http://localhost:44340/admin/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js   (ca22a1cb)
+2019-12-05T14:49:09.2391631+07:00 0HLRPAU493521:00000005 [INF] Request starting HTTP/1.1 GET http://localhost:44340/admin/vendors/nprogress/nprogress.js   (ca22a1cb)
+2019-12-05T14:49:09.2513329+07:00 0HLRPAU493529:00000003 [INF] The file "/admin/vendors/datatables.net-buttons/js/dataTables.buttons.min.js" was not modified (f1f8d725)
+2019-12-05T14:49:09.3055094+07:00 0HLRPAU493524:00000004 [INF] The file "/admin/vendors/datatables.net/js/jquery.dataTables.min.js" was not modified (f1f8d725)
+2019-12-05T14:49:09.3337116+07:00 0HLRPAU49352H:00000003 [INF] Request starting HTTP/1.1 GET http://localhost:44340/admin/vendors/Flot/jquery.flot.js   (ca22a1cb)
+2019-12-05T14:49:09.3791930+07:00 0HLRPAU49352B:00000003 [INF] The file "/admin/vendors/datatables.net-buttons/js/buttons.html5.min.js" was not modified (f1f8d725)
+2019-12-05T14:49:09.4955682+07:00 0HLRPAU493529:00000003 [INF] Request finished in 524.8979ms 304 application/javascript (791a596a)
+2019-12-05T14:49:09.5510395+07:00 0HLRPAU493522:00000005 [INF] The file "/admin/vendors/Chart.js/dist/Chart.min.js" was not modified (f1f8d725)
+2019-12-05T14:49:09.5796401+07:00 0HLRPAU493527:00000004 [INF] The file "/admin/vendors/iCheck/icheck.min.js" was not modified (f1f8d725)
+2019-12-05T14:49:09.6203577+07:00 0HLRPAU493524:00000004 [INF] Request finished in 623.4506ms 304 application/javascript (791a596a)
+2019-12-05T14:49:09.6615714+07:00 0HLRPAU49352B:00000003 [INF] Request finished in 652.8961ms 304 application/javascript (791a596a)
+2019-12-05T14:49:09.6764781+07:00 0HLRPAU493525:00000005 [INF] The file "/admin/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js" was not modified (f1f8d725)
+2019-12-05T14:49:09.7235385+07:00 0HLRPAU493523:00000004 [INF] The file "/admin/vendors/gauge.js/dist/gauge.min.js" was not modified (f1f8d725)
+2019-12-05T14:49:09.7520384+07:00 0HLRPAU493521:00000005 [INF] The file "/admin/vendors/nprogress/nprogress.js" was not modified (f1f8d725)
+2019-12-05T14:49:09.8415113+07:00 0HLRPAU49352H:00000003 [INF] The file "/admin/vendors/Flot/jquery.flot.js" was not modified (f1f8d725)
+2019-12-05T14:49:09.8786817+07:00 0HLRPAU493527:00000004 [INF] Request finished in 876.8489ms 304 application/javascript (791a596a)
+2019-12-05T14:49:09.9578890+07:00 0HLRPAU49352A:00000003 [INF] Request starting HTTP/1.1 GET http://localhost:44340/admin/vendors/datatables.net-scroller/js/dataTables.scroller.min.js   (ca22a1cb)
+2019-12-05T14:49:10.0462853+07:00 0HLRPAU493522:00000005 [INF] Request finished in 868.9851ms 304 application/javascript (791a596a)
+2019-12-05T14:49:10.0751147+07:00 0HLRPAU49352F:00000003 [INF] Request starting HTTP/1.1 GET http://localhost:44340/admin/vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js   (ca22a1cb)
+2019-12-05T14:49:10.1190240+07:00 0HLRPAU493525:00000005 [INF] Request finished in 985.7368ms 304 application/javascript (791a596a)
+2019-12-05T14:49:10.1308619+07:00 0HLRPAU493528:00000003 [INF] Request starting HTTP/1.1 GET http://localhost:44340/admin/vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js   (ca22a1cb)
+2019-12-05T14:49:10.1446222+07:00 0HLRPAU493523:00000004 [INF] Request finished in 1032.2479ms 304 application/javascript (791a596a)
+2019-12-05T14:49:10.1911823+07:00 0HLRPAU493521:00000005 [INF] Request finished in 1071.2199ms 304 application/javascript (791a596a)
+2019-12-05T14:49:10.2167543+07:00 0HLRPAU49352A:00000003 [INF] The file "/admin/vendors/datatables.net-scroller/js/dataTables.scroller.min.js" was not modified (f1f8d725)
+2019-12-05T14:49:10.3147143+07:00 0HLRPAU49352H:00000003 [INF] Request finished in 906.6576ms 304 application/javascript (791a596a)
+2019-12-05T14:49:10.3465560+07:00 0HLRPAU49352F:00000003 [INF] The file "/admin/vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js" was not modified (f1f8d725)
+2019-12-05T14:49:10.3828471+07:00 0HLRPAU493528:00000003 [INF] The file "/admin/vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js" was not modified (f1f8d725)
+2019-12-05T14:49:10.4024459+07:00 0HLRPAU49352G:00000003 [INF] Request starting HTTP/1.1 GET http://localhost:44340/admin/vendors/datatables.net-buttons/js/buttons.print.min.js   (ca22a1cb)
+2019-12-05T14:49:10.4700598+07:00 0HLRPAU49352A:00000003 [INF] Request finished in 569.2952ms 304 application/javascript (791a596a)
+2019-12-05T14:49:10.5678598+07:00 0HLRPAU49352K:00000003 [INF] Request starting HTTP/1.1 GET http://localhost:44340/admin/vendors/datatables.net-keytable/js/dataTables.keyTable.min.js   (ca22a1cb)
+2019-12-05T14:49:10.5826035+07:00 0HLRPAU49352F:00000003 [INF] Request finished in 538.9392ms 304 application/javascript (791a596a)
+2019-12-05T14:49:10.6033519+07:00 0HLRPAU49352I:00000003 [INF] Request starting HTTP/1.1 GET http://localhost:44340/admin/vendors/datatables.net-responsive/js/dataTables.responsive.min.js   (ca22a1cb)
+2019-12-05T14:49:10.6737108+07:00 0HLRPAU493528:00000003 [INF] Request finished in 505.3955ms 304 application/javascript (791a596a)
+2019-12-05T14:49:10.7054422+07:00 0HLRPAU49352G:00000003 [INF] The file "/admin/vendors/datatables.net-buttons/js/buttons.print.min.js" was not modified (f1f8d725)
+2019-12-05T14:49:10.7422300+07:00 0HLRPAU49352N:00000003 [INF] Request starting HTTP/1.1 GET http://localhost:44340/admin/vendors/jszip/dist/jszip.min.js   (ca22a1cb)
+2019-12-05T14:49:10.8238028+07:00 0HLRPAU49352O:00000003 [INF] Request starting HTTP/1.1 GET http://localhost:44340/admin/vendors/pdfmake/build/vfs_fonts.js   (ca22a1cb)
+2019-12-05T14:49:10.8635812+07:00 0HLRPAU49352K:00000003 [INF] The file "/admin/vendors/datatables.net-keytable/js/dataTables.keyTable.min.js" was not modified (f1f8d725)
+2019-12-05T14:49:10.9140843+07:00 0HLRPAU49352M:00000003 [INF] Request starting HTTP/1.1 GET http://localhost:44340/admin/vendors/Flot/jquery.flot.pie.js   (ca22a1cb)
+2019-12-05T14:49:10.9402324+07:00 0HLRPAU49352E:00000003 [INF] Request starting HTTP/1.1 GET http://localhost:44340/admin/vendors/pdfmake/build/pdfmake.min.js   (ca22a1cb)
+2019-12-05T14:49:10.9589746+07:00 0HLRPAU49352P:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44340/admin/vendors/flot.orderbars/js/jquery.flot.orderBars.js   (ca22a1cb)
+2019-12-05T14:49:10.9928970+07:00 0HLRPAU49352I:00000003 [INF] The file "/admin/vendors/datatables.net-responsive/js/dataTables.responsive.min.js" was not modified (f1f8d725)
+2019-12-05T14:49:11.0234833+07:00 0HLRPAU49352G:00000003 [INF] Request finished in 590.2995ms 304 application/javascript (791a596a)
+2019-12-05T14:49:11.0682759+07:00 0HLRPAU49352N:00000003 [INF] The file "/admin/vendors/jszip/dist/jszip.min.js" was not modified (f1f8d725)
+2019-12-05T14:49:11.0916235+07:00 0HLRPAU49352Q:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44340/admin/vendors/flot.curvedlines/curvedLines.js   (ca22a1cb)
+2019-12-05T14:49:11.1192693+07:00 0HLRPAU49352J:00000003 [INF] Request starting HTTP/1.1 GET http://localhost:44340/admin/vendors/Flot/jquery.flot.stack.js   (ca22a1cb)
+2019-12-05T14:49:11.1457169+07:00 0HLRPAU49352M:00000003 [INF] The file "/admin/vendors/Flot/jquery.flot.pie.js" was not modified (f1f8d725)
+2019-12-05T14:49:11.1817760+07:00 0HLRPAU49352P:00000001 [INF] The file "/admin/vendors/flot.orderbars/js/jquery.flot.orderBars.js" was not modified (f1f8d725)
+2019-12-05T14:49:11.2273161+07:00 0HLRPAU49352O:00000003 [INF] The file "/admin/vendors/pdfmake/build/vfs_fonts.js" was not modified (f1f8d725)
+2019-12-05T14:49:11.2919311+07:00 0HLRPAU49352K:00000003 [INF] Request finished in 549.0455ms 304 application/javascript (791a596a)
+2019-12-05T14:49:11.4706051+07:00 0HLRPAU49352Q:00000001 [INF] The file "/admin/vendors/flot.curvedlines/curvedLines.js" was not modified (f1f8d725)
+2019-12-05T14:49:11.4937858+07:00 0HLRPAU49352E:00000003 [INF] The file "/admin/vendors/pdfmake/build/pdfmake.min.js" was not modified (f1f8d725)
+2019-12-05T14:49:11.5124611+07:00 0HLRPAU49352I:00000003 [INF] Request finished in 776.7102ms 304 application/javascript (791a596a)
+2019-12-05T14:49:11.5614583+07:00 0HLRPAU49352P:00000001 [INF] Request finished in 439.735ms 304 application/javascript (791a596a)
+2019-12-05T14:49:11.5895995+07:00 0HLRPAU49352M:00000003 [INF] Request finished in 472.5238ms 304 application/javascript (791a596a)
+2019-12-05T14:49:11.6192115+07:00 0HLRPAU49352N:00000003 [INF] Request finished in 701.2707ms 304 application/javascript (791a596a)
+2019-12-05T14:49:11.6466945+07:00 0HLRPAU49352R:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44340/admin/vendors/jqvmap/dist/jquery.vmap.js   (ca22a1cb)
+2019-12-05T14:49:11.7093971+07:00 0HLRPAU49352Q:00000001 [INF] Request finished in 647.932ms 304 application/javascript (791a596a)
+2019-12-05T14:49:11.7696939+07:00 0HLRPAU49352O:00000003 [INF] Request finished in 798.9117ms 304 application/javascript (791a596a)
+2019-12-05T14:49:11.8685051+07:00 0HLRPAU49352R:00000001 [INF] The file "/admin/vendors/jqvmap/dist/jquery.vmap.js" was not modified (f1f8d725)
+2019-12-05T14:49:11.9114166+07:00 0HLRPAU49352E:00000003 [INF] Request finished in 975.157ms 304 application/javascript (791a596a)
+2019-12-05T14:49:11.9213901+07:00 0HLRPAU49352T:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44340/admin/vendors/moment/min/moment.min.js   (ca22a1cb)
+2019-12-05T14:49:11.9350521+07:00 0HLRPAU49352V:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44340/admin/vendors/jqvmap/dist/maps/jquery.vmap.world.js   (ca22a1cb)
+2019-12-05T14:49:12.0369372+07:00 0HLRPAU49352U:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44340/admin/vendors/flot-spline/js/jquery.flot.spline.min.js   (ca22a1cb)
+2019-12-05T14:49:12.0500417+07:00 0HLRPAU493531:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44340/admin/vendors/jqvmap/examples/js/jquery.vmap.sampledata.js   (ca22a1cb)
+2019-12-05T14:49:12.0733743+07:00 0HLRPAU49352S:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44340/admin/build/js/custom.min.js   (ca22a1cb)
+2019-12-05T14:49:12.0963037+07:00 0HLRPAU49352T:00000001 [INF] The file "/admin/vendors/moment/min/moment.min.js" was not modified (f1f8d725)
+2019-12-05T14:49:12.1281309+07:00 0HLRPAU49352R:00000001 [INF] Request finished in 639.2137ms 304 application/javascript (791a596a)
+2019-12-05T14:49:12.1404043+07:00 0HLRPAU49352V:00000001 [INF] The file "/admin/vendors/jqvmap/dist/maps/jquery.vmap.world.js" was not modified (f1f8d725)
+2019-12-05T14:49:12.1672514+07:00 0HLRPAU493530:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44340/admin/vendors/bootstrap-daterangepicker/daterangepicker.js   (ca22a1cb)
+2019-12-05T14:49:12.2573422+07:00 0HLRPAU49352J:00000003 [INF] The file "/admin/vendors/Flot/jquery.flot.stack.js" was not modified (f1f8d725)
+2019-12-05T14:49:12.2914699+07:00 0HLRPAU493531:00000001 [INF] The file "/admin/vendors/jqvmap/examples/js/jquery.vmap.sampledata.js" was not modified (f1f8d725)
+2019-12-05T14:49:12.3265490+07:00 0HLRPAU49352T:00000001 [INF] Request finished in 427.7ms 304 application/javascript (791a596a)
+2019-12-05T14:49:12.3344534+07:00 0HLRPAU49352S:00000001 [INF] The file "/admin/build/js/custom.min.js" was not modified (f1f8d725)
+2019-12-05T14:49:12.3535371+07:00 0HLRPAU49352U:00000001 [INF] The file "/admin/vendors/flot-spline/js/jquery.flot.spline.min.js" was not modified (f1f8d725)
+2019-12-05T14:49:12.3642523+07:00 0HLRPAU49352V:00000001 [INF] Request finished in 432.3901ms 304 application/javascript (791a596a)
+2019-12-05T14:49:12.4556016+07:00 0HLRPAU493530:00000001 [INF] The file "/admin/vendors/bootstrap-daterangepicker/daterangepicker.js" was not modified (f1f8d725)
+2019-12-05T14:49:12.4768233+07:00 0HLRPAU493531:00000001 [INF] Request finished in 423.2286ms 304 application/javascript (791a596a)
+2019-12-05T14:49:12.5091496+07:00 0HLRPAU49352S:00000001 [INF] Request finished in 689.0349ms 304 application/javascript (791a596a)
+2019-12-05T14:49:12.5180031+07:00 0HLRPAU49352J:00000003 [INF] Request finished in 2099.5273ms 304 application/javascript (791a596a)
+2019-12-05T14:49:12.5279191+07:00 0HLRPAU49352L:00000002 [INF] Request finished in 2031.7198ms 304 text/css (791a596a)
+2019-12-05T14:49:12.5445170+07:00 0HLRPAU49351U:00000006 [INF] Request finished in 748.2914ms 304 application/javascript (791a596a)
+2019-12-05T14:49:12.5680428+07:00 0HLRPAU493520:00000005 [INF] Request finished in 500.5069ms 304 application/javascript (791a596a)
+2019-12-05T14:49:12.7017974+07:00 0HLRPAU49352U:00000001 [INF] Request finished in 663.443ms 304 application/javascript (791a596a)
+2019-12-05T14:49:12.7706854+07:00 0HLRPAU49351V:00000006 [INF] Request starting HTTP/1.1 GET http://localhost:44340/admin/vendors/skycons/skycons.js   (ca22a1cb)
+2019-12-05T14:49:12.8687115+07:00 0HLRPAU493530:00000001 [INF] Request finished in 636.8559ms 304 application/javascript (791a596a)
+2019-12-05T14:49:12.9056544+07:00 0HLRPAU49352C:00000003 [INF] Request starting HTTP/1.1 GET http://localhost:44340/admin/vendors/datatables.net-bs/js/dataTables.bootstrap.min.js   (ca22a1cb)
+2019-12-05T14:49:12.9179841+07:00 0HLRPAU49352L:00000003 [INF] Request starting HTTP/1.1 GET http://localhost:44340/admin/vendors/Flot/jquery.flot.time.js   (ca22a1cb)
+2019-12-05T14:49:12.9257714+07:00 0HLRPAU49351U:00000007 [INF] Request starting HTTP/1.1 GET http://localhost:44340/admin/vendors/DateJS/build/date.js   (ca22a1cb)
+2019-12-05T14:49:12.9453140+07:00 0HLRPAU493520:00000006 [INF] Request starting HTTP/1.1 GET http://localhost:44340/admin/vendors/Flot/jquery.flot.resize.js   (ca22a1cb)
+2019-12-05T14:49:12.9593437+07:00 0HLRPAU493526:00000004 [INF] Request starting HTTP/1.1 GET http://localhost:44340/admin/vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js   (ca22a1cb)
+2019-12-05T14:49:12.9744337+07:00 0HLRPAU49351V:00000006 [INF] The file "/admin/vendors/skycons/skycons.js" was not modified (f1f8d725)
+2019-12-05T14:49:13.1220710+07:00 0HLRPAU49352C:00000003 [INF] The file "/admin/vendors/datatables.net-bs/js/dataTables.bootstrap.min.js" was not modified (f1f8d725)
+2019-12-05T14:49:13.2046464+07:00 0HLRPAU49352D:00000003 [INF] Request starting HTTP/1.1 GET http://localhost:44340/admin/vendors/datatables.net-buttons/js/buttons.flash.min.js   (ca22a1cb)
+2019-12-05T14:49:13.2248403+07:00 0HLRPAU49352L:00000003 [INF] The file "/admin/vendors/Flot/jquery.flot.time.js" was not modified (f1f8d725)
+2019-12-05T14:49:13.2494374+07:00 0HLRPAU49351U:00000007 [INF] The file "/admin/vendors/DateJS/build/date.js" was not modified (f1f8d725)
+2019-12-05T14:49:13.2576023+07:00 0HLRPAU493520:00000006 [INF] The file "/admin/vendors/Flot/jquery.flot.resize.js" was not modified (f1f8d725)
+2019-12-05T14:49:13.2791027+07:00 0HLRPAU49351V:00000006 [INF] Request finished in 4270.1151ms 304 application/javascript (791a596a)
+2019-12-05T14:49:13.3049546+07:00 0HLRPAU493526:00000004 [INF] The file "/admin/vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js" was not modified (f1f8d725)
+2019-12-05T14:49:13.3831932+07:00 0HLRPAU49352C:00000003 [INF] Request finished in 4418.4317ms 304 application/javascript (791a596a)
+2019-12-05T14:49:13.4020353+07:00 0HLRPAU49352D:00000003 [INF] The file "/admin/vendors/datatables.net-buttons/js/buttons.flash.min.js" was not modified (f1f8d725)
+2019-12-05T14:49:13.4190254+07:00 0HLRPAU49352L:00000003 [INF] Request finished in 548.9728ms 304 application/javascript (791a596a)
+2019-12-05T14:49:13.4551615+07:00 0HLRPAU49351U:00000007 [INF] Request finished in 502.8195ms 304 application/javascript (791a596a)
+2019-12-05T14:49:13.4764844+07:00 0HLRPAU493520:00000006 [INF] Request finished in 501.0456ms 304 application/javascript (791a596a)
+2019-12-05T14:49:13.4950849+07:00 0HLRPAU493526:00000004 [INF] Request finished in 4402.9ms 304 application/javascript (791a596a)
+2019-12-05T14:49:13.5583495+07:00 0HLRPAU49352D:00000003 [INF] Request finished in 4498.8169ms 304 application/javascript (791a596a)
+2019-12-05T14:49:15.2736244+07:00 0HLRPAU493529:00000004 [INF] Request starting HTTP/1.1 GET http://localhost:44340/Order   (ca22a1cb)
+2019-12-05T14:49:15.2844299+07:00 0HLRPAU493529:00000004 [INF] AuthenticationScheme: "Identity.Application" was successfully authenticated. (1805f3b3)
+2019-12-05T14:49:15.2996757+07:00 0HLRPAU493529:00000004 [INF] Executing action method "ShopMartWebsite.Controllers.OrderController.Index (ShopMartWebsite)" with arguments (["", "", ""]) - ModelState is Valid (ba7f4ac2)
+2019-12-05T14:49:15.3423186+07:00 0HLRPAU493529:00000004 [INF] Entity Framework Core "2.0.3-rtm-10026" initialized '"ShopDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2019-12-05T14:49:15.4677872+07:00 0HLRPAU493529:00000004 [INF] Executed DbCommand ("46"ms) [Parameters=["@__p_0='?', @__p_1='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT [x].[id], [x].[address], [x].[createDate], [x].[customer], [x].[info], [x].[note], [x].[status], [x].[total], [x].[userId], [x.user].[Id], [x.user].[AccessFailedCount], [x.user].[ConcurrencyStamp], [x.user].[Email], [x.user].[EmailConfirmed], [x.user].[LockoutEnabled], [x.user].[LockoutEnd], [x.user].[NormalizedEmail], [x.user].[NormalizedUserName], [x.user].[PasswordHash], [x.user].[PhoneNumber], [x.user].[PhoneNumberConfirmed], [x.user].[SecurityStamp], [x.user].[TwoFactorEnabled], [x.user].[UserName], [x.user].[address], [x.user].[birthDay], [x.user].[displayname], [x.user].[gender], [x.user].[password], [x.user].[phone], [x.user].[status]
+FROM [order] AS [x]
+LEFT JOIN [AspNetUsers] AS [x.user] ON [x].[userId] = [x.user].[Id]
+WHERE [x].[status] = 1
+ORDER BY [x].[createDate], [x].[id]
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY" (0723d8ff)
+2019-12-05T14:49:15.5297764+07:00 0HLRPAU493529:00000004 [INF] Executed DbCommand ("28"ms) [Parameters=["@__p_0='?', @__p_1='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT [x.OrderDetails].[id], [x.OrderDetails].[orderId], [x.OrderDetails].[productId], [x.OrderDetails].[quantity], [x.OrderDetails].[unitPrice]
+FROM [orderdetail] AS [x.OrderDetails]
+INNER JOIN (
+    SELECT DISTINCT [t].*
+    FROM (
+        SELECT [x0].[id], [x0].[createDate]
+        FROM [order] AS [x0]
+        LEFT JOIN [AspNetUsers] AS [x.user0] ON [x0].[userId] = [x.user0].[Id]
+        WHERE [x0].[status] = 1
+        ORDER BY [x0].[createDate], [x0].[id]
+        OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+    ) AS [t]
+) AS [t0] ON [x.OrderDetails].[orderId] = [t0].[id]
+ORDER BY [t0].[createDate], [t0].[id]" (0723d8ff)
+2019-12-05T14:49:15.5583075+07:00 0HLRPAU493529:00000004 [INF] Executed DbCommand ("2"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [order] AS [x]
+WHERE [x].[status] = 1" (0723d8ff)
+2019-12-05T14:49:15.8326493+07:00 0HLRPAU493529:00000004 [INF] Executing ViewResult, running view at path "/Views/Order/Index.cshtml". (9707eebe)
+2019-12-05T14:49:16.2129173+07:00 0HLRPAU493529:00000004 [INF] Executed action "ShopMartWebsite.Controllers.OrderController.Index (ShopMartWebsite)" in 912.8369ms (afa2e885)
+2019-12-05T14:49:16.2722840+07:00 0HLRPAU493529:00000004 [INF] Request finished in 946.641ms 200 text/html; charset=utf-8 (791a596a)
+2019-12-05T14:49:21.4258216+07:00 0HLRPAU493524:00000005 [INF] Request starting HTTP/1.1 GET http://localhost:44340/Order/Viewss/12?total=20000000.00&customer=Nguy%E1%BB%85n%20H%E1%BB%AFu%20Thi%E1%BB%87n   (ca22a1cb)
+2019-12-05T14:49:21.4518223+07:00 0HLRPAU493524:00000005 [INF] AuthenticationScheme: "Identity.Application" was successfully authenticated. (1805f3b3)
+2019-12-05T14:49:21.4649470+07:00 0HLRPAU493524:00000005 [INF] Executing action method "ShopMartWebsite.Controllers.OrderController.Viewss (ShopMartWebsite)" with arguments (["12", "Nguyễn Hữu Thiện", "20000000.00"]) - ModelState is Valid (ba7f4ac2)
+2019-12-05T14:49:21.4751048+07:00 0HLRPAU493524:00000005 [INF] Entity Framework Core "2.0.3-rtm-10026" initialized '"ShopDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2019-12-05T14:49:21.5238345+07:00 0HLRPAU493524:00000005 [INF] Executed DbCommand ("4"ms) [Parameters=["@__orderId_0='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT [pr].[id], [pr].[orderId], [pr].[productId], [pr].[quantity], [pr].[unitPrice], [pr.product].[id], [pr.product].[categoryId], [pr.product].[color], [pr.product].[description], [pr.product].[image], [pr.product].[name], [pr.product].[price], [pr.product].[size], [pr.product].[status], [pr.product.category].[id], [pr.product.category].[name], [pr.product.category].[status]
+FROM [orderdetail] AS [pr]
+INNER JOIN [product] AS [pr.product] ON [pr].[productId] = [pr.product].[id]
+LEFT JOIN [category] AS [pr.product.category] ON [pr.product].[categoryId] = [pr.product.category].[id]
+WHERE [pr].[orderId] = @__orderId_0" (0723d8ff)
+2019-12-05T14:49:21.7083567+07:00 0HLRPAU493524:00000005 [INF] Executing PartialViewResult, running view at path "/Views/Order/_View.cshtml". (6b910aca)
+2019-12-05T14:49:21.7246774+07:00 0HLRPAU493524:00000005 [INF] Executed action "ShopMartWebsite.Controllers.OrderController.Viewss (ShopMartWebsite)" in 263.3202ms (afa2e885)
+2019-12-05T14:49:21.7333619+07:00 0HLRPAU493524:00000005 [INF] Request finished in 306.9719ms 200 text/html; charset=utf-8 (791a596a)
+2019-12-05T14:49:31.3544611+07:00 0HLRPAU49352B:00000004 [INF] Request starting HTTP/1.1 GET http://localhost:44340/Order/Viewss/13?total=20000000.00&customer=Nguy%E1%BB%85n%20H%E1%BB%AFu%20Thi%E1%BB%87n   (ca22a1cb)
+2019-12-05T14:49:31.3662398+07:00 0HLRPAU49352B:00000004 [INF] AuthenticationScheme: "Identity.Application" was successfully authenticated. (1805f3b3)
+2019-12-05T14:49:31.3738129+07:00 0HLRPAU49352B:00000004 [INF] Executing action method "ShopMartWebsite.Controllers.OrderController.Viewss (ShopMartWebsite)" with arguments (["13", "Nguyễn Hữu Thiện", "20000000.00"]) - ModelState is Valid (ba7f4ac2)
+2019-12-05T14:49:31.3822574+07:00 0HLRPAU49352B:00000004 [INF] Entity Framework Core "2.0.3-rtm-10026" initialized '"ShopDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2019-12-05T14:49:31.4166273+07:00 0HLRPAU49352B:00000004 [INF] Executed DbCommand ("24"ms) [Parameters=["@__orderId_0='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT [pr].[id], [pr].[orderId], [pr].[productId], [pr].[quantity], [pr].[unitPrice], [pr.product].[id], [pr.product].[categoryId], [pr.product].[color], [pr.product].[description], [pr.product].[image], [pr.product].[name], [pr.product].[price], [pr.product].[size], [pr.product].[status], [pr.product.category].[id], [pr.product.category].[name], [pr.product.category].[status]
+FROM [orderdetail] AS [pr]
+INNER JOIN [product] AS [pr.product] ON [pr].[productId] = [pr.product].[id]
+LEFT JOIN [category] AS [pr.product.category] ON [pr.product].[categoryId] = [pr.product.category].[id]
+WHERE [pr].[orderId] = @__orderId_0" (0723d8ff)
+2019-12-05T14:49:31.4238798+07:00 0HLRPAU49352B:00000004 [INF] Executing PartialViewResult, running view at path "/Views/Order/_View.cshtml". (6b910aca)
+2019-12-05T14:49:31.4334350+07:00 0HLRPAU49352B:00000004 [INF] Executed action "ShopMartWebsite.Controllers.OrderController.Viewss (ShopMartWebsite)" in 57.7911ms (afa2e885)
+2019-12-05T14:49:31.4424097+07:00 0HLRPAU49352B:00000004 [INF] Request finished in 89.4344ms 200 text/html; charset=utf-8 (791a596a)
+2019-12-05T14:49:43.6728161+07:00 0HLRPAU493522:00000006 [INF] Request starting HTTP/1.1 GET http://localhost:44340/Order?page=2   (ca22a1cb)
+2019-12-05T14:49:43.7006213+07:00 0HLRPAU493522:00000006 [INF] AuthenticationScheme: "Identity.Application" was successfully authenticated. (1805f3b3)
+2019-12-05T14:49:43.7261969+07:00 0HLRPAU493522:00000006 [INF] Executing action method "ShopMartWebsite.Controllers.OrderController.Index (ShopMartWebsite)" with arguments (["", "", "2"]) - ModelState is Valid (ba7f4ac2)
+2019-12-05T14:49:43.7516654+07:00 0HLRPAU493522:00000006 [INF] Entity Framework Core "2.0.3-rtm-10026" initialized '"ShopDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2019-12-05T14:49:43.7752735+07:00 0HLRPAU493522:00000006 [INF] Executed DbCommand ("0"ms) [Parameters=["@__p_0='?', @__p_1='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT [x].[id], [x].[address], [x].[createDate], [x].[customer], [x].[info], [x].[note], [x].[status], [x].[total], [x].[userId], [x.user].[Id], [x.user].[AccessFailedCount], [x.user].[ConcurrencyStamp], [x.user].[Email], [x.user].[EmailConfirmed], [x.user].[LockoutEnabled], [x.user].[LockoutEnd], [x.user].[NormalizedEmail], [x.user].[NormalizedUserName], [x.user].[PasswordHash], [x.user].[PhoneNumber], [x.user].[PhoneNumberConfirmed], [x.user].[SecurityStamp], [x.user].[TwoFactorEnabled], [x.user].[UserName], [x.user].[address], [x.user].[birthDay], [x.user].[displayname], [x.user].[gender], [x.user].[password], [x.user].[phone], [x.user].[status]
+FROM [order] AS [x]
+LEFT JOIN [AspNetUsers] AS [x.user] ON [x].[userId] = [x.user].[Id]
+WHERE [x].[status] = 1
+ORDER BY [x].[createDate], [x].[id]
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY" (0723d8ff)
+2019-12-05T14:49:43.7826414+07:00 0HLRPAU493522:00000006 [INF] Executed DbCommand ("0"ms) [Parameters=["@__p_0='?', @__p_1='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT [x.OrderDetails].[id], [x.OrderDetails].[orderId], [x.OrderDetails].[productId], [x.OrderDetails].[quantity], [x.OrderDetails].[unitPrice]
+FROM [orderdetail] AS [x.OrderDetails]
+INNER JOIN (
+    SELECT DISTINCT [t].*
+    FROM (
+        SELECT [x0].[id], [x0].[createDate]
+        FROM [order] AS [x0]
+        LEFT JOIN [AspNetUsers] AS [x.user0] ON [x0].[userId] = [x.user0].[Id]
+        WHERE [x0].[status] = 1
+        ORDER BY [x0].[createDate], [x0].[id]
+        OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+    ) AS [t]
+) AS [t0] ON [x.OrderDetails].[orderId] = [t0].[id]
+ORDER BY [t0].[createDate], [t0].[id]" (0723d8ff)
+2019-12-05T14:49:43.8091924+07:00 0HLRPAU493522:00000006 [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [order] AS [x]
+WHERE [x].[status] = 1" (0723d8ff)
+2019-12-05T14:49:43.8351954+07:00 0HLRPAU493522:00000006 [INF] Executing ViewResult, running view at path "/Views/Order/Index.cshtml". (9707eebe)
+2019-12-05T14:49:43.8443450+07:00 0HLRPAU493522:00000006 [INF] Executed action "ShopMartWebsite.Controllers.OrderController.Index (ShopMartWebsite)" in 137.4562ms (afa2e885)
+2019-12-05T14:49:43.8913804+07:00 0HLRPAU493522:00000006 [INF] Request finished in 180.6886ms 200 text/html; charset=utf-8 (791a596a)
+2019-12-05T14:49:48.0499203+07:00 0HLRPAU493527:00000005 [INF] Request starting HTTP/1.1 GET http://localhost:44340/Order?page=1   (ca22a1cb)
+2019-12-05T14:49:48.0768336+07:00 0HLRPAU493527:00000005 [INF] AuthenticationScheme: "Identity.Application" was successfully authenticated. (1805f3b3)
+2019-12-05T14:49:48.0826739+07:00 0HLRPAU493527:00000005 [INF] Executing action method "ShopMartWebsite.Controllers.OrderController.Index (ShopMartWebsite)" with arguments (["", "", "1"]) - ModelState is Valid (ba7f4ac2)
+2019-12-05T14:49:48.1093142+07:00 0HLRPAU493527:00000005 [INF] Entity Framework Core "2.0.3-rtm-10026" initialized '"ShopDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2019-12-05T14:49:48.1376923+07:00 0HLRPAU493527:00000005 [INF] Executed DbCommand ("0"ms) [Parameters=["@__p_0='?', @__p_1='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT [x].[id], [x].[address], [x].[createDate], [x].[customer], [x].[info], [x].[note], [x].[status], [x].[total], [x].[userId], [x.user].[Id], [x.user].[AccessFailedCount], [x.user].[ConcurrencyStamp], [x.user].[Email], [x.user].[EmailConfirmed], [x.user].[LockoutEnabled], [x.user].[LockoutEnd], [x.user].[NormalizedEmail], [x.user].[NormalizedUserName], [x.user].[PasswordHash], [x.user].[PhoneNumber], [x.user].[PhoneNumberConfirmed], [x.user].[SecurityStamp], [x.user].[TwoFactorEnabled], [x.user].[UserName], [x.user].[address], [x.user].[birthDay], [x.user].[displayname], [x.user].[gender], [x.user].[password], [x.user].[phone], [x.user].[status]
+FROM [order] AS [x]
+LEFT JOIN [AspNetUsers] AS [x.user] ON [x].[userId] = [x.user].[Id]
+WHERE [x].[status] = 1
+ORDER BY [x].[createDate], [x].[id]
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY" (0723d8ff)
+2019-12-05T14:49:48.1645055+07:00 0HLRPAU493527:00000005 [INF] Executed DbCommand ("0"ms) [Parameters=["@__p_0='?', @__p_1='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT [x.OrderDetails].[id], [x.OrderDetails].[orderId], [x.OrderDetails].[productId], [x.OrderDetails].[quantity], [x.OrderDetails].[unitPrice]
+FROM [orderdetail] AS [x.OrderDetails]
+INNER JOIN (
+    SELECT DISTINCT [t].*
+    FROM (
+        SELECT [x0].[id], [x0].[createDate]
+        FROM [order] AS [x0]
+        LEFT JOIN [AspNetUsers] AS [x.user0] ON [x0].[userId] = [x.user0].[Id]
+        WHERE [x0].[status] = 1
+        ORDER BY [x0].[createDate], [x0].[id]
+        OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+    ) AS [t]
+) AS [t0] ON [x.OrderDetails].[orderId] = [t0].[id]
+ORDER BY [t0].[createDate], [t0].[id]" (0723d8ff)
+2019-12-05T14:49:48.1923565+07:00 0HLRPAU493527:00000005 [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [order] AS [x]
+WHERE [x].[status] = 1" (0723d8ff)
+2019-12-05T14:49:48.1996239+07:00 0HLRPAU493527:00000005 [INF] Executing ViewResult, running view at path "/Views/Order/Index.cshtml". (9707eebe)
+2019-12-05T14:49:48.2178402+07:00 0HLRPAU493527:00000005 [INF] Executed action "ShopMartWebsite.Controllers.OrderController.Index (ShopMartWebsite)" in 127.0006ms (afa2e885)
+2019-12-05T14:49:48.2402130+07:00 0HLRPAU493527:00000005 [INF] Request finished in 174.7694ms 200 text/html; charset=utf-8 (791a596a)
+2019-12-05T14:49:56.0854920+07:00 0HLRPAU493525:00000006 [INF] Request starting HTTP/1.1 GET http://localhost:44340/Category   (ca22a1cb)
+2019-12-05T14:49:56.0925565+07:00 0HLRPAU493525:00000006 [INF] AuthenticationScheme: "Identity.Application" was successfully authenticated. (1805f3b3)
+2019-12-05T14:49:56.1011780+07:00 0HLRPAU493525:00000006 [INF] Executing action method "ShopMartWebsite.Controllers.CategoryController.Index (ShopMartWebsite)" with arguments (["", ""]) - ModelState is Valid (ba7f4ac2)
+2019-12-05T14:49:56.1311705+07:00 0HLRPAU493525:00000006 [INF] Entity Framework Core "2.0.3-rtm-10026" initialized '"ShopDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2019-12-05T14:49:56.1516369+07:00 0HLRPAU493525:00000006 [INF] Executed DbCommand ("3"ms) [Parameters=["@__p_0='?', @__p_1='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT [x].[id], [x].[name], [x].[status]
+FROM [category] AS [x]
+WHERE [x].[status] = 1
+ORDER BY [x].[id]
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY" (0723d8ff)
+2019-12-05T14:49:56.1631214+07:00 0HLRPAU493525:00000006 [INF] Executed DbCommand ("2"ms) [Parameters=["@__p_0='?', @__p_1='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT [x.Products].[id], [x.Products].[categoryId], [x.Products].[color], [x.Products].[description], [x.Products].[image], [x.Products].[name], [x.Products].[price], [x.Products].[size], [x.Products].[status]
+FROM [product] AS [x.Products]
+INNER JOIN (
+    SELECT [x0].[id]
+    FROM [category] AS [x0]
+    WHERE [x0].[status] = 1
+    ORDER BY [x0].[id]
+    OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+) AS [t] ON [x.Products].[categoryId] = [t].[id]
+ORDER BY [t].[id]" (0723d8ff)
+2019-12-05T14:49:56.1758330+07:00 0HLRPAU493525:00000006 [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [category] AS [x]
+WHERE [x].[status] = 1" (0723d8ff)
+2019-12-05T14:49:56.3405632+07:00 0HLRPAU493525:00000006 [INF] Executing ViewResult, running view at path "/Views/Category/Index.cshtml". (9707eebe)
+2019-12-05T14:49:56.6669476+07:00 0HLRPAU493525:00000006 [INF] Executed action "ShopMartWebsite.Controllers.CategoryController.Index (ShopMartWebsite)" in 561.4219ms (afa2e885)
+2019-12-05T14:49:56.6769698+07:00 0HLRPAU493525:00000006 [INF] Request finished in 588.4376ms 200 text/html; charset=utf-8 (791a596a)
+2019-12-05T14:49:58.9637334+07:00 0HLRPAU493523:00000005 [INF] Request starting HTTP/1.1 GET http://localhost:44340/Product   (ca22a1cb)
+2019-12-05T14:49:58.9692871+07:00 0HLRPAU493523:00000005 [INF] AuthenticationScheme: "Identity.Application" was successfully authenticated. (1805f3b3)
+2019-12-05T14:49:58.9878640+07:00 0HLRPAU493523:00000005 [INF] Authorization was successful for user: "admin". (d7eb274a)
+2019-12-05T14:49:58.9967857+07:00 0HLRPAU493523:00000005 [INF] Executing action method "ShopMartWebsite.Controllers.ProductController.Index (ShopMartWebsite)" with arguments (["", "", ""]) - ModelState is Valid (ba7f4ac2)
+2019-12-05T14:49:59.0237192+07:00 0HLRPAU493523:00000005 [INF] Entity Framework Core "2.0.3-rtm-10026" initialized '"ShopDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2019-12-05T14:49:59.0547998+07:00 0HLRPAU493523:00000005 [INF] Executed DbCommand ("3"ms) [Parameters=["@__p_0='?', @__p_1='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT [x].[id], [x].[categoryId], [x].[color], [x].[description], [x].[image], [x].[name], [x].[price], [x].[size], [x].[status], [x.category].[id], [x.category].[name], [x.category].[status]
+FROM [product] AS [x]
+LEFT JOIN [category] AS [x.category] ON [x].[categoryId] = [x.category].[id]
+WHERE [x].[status] = 1
+ORDER BY [x].[categoryId], [x].[id]
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY" (0723d8ff)
+2019-12-05T14:49:59.0847457+07:00 0HLRPAU493523:00000005 [INF] Executed DbCommand ("3"ms) [Parameters=["@__p_0='?', @__p_1='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT [x.Comments].[id], [x.Comments].[content], [x.Comments].[createDate], [x.Comments].[productId], [x.Comments].[status], [x.Comments].[userId]
+FROM [comment] AS [x.Comments]
+INNER JOIN (
+    SELECT DISTINCT [t].*
+    FROM (
+        SELECT [x0].[id], [x0].[categoryId]
+        FROM [product] AS [x0]
+        LEFT JOIN [category] AS [x.category0] ON [x0].[categoryId] = [x.category0].[id]
+        WHERE [x0].[status] = 1
+        ORDER BY [x0].[categoryId], [x0].[id]
+        OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+    ) AS [t]
+) AS [t0] ON [x.Comments].[productId] = [t0].[id]
+ORDER BY [t0].[categoryId], [t0].[id]" (0723d8ff)
+2019-12-05T14:49:59.0922427+07:00 0HLRPAU493523:00000005 [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [cate].[id], [cate].[name], [cate].[status]
+FROM [category] AS [cate]
+ORDER BY [cate].[id]" (0723d8ff)
+2019-12-05T14:49:59.1025003+07:00 0HLRPAU493523:00000005 [INF] Executed DbCommand ("4"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [cate.Products].[id], [cate.Products].[categoryId], [cate.Products].[color], [cate.Products].[description], [cate.Products].[image], [cate.Products].[name], [cate.Products].[price], [cate.Products].[size], [cate.Products].[status]
+FROM [product] AS [cate.Products]
+INNER JOIN (
+    SELECT [cate0].[id]
+    FROM [category] AS [cate0]
+) AS [t] ON [cate.Products].[categoryId] = [t].[id]
+ORDER BY [t].[id]" (0723d8ff)
+2019-12-05T14:49:59.1321418+07:00 0HLRPAU493523:00000005 [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [product] AS [x]
+WHERE [x].[status] = 1" (0723d8ff)
+2019-12-05T14:49:59.2995440+07:00 0HLRPAU493523:00000005 [INF] Executing ViewResult, running view at path "/Views/Product/Index.cshtml". (9707eebe)
+2019-12-05T14:49:59.5130343+07:00 0HLRPAU493523:00000005 [INF] Executed action "ShopMartWebsite.Controllers.ProductController.Index (ShopMartWebsite)" in 534.4813ms (afa2e885)
+2019-12-05T14:49:59.5189604+07:00 0HLRPAU493523:00000005 [INF] Request finished in 555.0617ms 200 text/html; charset=utf-8 (791a596a)

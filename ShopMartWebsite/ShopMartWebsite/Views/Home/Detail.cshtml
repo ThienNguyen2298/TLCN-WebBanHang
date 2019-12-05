@@ -61,27 +61,40 @@
                         </div>
                         <hr />
                         <div class="product-variation">
-                            <form action="#">
-                                <div class="cart-plus-minus">
-                                    <label>Số lượng: </label>
+                            <form>
+                                <label>Số lượng: </label>
+                                <div class="cart-plus-minus" >
+
                                     <div class="numbers-row">
-                                        <div class="minus">
+                                        <div class="minus" data-id="@Model.id">
                                             <i class="fas fa-minus"></i>
                                         </div>
-                                        <input type="text" value="1">
+                                        <input type="text" id="quantity" value="1">
                                         <div class="plus">
-                                            <i class="fas fa-plus"></i>
+                                            <i class="fas fa-plus" data-id="@Model.id"></i>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="btn-add-cart">
-                                    <button>
+                                    <a id="addCartBtn" style="border: 1px solid green;" data-id="@Model.id" data-name="@Model.name"
+                                       data-description="@Model.description" data-image="@Model.image" data-category="@Model.category.name"
+                                       data-color="@Model.color" data-size="@Model.size" data-price="@Model.price">
                                         <span>
                                             <i class="fas fa-shopping-basket"> Thêm giỏ hàng</i>
                                         </span>
-                                    </button>
+                                    </a>
+
+
+                                </div>
+                                <div class="btn-add-cart">
+                                    <a href="@Url.Action("Cart","Home")" style="border: 1px solid green; background-color:darkgreen;">
+                                        <span>
+                                            <i class="fas fa-shopping-basket"> Xem giỏ hàng</i>
+                                        </span>
+                                    </a>
                                 </div>
                             </form>
+                            
                         </div>
                     </div>
                 </div>
@@ -93,8 +106,10 @@
         <h3 style="margin: 20px;">Các đánh giá</h3>
         <div class="comment-box" style="width: 60%;  margin: 20px;">
             <form class="comment-form" asp-action="Comment" asp-controller="Home">
-                <input name="user" type="hidden" value="@await userManager.FindByNameAsync(User.Identity.Name)"/>
-                <input name="productId" type="hidden" value="@Model.id"/>
+                @*
+        <input name="user" type="hidden" value="@await userManager.FindByNameAsync(User.Identity.Name)"/>
+                *@
+                <input name="productId" type="hidden" value="@Model.id" />
                 <textarea name="content" class="form-control"></textarea>
                 <button class="btn btn-primary" style="margin-top: 3px;" type="submit">bình luận</button>
             </form>
@@ -102,6 +117,8 @@
         <!-- comment-->
         @foreach (var cmt in Model.Comments)
         {
+            @if (cmt.status == true)
+            {
             <div class="comment" style="width: 60%; margin: 20px;">
                 <div class="title-comment" style="display: flex; ">
                     <div style="background: #f1f1f1;width: 30px; height: 30px; border: 1px solid #f1f1f1; text-align: center; margin-right: 20px;">
@@ -113,13 +130,16 @@
                     <h6 style="margin: 5px;">@cmt.content</h6>
                 </div>
                 <div style="">
-                    &nbsp;<a role="button" aria-expanded="false" data-toggle="collapse" href="#collapseExample" aria-controls="collapseExample">Trả lời</a>
+                    &nbsp;<a role="button" aria-expanded="false" data-toggle="collapse" href="#collapseExample@(cmt.id)" aria-controls="collapseExample">Trả lời</a>
                     <span> - @cmt.createDate</span>
                 </div>
-                <div id="collapseExample" class="collapse">
+                <div id="collapseExample@(cmt.id)" class="collapse">
                     <div style="display: flex; justify-content: flex-end;">
                         <div style="display: flex; justify-content:flex-end;flex-direction: column; width: 80%;">
-                            @foreach (var rp in cmt.Replies) {
+                            @foreach (var rp in cmt.Replies)
+                            {
+                                @if (rp.status == true)
+                                {
                                 <!--Reply-->
                                 <div style=" width: 100%;">
                                     <div class="title-comment" style="display: flex; ">
@@ -138,10 +158,13 @@
                                     </div>
                                 </div>
                                 <!--Box Reply-->
-                            }
+                                    }
+                                }
                             <div class="reply-box" style=" width: 100%;">
-                                <form class="comment-form">
-                                    <textarea class="form-control"></textarea>
+                                <form class="comment-form" asp-action="Reply" asp-controller="Home">
+                                    <input name="productId" type="hidden" value="@Model.id" />
+                                    <input name="commentId" type="hidden" value="@cmt.id" />
+                                    <textarea name="content" class="form-control"></textarea>
                                     <button class="btn btn-primary" style="margin-top: 3px;" type="submit">trả lời</button>
                                 </form>
                             </div>
@@ -150,7 +173,97 @@
                 </div>
             </div>
             <!-- x comment x-->
-        }
+                }
+            }
     </div>
 </main>
+<script>
+    const quantityContent = document.querySelector('.numbers-row');
+    class UI {
+        AddCartLogic() {
+            
+            quantityContent.addEventListener('click', event => {
+                console.log(event);
+                
+                //nút tăng giảm.
+                if (event.target.classList.contains('fa-plus')) {
+                    let addAmount = event.target;
+                    console.log("tang", addAmount);
+                    //let id = addAmount.dataset.id;
+                    //console.log("id", id);
+                    var quantity = $('#quantity').val();
+                    quantity++;
+                    $('#quantity').val(quantity);
+                    
+                    /*let tempItem = cart.find(item => item.id === id)
+                    tempItem.quantity += 1;
+                    console.log("Hang", tempItem)
+                    Storage.saveCart(cart);
+                    this.setCartValues(cart);
+                    addAmount.previousElementSibling.innerText = tempItem.quantity;*/
+                }
+                else if (event.target.classList.contains('fa-minus')) {
+                    let lowerAmount = event.target;
+                    var quantity = $('#quantity').val();
+                    
+                    if (quantity > 1) {
+                        quantity--;
+                        $('#quantity').val(quantity);
+                    }
+                    else {
+                        
+                    }
+                }
+            });
+        }
+    }
+    document.addEventListener('DOMContentLoaded', () => {
+        const ui = new UI();
+        ui.AddCartLogic();
+    });
+    //handle add cart
+    var lstItem = [];
+    if (window.localStorage)
+        lstItem = JSON.parse(window.localStorage.getItem("carts"));
+    if (!lstItem)
+        lstItem = [];
+    console.log("giohangton truoc", lstItem);
+    $("#addCartBtn").click(function () {
+        var exist = false;
+        var productId = $(this).attr("data-id");
+        console.log("ID product", productId);
+        for (i in lstItem) {
+            
+            if (lstItem[i].id == productId) { lstItem[i].quantity = parseInt(lstItem[i].quantity) + parseInt($('#quantity').val()); exist = true; }
+        }
+        console.log("giohangton sau", lstItem);
+        //trong localstorage chưa mua.
+        if (exist == false) {
+            var productId = $(this).attr("data-id");
+            var name = $(this).attr("data-name");
+            var image = $(this).attr("data-image");
+            var description = $(this).attr("data-description");
+            var category = $(this).attr("data-category");
+            var color = $(this).attr("data-color");
+            var size = $(this).attr("data-size");
+            var price = $(this).attr("data-price");
+            var quantity = $('#quantity').val();
+            var item = {
+                id: productId, name: name, image: image, description: description, category: category, color: color,
+                size: size, price: price, quantity: quantity
+            }
+            console.log("Item", item);
+            lstItem.push(item);
+            window.localStorage.setItem("carts", JSON.stringify(lstItem));
+            alert("Đã thêm giỏ hàng!!!");
+            
+        }
+        else {
+            
+            window.localStorage.setItem("carts", JSON.stringify(lstItem));
+            alert("Đã thêm giỏ hàng!!!");
+            
+        }
+    })
+</script>
 

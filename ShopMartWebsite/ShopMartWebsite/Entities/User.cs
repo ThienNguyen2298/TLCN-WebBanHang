@@ -14,6 +14,7 @@ namespace ShopMartWebsite.Entities
         public string displayname { get; set; }
         public string address { get; set; }
         public string phone { get; set; }
+        public bool status { get; set; }
         public bool gender { get; set; }
         public DateTime birthDay { get; set; }
         
