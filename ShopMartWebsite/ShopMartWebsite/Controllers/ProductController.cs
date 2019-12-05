@@ -68,7 +68,7 @@ namespace ShopMartWebsite.Controllers
             var pic = HttpContext.Request.Form.Files;
             JsonResult json;
             var result = false;
-            
+            string type = "";
             if (model.id > 0)//we are trying to edit a record
             {
                 var product = _productRepository.GetProductById(model.id);
@@ -80,10 +80,11 @@ namespace ShopMartWebsite.Controllers
                 product.color = model.color;
                 product.description = model.description;
                 product.image = model.pictureIDs;
-                product.status = model.status;
+                product.status = true;
 
 
                  result = _productRepository.UpdateProduct(product);
+                type = "edit";
             }
             else    //we are trying to create a record
             {
@@ -95,18 +96,19 @@ namespace ShopMartWebsite.Controllers
                 product.color = model.color;
                 product.description = model.description;
                 product.image = model.pictureIDs;
-                product.status = model.status;
+                product.status = true;
 
                 result = _productRepository.SaveProduct(product);
+                type = "create";
             }
 
             if (result)
             {
-                json = new JsonResult(new { Success = true });
+                json = new JsonResult(new { Success = true, Type=type });
             }
             else
             {
-                json = new JsonResult(new { Success = false, Message = "Không thể tạo sản phẩm này!!!" });
+                json = new JsonResult(new { Success = false, Type=type });
                 
             }
             return json;
@@ -123,12 +125,13 @@ namespace ShopMartWebsite.Controllers
         {
             JsonResult json;
             var result = false;
-
-            result =_productRepository.DeleteProduct(model.id);
+            var product = _productRepository.GetProductById(model.id);
+            product.status = false;
+            result =_productRepository.DeleteProduct(product);
 
             if (result)
             {
-                json = new JsonResult(new { Success = true });
+                json = new JsonResult(new { Success = true, Message = "Xóa sản phẩm thành công!!!" });
                 
             }
             else

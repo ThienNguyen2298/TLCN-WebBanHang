@@ -31,10 +31,16 @@ namespace ShopMartWebsite.Controllers
             _userRepository = userRepository;
         }
         [HttpGet]
-        public IActionResult Login(string messages)
+        public IActionResult Login(string messages, int? productId)
         {
             ViewData["notify"] = messages;
             var model = new RegisterViewModel();
+            if (productId.HasValue)
+            {
+                model.productId = productId.Value;
+            }
+            else
+                model.productId = null;
             return View(model);
         }
         [HttpPost]
@@ -51,7 +57,12 @@ namespace ShopMartWebsite.Controllers
                     var result = await _signInManager.PasswordSignInAsync(model.UserName, model.PasswordLogin, false, lockoutOnFailure: false);
                     if (result.Succeeded)
                     {
-                        return RedirectToAction("Index", "Home");
+                        if(model.productId.HasValue)
+                        {
+                            return RedirectToAction("Detail", "Home", new { productId = model.productId });
+                        }
+                        else
+                            return RedirectToAction("Index", "Home");
                     }
 
                     if (result.IsLockedOut)
@@ -141,8 +152,8 @@ namespace ShopMartWebsite.Controllers
             }
             else
             {
-                string messages = "Tài khoản đã đăng ký";
-                return RedirectToAction("Login", "Account", messages);
+                ViewData["notify"] = "Tài khoản đã đăng ký";
+                return View("Notify");
             }
             return Ok();
         }

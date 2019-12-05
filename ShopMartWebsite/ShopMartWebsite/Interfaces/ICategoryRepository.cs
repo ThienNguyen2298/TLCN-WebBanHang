@@ -12,7 +12,7 @@ namespace ShopMartWebsite.Interfaces
         Category GetCategoryById(int id);
         bool SaveCategory(Category product);
         bool UpdateCategory(Category product);
-        bool DeleteCategory(int id);
+        bool DeleteCategory(Category category);
         IEnumerable<Category> GetAllCategory();
         IEnumerable<Category> SearchCategories(string searchTerm, int page, int recordSize);
         int SearchCategoriesCount(string searchterm);

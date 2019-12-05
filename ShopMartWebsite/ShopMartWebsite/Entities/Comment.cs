@@ -14,6 +14,7 @@ namespace ShopMartWebsite.Entities
         }
         public int id { get; set; }
         public string content { get; set; }
+        public bool status { get; set; }
         public DateTime createDate { get; set; }
         //foreign key
         public int productId { get; set; }

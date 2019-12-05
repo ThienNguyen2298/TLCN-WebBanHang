@@ -19,6 +19,7 @@ namespace ShopMartWebsite.Entities
         public int id { get; set; }
         [Required]
         public string name { get; set; }
+        public bool status { get; set; }
        
         
         public virtual ICollection<Product> Products { get; set; }

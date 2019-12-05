@@ -11,6 +11,6 @@ namespace ShopMartWebsite.Interfaces
         IEnumerable<Comment> GetAllCommentByProductId(int productId);
         bool SaveComment(Comment cmt);
         bool UpdateComment(Comment cmt);
-        bool DeleteComment(int Id);
+        bool DeleteComment(Comment cmt);
     }
 }

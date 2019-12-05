@@ -18,7 +18,9 @@ namespace ShopMartWebsite.Services
             _ctx = ctx;
         }
 
-        public bool DeleteComment(int Id)
+        
+
+        public bool DeleteComment(Comment cmt)
         {
             throw new NotImplementedException();
         }

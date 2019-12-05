@@ -71,13 +71,7 @@
                     <label>Giá sản phẩm</label>
                     <input class="form-control" name="price" placeholder="giá..." value="@Model.price">
                 </div>
-                <div class="form-group col-md-6">
-                    <label>Trạng thái</label>
-                    <select class="form-control" name="status">
-                        <option value="true">Hiển thị</option>
-                        <option value="false">Ẩn</option>
-                    </select>
-                </div>
+                
 
                 <div class="form-group col-md-12">
                     <label>Mô tả sản phẩm</label>
@@ -135,20 +129,72 @@
         });
         $('#pictureIDs').val(pictureIDs.join());
         
-        debugger;
+        
         $.ajax({
             url: '@Url.Action("Action","Product")',
             type: 'post',
-            data: $('#actionForm').serialize()
-        }).done(function (response) {
-            if (response.Success) {
-                //data is saved .... reload listing
+            data: $('#actionForm').serialize(),
+            /*success: function (res) {
+                debugger;
+                
                 location.reload();
-            }
-            else {
-                $('.errorDiv').html(response.Massage);
-            }
-        });
+                
+            },
+            error: function (err) {
+                debugger;
+                console.log(err);
+            }*/
+        })
+       
+            .done(function (response) {
+                if (response.Success) {
+                    if (response.Type == "edit") {
+                        swal({
+                            title: "Chúc mừng!!!",
+                            text: "Cập nhập Sản phẩm thành công!",
+                            icon: "success",
+                            buttons: "OK"
+
+                        })
+                            .then((willDelete) => {
+                                location.reload();
+                            });
+                    }
+                    else {
+                        swal({
+                            title: "Chúc mừng!!!",
+                            text: "Thêm Sản phẩm thành công!",
+                            icon: "success",
+                            buttons: "OK"
+
+                        })
+                            .then((willDelete) => {
+                                location.reload();
+                            });
+                    }
+
+                }
+                else {
+                    if (response.Type == "create") {
+                        swal({
+                            title: "Cảnh báo!!!",
+                            text: "Xin vui lòng điền tên Sản phẩm!",
+                            icon: "warning",
+                            buttons: "OK"
+                        })
+                    }
+                    else {
+                        swal({
+                            title: "Cảnh báo!!!",
+                            text: "Cập nhập Sản phẩm thất bại!",
+                            icon: "warning",
+                            buttons: "OK"
+                        })
+                    }
+
+                }
+            });
+        
     });
     //upload listen change file
     

@@ -38,7 +38,7 @@ namespace ShopMartWebsite.Controllers
                 var category = _categoryRepository.GetCategoryById(ID.Value);
                 model.Id = category.id;
                 model.Name = category.name;
-                
+            
                 model.Products = category.Products;
             }
             // Create
@@ -51,6 +51,7 @@ namespace ShopMartWebsite.Controllers
         {
             JsonResult json;
             var result = false;
+            string type = "";
             if (model.Id > 0)//we are trying to edit a record
             {
                 var category = _categoryRepository.GetCategoryById(model.Id);
@@ -62,26 +63,29 @@ namespace ShopMartWebsite.Controllers
 
 
                 result = _categoryRepository.UpdateCategory(category);
+                type = "edit";
+                
             }
             else    //we are trying to create a record
             {
                 var category = new Category();
                 category.name = model.Name;
-               
-                //accomodationPackage.AccomodationType = accomodationTypesService.GetAccomodationTypeByID(model.AccomodationTypeID);
-                
+                category.status = true;
 
+
+                
                 result = _categoryRepository.SaveCategory(category);
+                type = "create";
             }
 
             if (result)
             {
-                json = new JsonResult(new { Success = true });
+                json = new JsonResult(new { Success = true, Type = type });
                 
             }
             else
             {
-                json = new JsonResult(new { Success = false, Message = "Thêm danh mục thất bại" });
+                json = new JsonResult(new { Success = false, Type = type });
                 
             }
 
@@ -100,8 +104,10 @@ namespace ShopMartWebsite.Controllers
         {
             JsonResult json;
             var result = false;
-
-            result = _categoryRepository.DeleteCategory(model.Id);
+            var category = _categoryRepository.GetCategoryById(model.Id);
+            //xóa logic
+            category.status = false;
+            result = _categoryRepository.DeleteCategory(category);
 
             if (result)
             {

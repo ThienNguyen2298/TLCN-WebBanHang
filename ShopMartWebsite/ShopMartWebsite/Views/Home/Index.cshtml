@@ -48,9 +48,9 @@
             <!--<li class="nav-item border rounded-circle mx-2 basket-icon">
                 <i class="fas fa-shopping-basket p-2"></i>
             </li>-->
-            @if (User.Identity.IsAuthenticated && User.IsInRole("User"))
+            @if (!User.IsInRole("Admin"))
             {
-                <a class="cart-btn" href="./cart.html">
+                <a class="cart-btn" href="@Url.Action("Cart","Home")">
 
                     <span class="nav-icon">
                         <i class="fas fa-cart-plus"></i>
@@ -60,7 +60,7 @@
             }
             else
             {
-                <a class="cart-btn disabledd" href="./cart.html">
+                <a class="cart-btn disabledd" href="#">
 
                     <span class="nav-icon">
                         <i class="fas fa-cart-plus"></i>
@@ -117,11 +117,15 @@
                 {
                     <article class="product">
                         <div class="img-container">
-                            <img src="~/images/site/@item.image" alt="product" class="product-img">
-                            <button class="bag-btn" data-id=>
+                            <img src="~/images/site/@item.image" style="max-height: 275px" alt="product" class="product-img">
+                            @if (! User.IsInRole("Admin")) {
+                            <button class="bag-btn" data-id="@item.id" data-name="@item.name" data-image="@item.image" 
+                                    data-description="@item.description" data-category="@item.category.name" data-price="@item.price"
+                                    data-color="@item.color" data-size="@item.size">
                                 <i class="fas fa-shopping-cart"></i>
                                 thêm giỏ hàng
                             </button>
+                            }
                         </div>
                         <a asp-controller="Home" asp-action="Detail" asp-route-productID="@item.id"><h3>@item.name</h3></a>
                         <h6>@item.price VNĐ</h6>
@@ -187,3 +191,53 @@
     </section>
     <!-----x-----Products-----x----->
 </main>
+<script>
+    var lstItem = [];
+    const cartItems = document.querySelector('.cart-items');
+    if (window.localStorage)
+        lstItem = JSON.parse(window.localStorage.getItem("carts"));
+    if (!lstItem)
+        lstItem = [];
+    console.log("giohangton truoc", lstItem);
+    $(".bag-btn").click(function () {
+        var exist = false;
+        var productId = $(this).attr("data-id");
+        for (i in lstItem) {
+            if (lstItem[i].id == productId) { lstItem[i].quantity += 1; exist = true; }
+        }
+        console.log("giohangton sau", lstItem);
+        if (exist == false) {
+            var productId = $(this).attr("data-id");
+            var name = $(this).attr("data-name");
+            var image = $(this).attr("data-image");
+            var description = $(this).attr("data-description");
+            var category = $(this).attr("data-category");
+            var color = $(this).attr("data-color");
+            var size = $(this).attr("data-size");
+            var price = $(this).attr("data-price");
+            var item = {
+                id: productId, name: name, image: image, description: description, category: category, color: color,
+                size: size, price: price, quantity: 1
+            }
+
+            lstItem.push(item);
+            let itemsTotal = 0;
+            lstItem.map(item => {
+                itemsTotal += item.quantity;
+            });
+            cartItems.innerText = itemsTotal;
+            window.localStorage.setItem("carts", JSON.stringify(lstItem));
+            alert("đã thêm vào giỏ hàng!!!");
+        }
+        else {
+            let itemsTotal = 0;
+            lstItem.map(item => {
+                itemsTotal += item.quantity;
+            });
+            cartItems.innerText = itemsTotal;
+            window.localStorage.setItem("carts", JSON.stringify(lstItem));
+            alert("đã thêm vào giỏ hàng!!!");
+        }
+        
+    });
+</script>

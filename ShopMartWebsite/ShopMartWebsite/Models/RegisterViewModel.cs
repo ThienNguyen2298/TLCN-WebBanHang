@@ -26,5 +26,7 @@ namespace ShopMartWebsite.Models
         [Required]
         [DataType(DataType.Password)]
         public string PasswordLogin { get; set; }
+        //dang nhap tro lai trang detail
+        public int? productId { get; set; }
     }
 }

@@ -128,15 +128,14 @@
     justify-items: end;
 }
 
-.product-variation form .btn-add-cart button{
-    margin-top: 22px;
-    margin-left: 30px;
-    height: 40px;
-    color: var(--white);
-    background-color: #e83f33;
-    border: 1px solid #e83f33;
-    border-radius: 3px;
-}
-.product-variation form .btn-add-cart button span{
+    .product-variation form .btn-add-cart a {
+        margin-left: 30px;
+        padding: 10px;
+        color: var(--white);
+        background-color: #e83f33;
+        border: 1px solid #e83f33;
+        border-radius: 3px;
+    }
+.product-variation form .btn-add-cart a span{
     padding: 2rem;
 }

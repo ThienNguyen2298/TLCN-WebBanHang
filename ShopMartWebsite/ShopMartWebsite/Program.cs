@@ -19,8 +19,8 @@ namespace ShopMartWebsite
         public static void Main(string[] args)
         {
             CreateWebHostBuilder(args).Build().Run();
-            /*
-            var host = BuildWebHost(args).Build();
+            
+            /*var host = BuildWebHost(args).Build();
             try
             {
                 var scope = host.Services.CreateScope();
@@ -41,7 +41,7 @@ namespace ShopMartWebsite
                         UserName = "admin",
                         Email = "admin@gmail.com"
                     };
-                    var resule = userMnr.CreateAsync(adminUser, "P@ssw0rd").GetAwaiter().GetResult();
+                    var resule = userMnr.CreateAsync(adminUser, "password").GetAwaiter().GetResult();
                     userMnr.AddToRoleAsync(adminUser, adminRole.Name).GetAwaiter().GetResult();
                 }
             }
