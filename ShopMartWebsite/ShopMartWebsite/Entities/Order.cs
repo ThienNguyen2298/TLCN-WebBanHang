@@ -14,6 +14,7 @@ namespace ShopMartWebsite.Entities
         }
         public int id { get; set; }
         public bool status { get; set; }
+        public bool confirm { get; set; }
         public decimal total { get; set; }
         public string address { get; set; }
         //đối vs guest

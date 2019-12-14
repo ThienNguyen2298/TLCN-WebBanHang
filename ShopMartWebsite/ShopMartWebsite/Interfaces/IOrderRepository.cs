@@ -10,11 +10,14 @@ namespace ShopMartWebsite.Interfaces
     {
         Order GetOrderById(int id);
         IEnumerable<Order> SearchOrders(string searchTerm, DateTime? searchDate, int page, int recordSize);
-        
+
         //bool UpdateProduct(Product product);
         bool DeleteOrder(Order order);
         IEnumerable<Order> GetAllOrder();
         int SearchOrdersCount(string searchTerm, DateTime? searchDate);
         bool SaveOrder(Order order);
+        IEnumerable<Object> RevenueStatistical(DateTime date);
+        IEnumerable<Order>  SearchOrdersNotConfirm(string searchTerm, DateTime? searchDate, int page, int recordSize);
+        int SearchOrdersCountNotConfirm(string searchTerm, DateTime? searchDate);
     }
 }

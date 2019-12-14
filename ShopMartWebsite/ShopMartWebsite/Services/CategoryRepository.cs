@@ -38,7 +38,7 @@ namespace ShopMartWebsite.Services
 
         public IEnumerable<Category> GetAllCategory()
         {
-            return _ctx.categories.Include(cate => cate.Products).ToList();
+            return _ctx.categories.Include(cate => cate.Products);
         }
 
         public Category GetCategoryById(int id)

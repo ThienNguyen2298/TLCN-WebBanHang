@@ -18,16 +18,20 @@
                 <div class="product-detail-right">
                     <div class="wrap-right">
                         <div class="product-name">
-                            <h1>@Model.name</h1>
+                            <h3>@Model.name</h3>
                         </div>
                         <hr />
                         <div class="price-box">
-                            <h3>Giá</h3>
+                            <h5>Giá:</h5>
                             <p class="special-price">@Model.price VNĐ</p>
+                            <hr />
+                            <h5>Số lượng còn: </h5>
+                            <span class="special-price">@Model.amount sản phẩm</span>
+                            <input type="hidden" id="amount" value="@Model.amount">
                         </div>
                         <hr />
                         <div class="description">
-                            <h2>Mô tả</h2>
+                            <h5>Mô tả:</h5>
                             <p>
                                 @Model.description
                             </p>
@@ -35,25 +39,34 @@
                         <hr />
                         <div class="color-size">
                             <div class="color-area">
-                                <h5>Màu sắc</h5>
+                                <h5>Màu sắc:</h5>
                                 <div class="color">
-                                    <ul>
-                                        <li class="black"><a href="#"></a></li>
-                                        <li class="red"><a href="#"></a></li>
-                                        <li class="orange"><a href="#"></a></li>
-                                        <li class="green"><a href="#"></a></li>
-                                        <li class="blue"><a href="#"></a></li>
-                                    </ul>
+                                    @if (Model.color != null)
+                                    {
+                                        <ul>
+                                            <li style="background-color: @(Model.color)"><a href="#"></a></li>
+                                            
+                                        </ul>
+                                    }
+                                    
                                 </div>
                             </div>
                             <div class="size-area">
-                                <h5>Size</h5>
+                                <h5>Size:</h5>
                                 <div class="size">
                                     <ul>
-                                        <li><a href="#">S</a></li>
-                                        <li><a href="#">L</a></li>
-                                        <li><a href="#">M</a></li>
-                                        <li><a href="#">XL</a></li>
+                                        @if (Model.size != null)
+                                        {
+                                            <li><a href="#">@Model.size</a></li>
+                                        }
+                                        else
+                                        {
+                                            <span>Không</span>
+                                        }
+                                        @*                             <li><a href="#">S</a></li>
+        <li><a href="#">L</a></li>
+        <li><a href="#">M</a></li>
+        <li><a href="#">XL</a></li>*@
 
                                     </ul>
                                 </div>
@@ -78,7 +91,7 @@
                                 <div class="btn-add-cart">
                                     <a id="addCartBtn" style="border: 1px solid green;" data-id="@Model.id" data-name="@Model.name"
                                        data-description="@Model.description" data-image="@Model.image" data-category="@Model.category.name"
-                                       data-color="@Model.color" data-size="@Model.size" data-price="@Model.price">
+                                       data-color="@Model.color" data-size="@Model.size" data-price="@Model.price" data-amount="@Model.amount">
                                         <span>
                                             <i class="fas fa-shopping-basket"> Thêm giỏ hàng</i>
                                         </span>
@@ -192,7 +205,14 @@
                     //let id = addAmount.dataset.id;
                     //console.log("id", id);
                     var quantity = $('#quantity').val();
+                    var amount = $('#amount').val();
                     quantity++;
+                    console.log(amount);
+                    if (quantity > amount) {
+                        quantity = amount;
+                        alert("trong kho chỉ còn lại " + amount + " sản phẩm");
+                    }
+                        
                     $('#quantity').val(quantity);
                     
                     /*let tempItem = cart.find(item => item.id === id)
@@ -229,16 +249,40 @@
         lstItem = [];
     console.log("giohangton truoc", lstItem);
     $("#addCartBtn").click(function () {
-        var exist = false;
+        var exist = 1;
         var productId = $(this).attr("data-id");
+        var quan = $('#quantity').val();
         console.log("ID product", productId);
+        console.log("amount", quan);
         for (i in lstItem) {
-            
-            if (lstItem[i].id == productId) { lstItem[i].quantity = parseInt(lstItem[i].quantity) + parseInt($('#quantity').val()); exist = true; }
+
+            if (lstItem[i].id == productId && lstItem[i].quantity <= lstItem[i].amount)
+            {
+                console.log("quan trong detail ", quan);
+                console.log("quan trong gio hang", lstItem[i].quantity);
+                console.log("amount ", lstItem[i].amount);
+                console.log("cong", (parseInt(quan) + parseInt(lstItem[i].quantity)));
+                if ((parseInt(quan) + parseInt(lstItem[i].quantity)) > lstItem[i].amount) {
+                    
+                    alert("Sản phẩm còn " + (lstItem[i].amount - lstItem[i].quantity));
+                    exist = 4;
+                }
+                else {
+                    
+                    lstItem[i].quantity = parseInt(lstItem[i].quantity) + parseInt($('#quantity').val()); exist = 2;
+                }
+                
+            }
+            else if (lstItem[i].id == productId && lstItem[i].quantity >= lstItem[i].amount) {
+                exist = 3;
+                
+                alert("sản phẩm chỉ còn lại " + (lstItem[i].amount)+ " sản phẩm! bạn vui lòng kiểm tra lại giỏ hàng!");
+            }
         }
         console.log("giohangton sau", lstItem);
         //trong localstorage chưa mua.
-        if (exist == false) {
+        console.log("exist", exist);
+        if (exist == 1) {
             var productId = $(this).attr("data-id");
             var name = $(this).attr("data-name");
             var image = $(this).attr("data-image");
@@ -248,9 +292,10 @@
             var size = $(this).attr("data-size");
             var price = $(this).attr("data-price");
             var quantity = $('#quantity').val();
+            var amount = $(this).attr("data-amount");
             var item = {
                 id: productId, name: name, image: image, description: description, category: category, color: color,
-                size: size, price: price, quantity: quantity
+                size: size, price: price, quantity: quantity, amount: amount
             }
             console.log("Item", item);
             lstItem.push(item);
@@ -258,7 +303,7 @@
             alert("Đã thêm giỏ hàng!!!");
             
         }
-        else {
+        else if (exist==2) {
             
             window.localStorage.setItem("carts", JSON.stringify(lstItem));
             alert("Đã thêm giỏ hàng!!!");

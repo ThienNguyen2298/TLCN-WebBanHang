@@ -110,21 +110,24 @@
         </div>
         @if (Model.Products != null)
         {
-            <div class="products-center">
-                <!-- single product -->
+        <div class="products-center">
+            <!-- single product -->
 
-                @foreach (var item in Model.Products)
+            @foreach (var item in Model.Products)
+            {
+                @if (item.amount > 0)
                 {
                     <article class="product">
                         <div class="img-container">
                             <img src="~/images/site/@item.image" style="max-height: 275px" alt="product" class="product-img">
-                            @if (! User.IsInRole("Admin")) {
-                            <button class="bag-btn" data-id="@item.id" data-name="@item.name" data-image="@item.image" 
-                                    data-description="@item.description" data-category="@item.category.name" data-price="@item.price"
-                                    data-color="@item.color" data-size="@item.size">
-                                <i class="fas fa-shopping-cart"></i>
-                                thêm giỏ hàng
-                            </button>
+                            @if (!User.IsInRole("Admin"))
+                            {
+                                <button class="bag-btn" data-id="@item.id" data-name="@item.name" data-image="@item.image"
+                                        data-description="@item.description" data-category="@item.category.name" data-price="@item.price"
+                                        data-color="@item.color" data-size="@item.size" data-amount="@item.amount">
+                                    <i class="fas fa-shopping-cart"></i>
+                                    thêm giỏ hàng
+                                </button>
                             }
                         </div>
                         <a asp-controller="Home" asp-action="Detail" asp-route-productID="@item.id"><h3>@item.name</h3></a>
@@ -132,8 +135,10 @@
                     </article>
                 }
 
-                <!--x single product x-->
-            </div>
+            }
+
+            <!--x single product x-->
+        </div>
             <!-- pager - sử dụng bootstrap - pagination -->
             if (Model.Pager.EndPage > 1)
             {
@@ -200,13 +205,21 @@
         lstItem = [];
     console.log("giohangton truoc", lstItem);
     $(".bag-btn").click(function () {
-        var exist = false;
+        var exist = 1;
         var productId = $(this).attr("data-id");
         for (i in lstItem) {
-            if (lstItem[i].id == productId) { lstItem[i].quantity += 1; exist = true; }
+            if (lstItem[i].id == productId && lstItem[i].quantity < lstItem[i].amount) {
+                lstItem[i].quantity = parseInt(lstItem[i].quantity) + 1;
+                exist = 2;
+            }
+            else if (lstItem[i].id == productId && lstItem[i].quantity >= lstItem[i].amount){
+                exist = 3;
+                alert("sản phẩm chỉ còn lại " + lstItem[i].amount + " sản phẩm");
+            }
         }
         console.log("giohangton sau", lstItem);
-        if (exist == false) {
+        console.log("exist", exist);
+        if (exist == 1) {
             var productId = $(this).attr("data-id");
             var name = $(this).attr("data-name");
             var image = $(this).attr("data-image");
@@ -215,28 +228,35 @@
             var color = $(this).attr("data-color");
             var size = $(this).attr("data-size");
             var price = $(this).attr("data-price");
+            var amount = $(this).attr("data-amount");
             var item = {
                 id: productId, name: name, image: image, description: description, category: category, color: color,
-                size: size, price: price, quantity: 1
+                size: size, price: price, quantity: 1, amount: amount
             }
 
             lstItem.push(item);
             let itemsTotal = 0;
             lstItem.map(item => {
-                itemsTotal += item.quantity;
+                itemsTotal = itemsTotal + parseInt(item.quantity);
             });
             cartItems.innerText = itemsTotal;
             window.localStorage.setItem("carts", JSON.stringify(lstItem));
             alert("đã thêm vào giỏ hàng!!!");
         }
-        else {
+        else if (exist == 2) {
             let itemsTotal = 0;
+            //console.log("ban đầu" + itemsTotal + "giohang", lstItem);
             lstItem.map(item => {
-                itemsTotal += item.quantity;
+                console.log("quantity", item.quantity)
+                itemsTotal = parseInt(itemsTotal) + parseInt(item.quantity);
             });
+            //console.log(itemsTotal);
             cartItems.innerText = itemsTotal;
             window.localStorage.setItem("carts", JSON.stringify(lstItem));
             alert("đã thêm vào giỏ hàng!!!");
+        }
+        else {
+
         }
         
     });

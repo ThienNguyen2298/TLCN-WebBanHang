@@ -67,5 +67,48 @@ namespace ShopMartWebsite.Controllers
 
             return json;
         }
+        public IActionResult OrderNotConfirm(string searchTerm, DateTime? searchDate, int? page)
+        {
+            int recordSize = 4;
+            page = page ?? 1;
+            var model = new OrderListViewModel();
+            model.searchDate = searchDate;
+            model.Orders = _orderRepository.SearchOrdersNotConfirm(searchTerm, searchDate, page.Value, recordSize);
+            //tong so cot
+            int totalRecords = _orderRepository.SearchOrdersCountNotConfirm(searchTerm, searchDate);
+            model.Pager = new Pager(totalRecords, page, recordSize);
+           
+            return View(model);
+        }
+        public IActionResult ConfirmOrder(int ID)
+        {
+            var model = new OrderViewModel();
+            var order = _orderRepository.GetOrderById(ID);
+            model.id = order.id;
+            return PartialView("_ConfirmOrder", model);
+        }
+        [HttpPost]
+        public IActionResult ConfirmOrder(OrderViewModel model)
+        {
+            JsonResult json;
+            var result = false;
+            var order = _orderRepository.GetOrderById(model.id);
+            //xóa logic
+            order.confirm = true;
+            result = _orderRepository.DeleteOrder(order);
+
+            if (result)
+            {
+                json = new JsonResult(new { Success = true });
+
+            }
+            else
+            {
+                json = new JsonResult(new { Success = false, Message = "Đơn hàng duyệt không thành công!!!" });
+            }
+
+            return json;
+            
+        }
     }
 }

@@ -1,0 +1,75 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+<script type="text/javascript">
+
+    google.charts.load('current', {
+        packages: ['corechart', 'bar']
+    });
+    google.charts.setOnLoadCallback(LoadData);
+
+    function LoadData() {
+        $.ajax({
+
+            url: 'Chart/ColumnChart',
+            dataType: "json",
+            type: "GET",
+            error: function (xhr, status, error) {
+                var err = eval("(" + xhr.responseText + ")");
+                toastr.error(err.message);
+            },
+            success: function (data) {
+                PopulationChart(data);
+                return false;
+            }
+        });
+        return false;
+    }
+
+    function PopulationChart(data) {
+        var dataArray = [
+            ['Ngày', 'Số Đơn Hàng', 'Tổng doanh thu']
+        ];
+        $.each(data, function (i, item) {
+            dataArray.push([item.Day, item.Count, item.Total]);
+        });
+        var data = google.visualization.arrayToDataTable(dataArray);
+        var options = {
+            title: 'Biểu đồ doanh thu và số đơn hàng ',
+            chartArea: {
+                width: '50%'
+            },
+            colors: ['#b0120a', '#7b1fa2'],
+            series: {
+                1: { targetAxisIndex: 1 },
+                0: { targetAxisIndex: 0 }
+                
+            },
+            hAxis: {
+                title: 'Ngày',
+                minValue: 0
+            },
+            vAxis: {
+                1: { title: 'Tổng doanh thu' },
+                0: { title: 'Số đơn hàng' }
+                
+            },
+            axes: {
+                y: {
+                    Count: { label: 'Số đơn hàng'}, // Left y-axis.
+                    Total: { side: 'right', label: 'Tổng doanh thu'} // Right y-axis.
+                }
+              }
+        };
+        var chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
+
+        chart.draw(data, options);
+        return false;
+    }
+</script>
+<div style="margin-top: 100px;" id="chart_div"></div>

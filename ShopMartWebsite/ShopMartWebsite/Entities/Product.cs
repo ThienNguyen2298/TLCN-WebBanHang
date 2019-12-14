@@ -19,6 +19,7 @@ namespace ShopMartWebsite.Entities
         public string name { get; set; }
         public decimal price { get; set; }
         public string description { get; set; }
+        [Required]
         public int amount { get; set; }
         public string image { get; set; }
         [DefaultValue("true")]

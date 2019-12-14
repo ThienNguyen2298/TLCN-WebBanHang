@@ -75,8 +75,9 @@
                                 <li>
                                     <a><i class="fa fa-home"></i> Đơn hàng <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu">
-                                        
+
                                         <li><a href="@Url.Action("Index","Order")">Quản lý Đơn hàng</a></li>
+                                        <li><a href="@Url.Action("OrderNotConfirm","Order")">Đơn hàng chưa duyệt</a></li>
 
                                     </ul>
                                 </li>
@@ -91,29 +92,16 @@
                                     <a><i class="fa fa-desktop"></i> Người dùng <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu">
                                         <li><a href="tables_dynamic.html">Quản lý Người dùng</a></li>
-                                        <li><a href="tables_dynamic.html">Quản lý Người dùng</a></li>
+                                        
                                     </ul>
                                 </li>
-                                <li>
-                                    <a><i class="fa fa-table"></i> Thông báo <span class="fa fa-chevron-down"></span></a>
-                                    <ul class="nav child_menu">
-                                        <li><a href="tables_dynamic.html">Duyệt Đơn hàng</a></li>
-                                        <li><a href="tables_dynamic.html">Bình luận</a></li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <a><i class="fa fa-bar-chart-o"></i> Tin nhắn <span class="fa fa-chevron-down"></span></a>
-                                    <ul class="nav child_menu">
-                                        <li><a href="tables_dynamic.html">Phản hồi Khách hàng</a></li>
-                                        <li><a href="tables_dynamic.html">Tin nhắn chờ</a></li>
-
-                                    </ul>
-                                </li>
+                               
+                               
                                 <li>
                                     <a><i class="fa fa-clone"></i>Thống kê <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu">
-                                        <li><a href="tables_dynamic.html">Thống kê Đơn hàng</a></li>
-                                        <li><a href="tables_dynamic.html">Thống kê Doanh thu</a></li>
+                                        <li><a href="@Url.Action("Index","Chart")">Biểu đồ thống kê</a></li>
+                                        
                                     </ul>
                                 </li>
                             </ul>
