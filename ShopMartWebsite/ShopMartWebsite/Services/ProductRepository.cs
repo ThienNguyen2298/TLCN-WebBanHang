@@ -16,6 +16,27 @@ namespace ShopMartWebsite.Services
         {
             _ctx = ctx;
         }
+        public IEnumerable<Product> SearchProductsForHome(string searchTerm, int? categoryId, int page, int recordSize)
+        {
+
+
+            var products = _ctx.products.AsQueryable();
+            if (!string.IsNullOrEmpty(searchTerm))
+            {
+                products = products.Where(x => x.status == true && x.name.ToLower().Contains(searchTerm.ToLower()));
+            }
+            if (categoryId.HasValue && categoryId.Value > 0)
+            {
+                products = products.Where(x => x.status == true && x.categoryId == categoryId.Value);
+            }
+
+            var skip = (page - 1) * recordSize;
+            // skip  = (1    - 1) * 3 = 0 * 3 = 0
+            // skip  = (2    - 1) * 3 = 1 * 3 = 3
+            // skip  = (3    - 1) * 3 = 2 * 3 = 6
+
+            return products.Where(x => x.status == true && x.amount > 0).Include(a => a.category).Include(cmt => cmt.Comments).OrderBy(x => x.categoryId).Skip(skip).Take(recordSize).ToList();
+        }
         public IEnumerable<Product> SearchProducts(string searchTerm, int? categoryId, int page, int recordSize)
         {
             
@@ -85,6 +106,24 @@ namespace ShopMartWebsite.Services
 
 
             return products.Where(x=>x.status==true).Count();
+        }
+        public int SearchProductsCountForHome(string searchTerm, int? categoryId)
+        {
+
+
+            var products = _ctx.products.AsQueryable();
+            if (!string.IsNullOrEmpty(searchTerm))
+            {
+                products = products.Where(x => x.status == true && x.name.ToLower().Contains(searchTerm.ToLower()));
+            }
+            if (categoryId.HasValue && categoryId.Value > 0)
+            {
+                products = products.Where(x => x.status == true && x.categoryId == categoryId.Value);
+            }
+
+
+
+            return products.Where(x => x.status == true && x.amount > 0).Count();
         }
     }
 }

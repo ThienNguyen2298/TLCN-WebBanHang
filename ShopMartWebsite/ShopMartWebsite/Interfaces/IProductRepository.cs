@@ -10,10 +10,14 @@ namespace ShopMartWebsite.Interfaces
     {
         Product GetProductById(int id);
         IEnumerable<Product> SearchProducts(string searchTerm, int? categoryId, int page, int recordSize);
+        //dành cho trang chủ
+        IEnumerable<Product> SearchProductsForHome(string searchTerm, int? categoryId, int page, int recordSize);
         bool SaveProduct(Product product);
         bool UpdateProduct(Product product);
         bool DeleteProduct(Product product);
         IEnumerable<Product> GetAllProduct();
         int SearchProductsCount(string searchTerm, int? categoryId);
+        //dành cho trang chủ
+        int SearchProductsCountForHome(string searchTerm, int? categoryId);
     }
 }

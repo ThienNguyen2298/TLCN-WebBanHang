@@ -52,6 +52,7 @@ namespace ShopMartWebsite.Controllers
                 model.id = product.id;
                 model.name = product.name;
                 model.price = product.price;
+                model.amount = product.amount;
                 model.size = product.size;
                 model.color = product.color;
                 model.description = product.description;
@@ -76,6 +77,7 @@ namespace ShopMartWebsite.Controllers
                 product.categoryId = model.categoryId;
                 product.name = model.name;
                 product.price = model.price;
+                product.amount = model.amount;
                 product.size = model.size;
                 product.color = model.color;
                 product.description = model.description;
@@ -93,6 +95,7 @@ namespace ShopMartWebsite.Controllers
                 product.name = model.name;
                 product.price = model.price;
                 product.size = model.size;
+                product.amount = model.amount;
                 product.color = model.color;
                 product.description = model.description;
                 product.image = model.pictureIDs;

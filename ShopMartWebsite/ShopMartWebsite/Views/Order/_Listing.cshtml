@@ -23,7 +23,7 @@
 
         <tbody>
             @foreach (var item in Model.Orders) {
-                @if (item.status == true)
+                @if (item.status == true && item.confirm ==true)
                     { 
             <tr class="even pointer">
 

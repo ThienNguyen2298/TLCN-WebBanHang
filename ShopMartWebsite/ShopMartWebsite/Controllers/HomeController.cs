@@ -39,9 +39,9 @@ namespace ShopMartWebsite.Controllers
             var model = new ProductListViewModel();
             model.categoryId = categoryId;
             model.Categories = _categoryRepository.GetAllCategory();
-            model.Products = _productRepository.SearchProducts(searchTerm, categoryId, page.Value, recordSize);
+            model.Products = _productRepository.SearchProductsForHome(searchTerm, categoryId, page.Value, recordSize);
             //tong so cot
-            int totalRecords = _productRepository.SearchProductsCount(searchTerm, categoryId);
+            int totalRecords = _productRepository.SearchProductsCountForHome(searchTerm, categoryId);
             model.Pager = new Pager(totalRecords, page, recordSize);
             return View(model);
         }
@@ -72,6 +72,7 @@ namespace ShopMartWebsite.Controllers
                 model.color = product.color;
                 model.size = product.size;
                 model.description = product.description;
+                model.amount = product.amount;
                 model.image = product.image;
                 model.category = product.category;
                 model.Comments = _commentRepository.GetAllCommentByProductId(productId.Value);
@@ -146,7 +147,7 @@ namespace ShopMartWebsite.Controllers
             var result = false;
             
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            var order = new Order() { customer=customer, info=info, address=address, createDate=DateTime.Now, note=note, status=true, total=total, OrderDetails=arr, userId=userId};
+            var order = new Order() { customer=customer, info=info, address=address, createDate=DateTime.Now, note=note, status=true, confirm=false, total=total, OrderDetails=arr, userId=userId};
             result = _orderRepository.SaveOrder(order);
             if (result)
             {
