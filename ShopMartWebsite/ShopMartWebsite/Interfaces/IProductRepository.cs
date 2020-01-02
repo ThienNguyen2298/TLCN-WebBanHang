@@ -12,6 +12,7 @@ namespace ShopMartWebsite.Interfaces
         IEnumerable<Product> SearchProducts(string searchTerm, int? categoryId, int page, int recordSize);
         //dành cho trang chủ
         IEnumerable<Product> SearchProductsForHome(string searchTerm, int? categoryId, int page, int recordSize);
+        IEnumerable<Product> GetProductsByCategoryId(int CategoryID, int productID);
         bool SaveProduct(Product product);
         bool UpdateProduct(Product product);
         bool DeleteProduct(Product product);

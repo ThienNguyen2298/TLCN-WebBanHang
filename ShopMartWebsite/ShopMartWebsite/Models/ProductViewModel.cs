@@ -37,6 +37,7 @@ namespace ShopMartWebsite.Models
         
         public IEnumerable<Category> Categories { get; set; }
         public IEnumerable<Comment> Comments { get; set; }
+        public IEnumerable<Product> ProductsOfCategory { get; set; }
 
     }
 }
