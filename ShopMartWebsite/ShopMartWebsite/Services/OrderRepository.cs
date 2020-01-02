@@ -76,21 +76,62 @@ namespace ShopMartWebsite.Services
             return orders.Where(x => x.status == true && x.confirm == true).Count();
         }
 
-        public IEnumerable<object> RevenueStatistical(DateTime date)
+        public IEnumerable<Statistical> RevenueStatistical(string option, int monthSearch, int yearSearch)
         {
-            /*var report = _ctx.orders
+            //DateTime date = DateTime.UtcNow.Date;
+            if (option == null || option == "dayinmonth")
+            {
+                /*var report = _ctx.orders
                 .GroupBy(x => new { x.createDate.Date })
                 .Select(x => new { Date = x.Key.Date.ToShortDateString(), Count = x.Count(), Total = x.Sum(y=> y.total) });*/
-            var report = from o in _ctx.orders
-                         group o by o.createDate.Date into g
-                         //where g.Key > date && g.Key < DateTime.Parse("2019-12-06")
+                var report = from o in _ctx.orders
+                             group o by o.createDate.Date into g
+
+                             //where g.Key.Month == date.Month && g.Key.Year == date.Year
+                             where g.Key.Month == monthSearch && g.Key.Year == yearSearch
+                             select new
+                             {
+                                 Day = g.Key.ToString("dd/MM/yyyy"),
+                                 Count = g.Count(),
+                                 Total = g.Sum(x => x.total)
+                             };
+                List<Statistical> lst = new List<Statistical>();
+                foreach (var value in report)
+                {
+                    var temp = new Statistical();
+                    temp.Day = value.Day;
+                    temp.Count = value.Count;
+                    temp.Total = value.Total;
+                    lst.Add(temp);
+                }
+                return lst;
+            }
+            else
+            {
+                //string test = date.Month.ToString();
+                var rp = from i in _ctx.orders
+                         where i.createDate.Year == yearSearch
+                         group i by i.createDate.Month into h
+                         //where g.Key > date && g.Key < DateTime.Parse("2019-12-22")
+                         //where g.Key.Month == date.Month
+
                          select new
                          {
-                             Day = g.Key.ToString("dd/MM/yyyy"),
-                             Count = g.Count(),
-                             Total = g.Sum(x=>x.total)
+                             Day = h.Key,
+                             Count = h.Count(),
+                             Total = h.Sum(x => x.total)
                          };
-            return report.ToList();
+                List<Statistical> list = new List<Statistical>();
+                foreach (var valu in rp)
+                {
+                    var tem = new Statistical();
+                    tem.Day = "Tháng " + valu.Day.ToString();
+                    tem.Count = valu.Count;
+                    tem.Total = valu.Total;
+                    list.Add(tem);
+                }
+                return list;
+            }
         }
 
         public IEnumerable<Order> SearchOrdersNotConfirm(string searchTerm, DateTime? searchDate, int page, int recordSize)

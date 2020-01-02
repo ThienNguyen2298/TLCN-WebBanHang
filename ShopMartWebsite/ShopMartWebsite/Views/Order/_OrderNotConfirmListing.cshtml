@@ -56,7 +56,7 @@
                         <td class=" last">
 
                             <button data-href="@Url.Action("Viewss", "Order", new { ID = item.id,total = item.total, customer = item.user!=null?item.user.displayname : item.customer })" class="data-btn-view btn btn-info" data-toggle="modal" data-target="#actionView" title="Xem chi tiết đơn hàng"><i class="fas fa-eye"></i></button>
-                            <button data-href="@Url.Action("ConfirmOrder", "Order", new { ID = item.id, page= Model.Pager.CurrentPage })" title="Xóa đơn hàng" class="data-btn btn btn-success" data-toggle="modal" data-target="#actionModal"><i class="fas fa-check"></i></button>
+                            <button data-href="@Url.Action("ConfirmOrder", "Order", new { ID = item.id, page= Model.Pager.CurrentPage })" title="Duyệt đơn hàng" class="data-btn btn btn-success" data-toggle="modal" data-target="#actionModal"><i class="fas fa-check"></i></button>
                         </td>
                     </tr>
                 }
@@ -73,12 +73,12 @@
                 @if (Model.Pager.CurrentPage > 1)
                 {
                     <li class="page-item">
-                        <a class="page-link" href="@Url.Action("Index","Order", new { searchTerm = Model.SearchTerm, searchDate = Model.searchDate })">
+                        <a class="page-link" href="@Url.Action("OrderNotConfirm","Order", new { searchTerm = Model.SearchTerm, searchDate = Model.searchDate })">
                             <i class="fas fa-angle-double-left"></i>
                         </a>
                     </li>
                     <li class="page-item">
-                        <a class="page-link" href="@Url.Action("Index","Order", new { page = Model.Pager.CurrentPage - 1,
+                        <a class="page-link" href="@Url.Action("OrderNotConfirm","Order", new { page = Model.Pager.CurrentPage - 1,
                                                   searchTerm = Model.SearchTerm, searchDate = Model.searchDate })">
                             <i class="fas fa-angle-left"></i>
                         </a>
@@ -88,20 +88,20 @@
                 @for (var page = Model.Pager.StartPage; page <= Model.Pager.EndPage; page++)
                 {
                     <li class="page-item @(page == Model.Pager.CurrentPage ? "active" : "")">
-                        <a class="page-link" href="@Url.Action("Index","Order", new { page = page,
+                        <a class="page-link" href="@Url.Action("OrderNotConfirm","Order", new { page = page,
                                                   searchTerm = Model.SearchTerm, searchDate = Model.searchDate })">@(page)</a>
                                             </li>}
 
                 @if (Model.Pager.CurrentPage < Model.Pager.TotalPages)
                 {
                     <li class="page-item">
-                        <a class="page-link" href="@Url.Action("Index","Order", new { page = Model.Pager.CurrentPage + 1,
+                        <a class="page-link" href="@Url.Action("OrderNotConfirm","Order", new { page = Model.Pager.CurrentPage + 1,
                                                   searchTerm = Model.SearchTerm, searchDate = Model.searchDate })">
                             <i class="fas fa-angle-right"></i>
                         </a>
                     </li>
                     <li class="page-item">
-                        <a class="page-link" href="@Url.Action("Index","Order", new { page = Model.Pager.TotalPages,
+                        <a class="page-link" href="@Url.Action("OrderNotConfirm","Order", new { page = Model.Pager.TotalPages,
                                                   searchTerm = Model.SearchTerm, searchDate = Model.searchDate })">
                             <i class="fas fa-angle-double-right"></i>
                         </a>

@@ -26,6 +26,39 @@
     --Lexend:'Lexend',cursive;
     --Livvic:'Livvic',cursive;
 }
+/*
+    custom
+*/
+.orange-color {
+    color: #eb6f21;
+}
+
+.page-link {
+    width: 37px;
+    height: 37px;
+    outline: none;
+    border-radius: 10px;
+    margin-right: 2px;
+}
+
+.gotobutton {
+    position: fixed;
+    width: 50px;
+    height: 50px;
+    background: #27ae60;
+    bottom: 40px;
+    right: 10%;
+    text-decoration: none;
+    z-index: 1000;
+    text-align: center;
+    color: white;
+    line-height: 50px;
+    cursor: pointer;
+    border: none;
+}
+/*
+    x custom x
+*/
 a.disabledd {
     pointer-events: none;
     color: #ccc;
@@ -269,6 +302,7 @@ main .wrapper{
 /*      Products       */
 .products{
     padding: 4rem 0;
+    width: 100%;
 }
 .section-title h2{
     text-align: center;
@@ -277,14 +311,14 @@ main .wrapper{
     text-transform: capitalize;
     letter-spacing: 2px;
 }
-.products-center{
-    width: 90vw;
+.products-center {
+    width: 80%;
     margin: 0 auto;
-    max-width: 1170px;
+    max-width: 80%;
     display: grid;
     grid-template-columns: repeat(4,1fr);
-    grid-column-gap: 1.5rem;
-    grid-row-gap: 2rem;
+    grid-column-gap: 4rem;
+    grid-row-gap: 1rem;
 }
 .img-container{
     position: relative;
@@ -317,9 +351,14 @@ main .wrapper{
 .product > .img-container .product-img:hover{
     transform: scale(1.1);
 }
-.product{
+.product {
+    border-radius: 5px;
     background-color: #F8F8F8;
     border: 1px solid #f8f8f8;
+}
+.product a:hover{
+    text-decoration: none;
+    color: green;
 }
 .product-img{
     display: block;
@@ -356,17 +395,22 @@ footer.footer{
     background: var(--bg-color);
     position: relative;
 }
-footer.footer .container{
+footer > p {
+    color: white;
+}
+footer.footer .containerr{
+    width: 80%;
+    margin: 0 auto;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
 }
-footer.footer .container > div{
+footer.footer .containerr > div{
     flex-grow: 1;
     flex-basis: 0;
     padding: 3rem .9rem;
 }
-footer.footer .container h2{
-    color: var(--white);
+footer.footer .containerr h2{
+    color: white;
 }
 footer.footer .newsletter .form-element{
     background: black;

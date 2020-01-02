@@ -16,7 +16,7 @@ namespace ShopMartWebsite.Interfaces
         IEnumerable<Order> GetAllOrder();
         int SearchOrdersCount(string searchTerm, DateTime? searchDate);
         bool SaveOrder(Order order);
-        IEnumerable<Object> RevenueStatistical(DateTime date);
+        IEnumerable<Statistical> RevenueStatistical(string option, int monthSearch, int yearSearch);
         IEnumerable<Order>  SearchOrdersNotConfirm(string searchTerm, DateTime? searchDate, int page, int recordSize);
         int SearchOrdersCountNotConfirm(string searchTerm, DateTime? searchDate);
     }

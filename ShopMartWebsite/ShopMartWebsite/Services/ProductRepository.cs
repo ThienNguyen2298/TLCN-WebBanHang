@@ -16,6 +16,11 @@ namespace ShopMartWebsite.Services
         {
             _ctx = ctx;
         }
+        public IEnumerable<Product> GetProductsByCategoryId(int ID, int productId)
+        {
+            var products = _ctx.products.AsQueryable();
+            return products.Where(x => x.categoryId == ID && x.id != productId && x.status == true && x.amount > 0).Include(Y=>Y.category).ToList();
+        }
         public IEnumerable<Product> SearchProductsForHome(string searchTerm, int? categoryId, int page, int recordSize)
         {
 

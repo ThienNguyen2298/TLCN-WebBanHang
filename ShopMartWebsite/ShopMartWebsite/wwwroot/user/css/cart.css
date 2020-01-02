@@ -1,7 +1,8 @@
-.cart-overlay{
+.cart-overlay {
     position: relative;
     width: 80%;
     height: 100%;
+    min-height: 360px;
     margin: 0 auto;
     background: transparent;
     /*background: rgb(240, 157, 81, 0.5);*/
@@ -11,7 +12,7 @@
 }
 .cart > h4{
     width: 195px;
-    border-bottom: 3px solid red;
+    border-bottom: 3px solid green;
 }
 /*
 .cart div:first-child{

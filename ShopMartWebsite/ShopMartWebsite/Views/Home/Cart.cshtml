@@ -204,11 +204,21 @@
                     let id = addAmount.dataset.id;
                     console.log("id", id);
                     let tempItem = cart.find(item => item.id === id)
-                    tempItem.quantity += 1;
+                    tempItem.quantity = parseInt(tempItem.quantity) + 1;
                     console.log("Hang", tempItem)
                     if (tempItem.quantity > tempItem.amount) {
                         tempItem.quantity = tempItem.amount;
-                        alert("trong kho chỉ còn lại " + tempItem.quantity + " sản phẩm");
+                        //alert("trong kho chỉ còn lại " + tempItem.quantity + " sản phẩm");
+                        swal({
+                            title: "Thông báo!",
+                            text: "trong kho chỉ còn lại " + tempItem.quantity + " sản phẩm",
+                            icon: "warning",
+                            buttons: "OK"
+
+                        })
+                            .then((willDelete) => {
+                                //location.reload();
+                            });
                     }
                         
                     Storage.saveCart(cart);

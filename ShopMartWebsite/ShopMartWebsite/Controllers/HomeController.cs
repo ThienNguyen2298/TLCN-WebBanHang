@@ -21,9 +21,10 @@ namespace ShopMartWebsite.Controllers
         private readonly ICommentRepository _commentRepository;
         private readonly IReplyRepository _replyRepository;
         private readonly IOrderRepository _orderRepository;
+        private readonly UserManager<User> _userManager;
         public HomeController(ICategoryRepository categoryRepository, IProductRepository productRepository, 
             SignInManager<User> signInManager, ICommentRepository commentRepository, IReplyRepository replyRepository,
-            IOrderRepository orderRepository)
+            IOrderRepository orderRepository, UserManager<User> userManager)
         {
             _categoryRepository = categoryRepository;
             _productRepository = productRepository;
@@ -31,6 +32,7 @@ namespace ShopMartWebsite.Controllers
             _commentRepository = commentRepository;
             _replyRepository = replyRepository;
             _orderRepository = orderRepository;
+            _userManager = userManager;
         }
         public IActionResult Index(string searchTerm, int? categoryId, int? page)
         {
@@ -76,6 +78,7 @@ namespace ShopMartWebsite.Controllers
                 model.image = product.image;
                 model.category = product.category;
                 model.Comments = _commentRepository.GetAllCommentByProductId(productId.Value);
+                model.ProductsOfCategory = _productRepository.GetProductsByCategoryId(product.categoryId.Value, productId.Value);
             }
             
             return View(model);
@@ -159,6 +162,61 @@ namespace ShopMartWebsite.Controllers
 
             }
             return json;
+            
+            
+        }
+        [HttpGet]
+        public async Task<IActionResult> InfoPersional(string email)
+        {
+            var model = new UserViewModel();
+            var user = await _userManager.FindByEmailAsync(email);
+            if (user.gender == true)
+            {
+                model.displayname = user.displayname;
+                model.email = user.Email;
+                model.birthDay = user.birthDay.Date;
+                model.tempGender = "yes";
+                model.phone = user.phone;
+                model.address = user.address;
+            }
+            else
+            {
+                model.displayname = user.displayname;
+                model.email = user.Email;
+                model.birthDay = user.birthDay.Date;
+                model.tempGender = "no";
+                model.phone = user.phone;
+                model.address = user.address;
+            }
+            
+            return View(model);
+        }
+        [HttpPost]
+        public async Task<IActionResult> InfoPersional(UserViewModel model)
+        {
+            
+            IdentityResult result = null;
+            var user = await _userManager.FindByEmailAsync(model.email);
+            if (model.tempGender == "1")
+            {
+                user.gender = true;
+                user.address = model.address;
+                user.birthDay = model.birthDay;
+                user.phone = model.phone;
+                result = await _userManager.UpdateAsync(user);
+                return RedirectToAction("InfoPersional",new { email = user.Email});
+            }
+            else
+            {
+                user.gender = false;
+                
+                user.address = model.address;
+                user.birthDay = model.birthDay;
+                user.phone = model.phone;
+                result = await _userManager.UpdateAsync(user);
+                return RedirectToAction("InfoPersional", new { email = user.Email });
+            }
+            
             
             
         }
