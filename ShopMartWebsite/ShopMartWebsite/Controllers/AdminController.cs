@@ -28,6 +28,7 @@ namespace ShopMartWebsite.Controllers
             _userManager = userManager;
             _hostingEnvironment = he;
         }
+        
         public IActionResult Index()
         {
             //var model = new User();
@@ -41,6 +42,7 @@ namespace ShopMartWebsite.Controllers
             return View();
             
         }
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         [Produces("application/json")]
         public async  Task<IActionResult> UploadPictures()
