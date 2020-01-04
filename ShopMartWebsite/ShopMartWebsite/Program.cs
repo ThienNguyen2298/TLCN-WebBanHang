@@ -18,9 +18,9 @@ namespace ShopMartWebsite
     {
         public static void Main(string[] args)
         {
-            CreateWebHostBuilder(args).Build().Run();
-            
-            /*var host = BuildWebHost(args).Build();
+            //CreateWebHostBuilder(args).Build().Run();
+            // tạo Admin nếu chưa cài chưa có tài khoản admin(seed data)
+            var host = BuildWebHost(args).Build();
             try
             {
                 var scope = host.Services.CreateScope();
@@ -38,7 +38,7 @@ namespace ShopMartWebsite
                 {
                     var adminUser = new User
                     {
-                        UserName = "admin",
+                        UserName = "admin",//username Admin , password = password.
                         Email = "admin@gmail.com"
                     };
                     var resule = userMnr.CreateAsync(adminUser, "password").GetAwaiter().GetResult();
@@ -49,15 +49,15 @@ namespace ShopMartWebsite
             {
                 Console.Write(e.Message);
             }
-            host.Run();*/
+            host.Run();
         }
         
-        /*public static IWebHostBuilder BuildWebHost(string[] args) =>
+        public static IWebHostBuilder BuildWebHost(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
-                .UseStartup<Startup>();*/
-        public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
+                .UseStartup<Startup>();
+        /*public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
            WebHost.CreateDefaultBuilder(args)
             
-               .UseStartup<Startup>();
+               .UseStartup<Startup>();*/
     }
 }

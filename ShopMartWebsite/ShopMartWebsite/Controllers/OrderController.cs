@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using ShopMartWebsite.Interfaces;
 using ShopMartWebsite.Models;
 
 namespace ShopMartWebsite.Controllers
 {
+    [Authorize(Roles ="Admin")]
     public class OrderController : Controller
     {
         private readonly IOrderRepository _orderRepository;

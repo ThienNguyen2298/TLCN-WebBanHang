@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using ShopMartWebsite.Entities;
@@ -10,6 +11,7 @@ using ShopMartWebsite.Models;
 
 namespace ShopMartWebsite.Controllers
 {
+    [Authorize(Roles ="Admin")]
     public class UserController : Controller
     {
         private readonly IUserRepository _userRepository;

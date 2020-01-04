@@ -11,7 +11,7 @@ using ShopMartWebsite.Models;
 
 namespace ShopMartWebsite.Controllers
 {
-    [Authorize]
+    [Authorize(Roles ="Admin")]
     public class ProductController : Controller
     {
         private IProductRepository _productRepository;
